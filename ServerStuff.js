@@ -12,7 +12,7 @@ function onRequest(request, response){
 
     response.writeHead(200, {"Context-Type":"text/plain"});
 
-    response.write("Here is your response");
+    response.write("Here is your response, Nigga");
 
     response.end();
 }
