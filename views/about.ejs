@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About this project.</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+
+    <p>Welcome to DBS</p>
+    <% for(var i=0; i< print.length; i++){%>
+    	<h1><%= print[i].cust_name %></h1>
+    <%  }  %>
+  </body>
+</html>
