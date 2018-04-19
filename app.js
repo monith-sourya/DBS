@@ -12,29 +12,6 @@ var aboutRouter = require('./routes/about')
 
 var app = express();
 
-var connect = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password : 'Keyshore',
-    database: 'fitness'
-});
-
-connect.connect(function(error){
-    if(error){
-        console.log('Error');
-    }
-    else{
-        console.log('Connected');
-    }
-
-    connect.query("Select * from customer", function(err, result, fields){
-        if(err) throw err;
-
-        app.locals.print = result;
-    });
-});
-
-
 app.locals.points = "8,912";
 
 // view engine setup

@@ -27,27 +27,27 @@ http.createServer(onRequest).listen(8888);
 console.log('Server Running Successfully');
 
 
-// var connect = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password : 'Keyshore',
-//     database: 'fitness'
-// });
+var connect = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password : 'Keyshore',
+    database: 'fitness'
+});
 
-// connect.connect(function(error){
-//     if(error){
-//         console.log('Error');
-//     }
-//     else{
-//         console.log('Connected');
-//     }
+connect.connect(function(error){
+    if(error){
+        console.log('Error');
+    }
+    else{
+        console.log('Connected');
+    }
 
-//     connect.query("Select * from customer", function(err, result, fields){
-//         if(err) throw err;
+    connect.query("Select * from customer", function(err, result, fields){
+        if(err) throw err;
 
-//         console.log(result);
-//     });
-// });
+        console.log(result);
+    });
+});
 
 
 app.listen()
