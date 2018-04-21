@@ -16,10 +16,6 @@ var passport = require('passport');
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-router.get('/signin', function(req, res, next) {
-  res.render('signin');
-});
-
 router.get('/', function(req, res, next) {
   res.render('newuser',{errors:'No Errors'});
 });
@@ -58,19 +54,25 @@ router.post('/', function(req, res, next) {
             function(err, result, fields){
                 if(err) throw err;
 
-                db.query('SELECT LAST_INSERT_ID() as user_id',function(error, results, fields){
-                    if(error) throw error;
+                // db.query('SELECT LAST_INSERT_ID() as user_id',function(error, results, fields){
+                //     if(error) throw error;
 
-                    const user_id = results[0];
+                //     const user_id = results[0];
 
-                    console.log(results[0]);
-                    req.login(user_id, function(err){
-                        res.redirect('/');
-                    });
+                //     //console.log('Hello there');
+                //     //console.log(results[0]);
+                //     req.login(user_id, function(err){
 
-                    res.end("Your Customer ID is :"+result.insertId);
+                //       //  console.log('redirect');
+                //         res.redirect('/');
+                //         //res.end("Your Customer ID is :"+result.insertId + user_id);
+                //     });
+
+                    
             
-                });
+                // });
+
+                res.redirect('/signin');
               } )
             //res.end(JSON.stringify(req.body));
         });

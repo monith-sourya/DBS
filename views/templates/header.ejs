@@ -1,9 +1,11 @@
-<a href="/"> Home <a> |
-<a href="/about"> About <a> |
+
+
 <% if (isAuthenticated){%>
-<a href="/logout">Logout<a>
+<a href="/profile"> Profile <a> |
+<a href="/logout">Logout<a>|
 <%}else{%>
 <a href="/newuser"> New Users <a> |
 <a href="/signin">Login<a>|
 <%}%>
+<a href="/about"> About <a> |
 <a href="#"> Link <a> 

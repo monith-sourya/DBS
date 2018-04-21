@@ -19,7 +19,7 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+//var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var newuserRouter = require('./routes/newuser');
 //var signinRouter = require('./routes/signin');
@@ -71,7 +71,7 @@ app.use( function(req, res, next){
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/newuser', newuserRouter);
 //app.use('/signin', signinRouter);
