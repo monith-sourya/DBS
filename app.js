@@ -10,11 +10,13 @@ var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 
 
-var bcrypt = require('bcrypt');
-const saltRounds = 10;
+
 
 var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
+
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -62,11 +64,19 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use( function(req, res, next){
+	res.locals.isAuthenticated = req.isAuthenticated();
+
+	next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/newuser', newuserRouter);
 app.use('/signin', signinRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

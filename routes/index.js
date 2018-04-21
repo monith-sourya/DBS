@@ -10,8 +10,11 @@ router.get('/', authenticationMiddleware(),function(req, res, next) {
     console.log(req.isAuthenticated());
     res.render('index', { title: 'Express' });
 });
-
-
+router.get('/logout', function(req, res, next) {
+  req.logout();
+  req.session.destroy();
+  res.render('signin');
+});
 module.exports = router;
 
 function authenticationMiddleware() {  

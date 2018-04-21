@@ -13,7 +13,9 @@ var connect = mysql.createConnection({
 module.exports = function(passport){
 
 	passport.use(new localStartegy(function(username, password, done){
-
+		console.log(username);
+		console.log(password);
+		return done(null, false);
 		 
 	}))
 }
