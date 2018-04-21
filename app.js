@@ -22,7 +22,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var newuserRouter = require('./routes/newuser');
-var signinRouter = require('./routes/signin');
+//var signinRouter = require('./routes/signin');
 
 var app = express();
 
@@ -74,7 +74,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/newuser', newuserRouter);
-app.use('/signin', signinRouter);
+//app.use('/signin', signinRouter);
 
 
 
