@@ -20,7 +20,7 @@ const saltRounds = 10;
 
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
-var aboutRouter = require('./routes/about');
+//var aboutRouter = require('./routes/about');
 
 var modifycRouter = require('./routes/modifyc');
 
@@ -68,8 +68,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-    host: 'localhost',
-    user: 'root',
+    host: '192.168.0.13',
+    user: 'vishnu',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -97,7 +97,7 @@ app.use(function(req, res, next){
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
-app.use('/about', aboutRouter);
+//app.use('/about', aboutRouter);
 
 
 app.use('/modifyc', modifycRouter);

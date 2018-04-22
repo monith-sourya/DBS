@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 
 var connect = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: '192.168.0.13',
+    user: 'vishnu',
     password : 'Keyshore',
     database: 'fitness'
 });
@@ -18,7 +18,9 @@ connect.connect(function(error){
     }
 
     connect.query("Select * from customer", function(err, result, fields){
-        if(err) throw err;
+        if(err){
+            console.log(err.message);
+        }
 
         var print = result;
     });
