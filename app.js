@@ -101,7 +101,7 @@ app.use(function(req, res, next){
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
-app.use('/about', aboutRouter);
+//app.use('/about', aboutRouter);
 
 
 app.use('/modifyc', modifycRouter);
