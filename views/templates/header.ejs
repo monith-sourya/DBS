@@ -2,11 +2,11 @@
 
 <% if (isAuthenticated){%>
 <a href="/profile"> Profile <a> |
-<%if(user.job == 'Manager'){%>
+<%if(type == 'Manager'){%>
 <a href="/newuser"> New Users <a> |
 <a href="/newemp">New Emp<a> |
 <%}%>
-<%if(user.job == 'Receptionist'){%>
+<%if(type == 'Receptionist'){%>
 <a href="/newuser"> New Users <a> |
 <%}%>
 <a href="/logout">Logout<a> |

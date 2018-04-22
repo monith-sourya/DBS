@@ -53,6 +53,8 @@ var app = express();
 
 var user ;
 
+var type;
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -89,9 +91,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use( function(req, res, next){
+app.use(function(req, res, next){
 	res.locals.isAuthenticated = req.isAuthenticated();
 
+	if(req.path!='/signin')
+	res.locals.type = req.user.type;
 	next();
 });
 
@@ -140,6 +144,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// function authenticationMiddleware() {  
+//     return (req, res, next) => {
+//         //console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+//         if (req.isAuthenticated()) return next();
+//         res.redirect('/signin')
+//     }
+// }
 
 
 
