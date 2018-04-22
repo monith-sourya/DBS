@@ -1,4 +1,20 @@
-<a href="/"> Home <a> |
+
+
+<% if (isAuthenticated){%>
+<a href="/profile"> Profile <a> |
+<%if(user.job == 'Manager'){%>
+<a href="/newuser"> New Users <a> |
+<a href="/newemp">New Emp<a> |
+<%}%>
+<%if(user.job == 'Receptionist'){%>
+<a href="/newuser"> New Users <a> |
+<%}%>
+<a href="/logout">Logout<a> |
+<%}else{%>
+
+<a href="/signin">Login<a> |
+
+<%}%>
 <a href="/about"> About <a> |
 <a href="#"> Link <a> |
 <a href="/customer"> Customer <a> | 

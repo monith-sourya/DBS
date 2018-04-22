@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Emp Reg</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    <h1>Emp Reg</h1>
+
+    <p>Welcome to Emp Reg</p>
+
+    <h1><%= errors %></h1>
+	
+	<form method="post" action="/newemp">
+	<br>	Username: 
+    <input type="text" name="username"><br>
+
+    
+	Sex: 
+    <div>
+    <input type="radio" id="sexChoice1"
+     name="sex" value="M">
+    <label for="sexChoice1">Male</label>
+
+    <input type="radio" id="sexChoice2"
+     name="sex" value="F">
+    <label for="sexChoice2">Female</label>
+
+  	</div>
+  	<br>
+
+  	<br>	Age		:
+    <input type="number" name="age"><br>
+	
+	<br>
+	<br>	Salary	:
+    <input type="number" name="sal"><br>
+
+	<br>
+	Job Type : 
+    <div>
+    <input type="radio" id="jobChoice1"
+     name="job" value="Receptionist">
+    <label for="jobChoice1">Receptionist</label>
+	
+	<input type="radio" id="jobChoice2"
+     name="job" value="Trainer">
+    <label for="jobChoice2">Trainer</label>
+
+	<input type="radio" id="jobChoice3"
+     name="job" value="Manager">
+    <label for="jobChoice3">Manager</label>
+  <input type="radio" id="jobChoice4"
+     name="job" value="Maintenance">
+    <label for="jobChoice4">Maintenance</label>
+  	</div>
+
+  <br>  Enter Password :
+    <input type="password" name="pass1"><br>
+  
+  <br>
+  <br>  Re-enter Password :
+    <input type="password" name="pass2"><br>
+  
+  <br>
+
+    <br><input type="submit" value="Submit"><br>
+	</form>
+
+  </body>
+</html>

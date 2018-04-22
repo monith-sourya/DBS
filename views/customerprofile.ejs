@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile Page</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    <br><h1>Profile Page</h1><br>
+
+    <p>ID :<%=user.cust_id  %></p>
+    <p>Username is :<%= user.cust_name %></p>
+	   
+    <p>Sex :<%=user.sex  %></p>
+    <p>Age :<%= user.age %></p>
+    <p>SubID :<%= user.sub_id %></p>
+    <p>SUB Dur :<%=  user.sub_dur%></p>
+    <p>Trainer : <%=  user.trainer_id%></p>
+    <p>Attendance : <%=  user.attendance%></p>
+    <p>Balance : <%=  user.card_bal%></p>
+	
+  </body>
+</html>
