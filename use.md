@@ -38,7 +38,7 @@ Manager
 
 	View Inventory list
 
-	Change Subscription details 
+	Change Subscription details //
 
 	View Accounts 
 
