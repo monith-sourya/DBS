@@ -17,6 +17,7 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.get('/', function(req, res, next) {
+
     if(req.user.type == 'Manager'){
         res.render('newemp',{errors:'No Errors'});
     }else{

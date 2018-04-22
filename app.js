@@ -20,10 +20,36 @@ const saltRounds = 10;
 
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
+<<<<<<< HEAD
 //var aboutRouter = require('./routes/about');
+=======
+var aboutRouter = require('./routes/about');
+
+var modifycRouter = require('./routes/modifyc');
+
+//Receptionist Routes.
+>>>>>>> c76a2cd7541b9e4e587ee91fc94f07615f335232
 var newuserRouter = require('./routes/newuser');
+var viewcRouter = require('./routes/viewc');
+//var addcRouter = require('./routes/addc');
+var attlogRouter = require(('./routes/attlog'));
+
+//Maintenance Routes
+
+var addiRouter = require('./routes/addi');
+var modifyiRouter = require('./routes/modifyi');
+var viewiRouter = require('./routes/viewi');
+
+//Customer 
+
+var addtRouter = require('./routes/addt');
+var viewtRouter = require('./routes/viewt');
+
+//Manager
+
 var newempRouter = require('./routes/newemp');
-//var signinRouter = require('./routes/signin');
+var modifyeRouter = require('./routes/modifye');
+var statsRouter = require('./routes/stats');
 
 var app = express();
 
@@ -75,12 +101,37 @@ app.use( function(req, res, next){
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+<<<<<<< HEAD
 //app.use('/about', aboutRouter);
+=======
+app.use('/about', aboutRouter);
+
+
+app.use('/modifyc', modifycRouter);
+
+//receptionist
+//app.use('/addc', addcRouter);
+app.use('/viewc', viewcRouter);
+app.use('/attlog', attlogRouter);
+>>>>>>> c76a2cd7541b9e4e587ee91fc94f07615f335232
 app.use('/newuser', newuserRouter);
-app.use('/newemp', newempRouter);
 //app.use('/signin', signinRouter);
 
+//Maintenance
 
+app.use('/addi', addiRouter);
+app.use('/modifyi', modifyiRouter);
+app.use('/viewi', viewiRouter);
+
+//Customer
+
+app.use('/addt', addtRouter);
+app.use('/viewt', viewtRouter);
+
+//Manager
+app.use('/newemp', newempRouter);
+app.use('/modifye', modifyeRouter);
+app.use('/stats', statsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
