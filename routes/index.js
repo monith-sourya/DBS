@@ -22,10 +22,14 @@ router.get('/', authenticationMiddleware(),function(req, res, next) {
 
 
 router.get('/signin', function(req, res, next) {
-  res.render('signin');
+    if(req.isAuthenticated()){
+        res.redirect('/');
+    }
+    res.render('signin');
 });
 router.get('/auth', function(req, res, next) {
   res.render('auth', {title: 'Not Authorised'});
+
 });
 router.get('/logout', function(req, res, next) {
     req.logout();
