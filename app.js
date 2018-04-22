@@ -22,11 +22,14 @@ var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var newuserRouter = require('./routes/newuser');
+var newempRouter = require('./routes/newemp');
 //var signinRouter = require('./routes/signin');
 
 var app = express();
 
 //app.locals.points = "8,912";
+
+var user ;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -74,6 +77,7 @@ app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/newuser', newuserRouter);
+app.use('/newemp', newempRouter);
 //app.use('/signin', signinRouter);
 
 

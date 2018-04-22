@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile Page</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    <br><h1>Profile Page</h1><br>
+    
+    <br><h1><%= user.job %></h1><br>
+    <p>ID :<%=user.emp_id  %></p>
+    <p>Username is :<%= user.emp_name %></p>
+	   
+    <p>Sex :<%=user.sex  %></p>
+    <p>Age :<%= user.age %></p>
+    <p>Salary :<%= user.sal %></p>
+    <p>Attendance : <%=  user.attendance%></p>
+    
+  </body>
+</html>

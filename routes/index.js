@@ -13,18 +13,20 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 
-var user;
+//var user;
 /* GET home page. */
 
 router.get('/', authenticationMiddleware(),function(req, res, next) {
-    res.render('index', { title: user.cust_id });
+    res.render('index', { title: req.user.user_id });
 });
 
 
 router.get('/signin', function(req, res, next) {
   res.render('signin');
 });
-
+router.get('/auth', function(req, res, next) {
+  res.render('auth', {title: 'Not Authorised'});
+});
 router.get('/logout', function(req, res, next) {
     req.logout();
     // req.session.destroy();
@@ -36,27 +38,38 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/profile', function(req, res, next) {
-        if(req.user.user_id<9000){
+
+        if(req.user.type == 'Customer'){
             res.redirect('/customerprofile');
+        }
+        if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
+            res.redirect('/empprofile');
         }
     
 });
 router.get('/customerprofile', function(req, res, next) {
-      if(req.user.user_id < 9000){
+      if(req.user.type == 'Customer'){
         console.log(user.cust_id);
         res.render('customerprofile', {user: user},)
       }
 });
-
-router.post('/signin',
-  passport.authenticate('local'),
-  function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    //console.log(req.user);
-    //req.flash('Success!');
-    res.redirect('/');
-  });
+router.get('/empprofile', function(req, res, next) {
+      if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
+        console.log(user.emp_id);
+        res.render('empprofile', {user: user},)
+      }
+});
+// router.post('/signin',
+//   passport.authenticate('local'),
+//  {
+//     // If this function gets called, authentication was successful.
+//     // `req.user` contains the authenticated user.
+//     //console.log(req.user);
+//     //req.flash('Success!');
+//     res.redirect('/');
+//   });
+router.post('/signin', passport.authenticate('local', { successRedirect: '/',
+                                                    failureRedirect: '/signin' }));
 
 
 passport.use(new LocalStrategy(function(username, password, done){
@@ -83,7 +96,14 @@ passport.use(new LocalStrategy(function(username, password, done){
 
                     }else{
                         //console.log('Hash Success!');
-                        getuserdata(username);
+                        results[0].password = 0;
+                        //console.log(results[0].password);
+                        if(results[0].type == 'Customer'){
+                        getcustdata(username);
+                        }
+                        else if(results[0].type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
+                        getempdata(username);
+                        }
                         return done(null,results[0]);
                     }
                 });
@@ -99,7 +119,7 @@ passport.use(new LocalStrategy(function(username, password, done){
 // passport.deserializeUser(function(user_id, done) {
 //     done(null, user_id);
 // });
-function getuserdata(username){
+function getcustdata(username){
 
         const db = require('../db.js');
 
@@ -112,6 +132,28 @@ function getuserdata(username){
                 if(!results.length){
                     return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
                 } else{
+                //var r = results[0].toObject();
+                var r = JSON.parse(JSON.stringify(results[0]));
+                r.job = 'Customer';
+                user = r;
+                }   
+        })
+}
+
+function getempdata(username){
+
+        const db = require('../db.js');
+
+        //console.log('1');
+
+        db.query('SELECT * FROM employee WHERE emp_id = ? ', [username],
+            function(err, results, fields){
+                if(err) {return done(err)};
+
+                if(!results.length){
+                    return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                } else{
+                console.log('Emp user taken');
                 user = results[0];
                 }   
         })
