@@ -18,6 +18,7 @@ router.use(passport.session());
 
 router.get('/', authenticationMiddleware(),function(req, res, next) {
     res.render('index', { title: req.user.user_id });
+    //res.redirect('/profile');
 });
 
 

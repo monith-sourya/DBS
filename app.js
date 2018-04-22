@@ -94,7 +94,7 @@ app.use(passport.session());
 app.use(function(req, res, next){
 	res.locals.isAuthenticated = req.isAuthenticated();
 
-	if(req.path!='/signin')
+	if(req.isAuthenticated())
 	res.locals.type = req.user.type;
 	next();
 });
@@ -145,14 +145,21 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// function authenticationMiddleware() {  
-//     return (req, res, next) => {
-//         //console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+function authenticationMiddleware() {  
+    return (req, res, next) => {
+        //console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
-//         if (req.isAuthenticated()) return next();
-//         res.redirect('/signin')
-//     }
-// }
+        if (req.isAuthenticated()){
+
+			res.locals.type = req.user.type;
+        	return next();
+        } 
+        // if(req.route=='/signin') return next();
+        
+        // if(req.route!='/signin')
+        res.redirect('/signin');
+    }
+}
 
 
 
