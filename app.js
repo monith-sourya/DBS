@@ -51,10 +51,6 @@ var app = express();
 
 //app.locals.points = "8,912";
 
-var user ;
-
-var type;
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

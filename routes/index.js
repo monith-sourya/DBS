@@ -17,7 +17,7 @@ router.use(passport.session());
 /* GET home page. */
 
 router.get('/', authenticationMiddleware(),function(req, res, next) {
-    res.render('index', { title: req.user.user_id });
+    res.render('index', { title: req.user.user_id});
     //res.redirect('/profile');
 });
 
@@ -103,12 +103,12 @@ passport.use(new LocalStrategy(function(username, password, done){
                         //console.log('Hash Success!');
                         results[0].password = 0;
                         //console.log(results[0].password);
-                        if(results[0].type == 'Customer'){
-                        getcustdata(username);
-                        }
-                        else if(results[0].type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
-                        getempdata(username);
-                        }
+                        // if(results[0].type == 'Customer'){
+                        // getcustdata(username);
+                        // }
+                        // else if(results[0].type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
+                        // getempdata(username);
+                        // }
                         return done(null,results[0]);
                     }
                 });
@@ -124,7 +124,18 @@ passport.use(new LocalStrategy(function(username, password, done){
 // passport.deserializeUser(function(user_id, done) {
 //     done(null, user_id);
 // });
+
+function getuserdata(id, req){
+    if(req.user.type == 'Customer'){
+    return getcustdata(id);
+    }
+    else if(req.user.type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
+    return getempdata(id);
+    }
+}
 function getcustdata(username){
+
+        var user;
 
         const db = require('../db.js');
 
@@ -141,11 +152,14 @@ function getcustdata(username){
                 var r = JSON.parse(JSON.stringify(results[0]));
                 r.job = 'Customer';
                 user = r;
+                return user;
                 }   
         })
 }
 
 function getempdata(username){
+
+        var user;
 
         const db = require('../db.js');
 
@@ -158,8 +172,10 @@ function getempdata(username){
                 if(!results.length){
                     return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
                 } else{
-                console.log('Emp user taken');
+                //console.log('Emp user taken');
                 user = results[0];
+
+                return user;
                 }   
         })
 }
