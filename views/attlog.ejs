@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Attendance</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    
+    <br><h3>Log Attendace for Customer</h3><br>
+    <% if(!disp){%>
+        <form method='post' action='/attlog'>
+        <br>    Userid: 
+        <input type='text' name='userid'><br>
+        Date:
+        <input type = 'date' name='date'><br> 
+        <input type = 'submit' value = 'Submit'><br>
+        </form>
+    <%}else{%>
+        <h2>Succesfully Added</h2>
+    <% }%>	
+  </body>
+</html>
