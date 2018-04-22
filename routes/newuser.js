@@ -17,7 +17,12 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.get('/', function(req, res, next) {
-  res.render('newuser',{errors:'No Errors'});
+
+    if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
+        res.render('newuser',{errors:'No Errors'});
+    }else{
+        res.redirect('auth');
+    }
 });
 
 router.post('/', function(req, res, next) {
