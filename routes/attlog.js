@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var errj=  "No Error"
+var errj=  "No Error";
 router.get('/', function(req, res, next){
     if(req.user.type=='Receptionist'){
         console.log('Succesfully Entered Frontend');
@@ -23,7 +23,7 @@ router.post('/', function(req, res, next){
             var dispj = false;
             var resp ;
             if(err){
-                console.log(error.message+ error.sqlMessage);
+                console.log(err.message+ err.sqlMessage);
                 console.log('SQL Error');
                 errj = err;
             }

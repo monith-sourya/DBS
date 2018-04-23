@@ -9,7 +9,7 @@ var expressValidator = require('express-validator');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 
-
+var flash = require('connect-flash');
 
 
 var passport = require('passport');
@@ -68,8 +68,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-    host: '192.168.0.13',
-    user: 'vishnu',
+    host: 'localhost',
+    user: 'root',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -94,6 +94,8 @@ app.use(function(req, res, next){
 	res.locals.type = req.user.type;
 	next();
 });
+
+app.use(flash());
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
