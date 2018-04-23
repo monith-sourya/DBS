@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    <h1><%= title %></h1>
+
+    <%if (flash.length > 0 ){%>
+      <p> <%=flash%> </p>
+    <%}%>
+	
+  <table border="1">
+    <tr>
+    <!-- <th> </th> -->
+    <th>ID</th>
+    <th>Name</th> 
+    <th>Price </th>
+    <th> </th>
+    </tr>
+    <% for(var i=0; i < rows.length; i++) { %>
+    <form method="post" action="/modifyequip">
+    
+       <tr>
+        <input type="hidden" name="id" value=<%= rows[i].type_id %>>
+       <td><%= rows[i].type_id %>  </td>
+       <td><%= rows[i].type_name %>  <INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].type_name%> ></td>
+       <td><%= rows[i].price%>   <INPUT TYPE="number" NAME="price" size='0' value= <%=rows[i].price%> ></td>
+       <td><input type="submit" value="Submit"></td>
+      </tr>
+      
+    </form>
+    <% } %>
+
+    <form method="post" action="/addequip">
+    
+       
+       <td> Add New</td>
+       <td>Name : <INPUT TYPE="TEXT" NAME="name"  ></td>
+       <td> <INPUT TYPE="number" NAME="price" size='0' ></td>
+       <td><input type="submit" value="Add"></td>
+      </tr>  
+    </form>
+</table>
+
+    
+	
+  </body>
+</html>

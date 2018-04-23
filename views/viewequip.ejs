@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    <h1><%= title %></h1>
+
+    <p>Welcome to <%= title %></p>
+	
+  <table border="1">
+    <tr>
+    <th>ID</th>
+    <th>Name</th> 
+    <th>Price </th>
+    </tr>
+    <% for(var i=0; i < rows.length; i++) { %>
+     <tr>
+     <td><%= rows[i].type_id %></td>
+     <td><%= rows[i].type_name %></td>
+     <td><%= rows[i].price %></td>
+    </tr>
+    <% } %>
+</table>
+	
+  </body>
+</html>
