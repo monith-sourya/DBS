@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    <h1><%= title %></h1>
+
+    <%if (flash.length > 0 ){%>
+      <p> <%=flash%> </p>
+    <%}%>
+	
+  <table border="1">
+    <tr>
+    <!-- <th> </th> -->
+    <th>ID</th>
+    <th>Name</th> 
+    <th>Cost Price </th>
+
+    <th>Selling Price </th>
+    <th>Stock </th>
+    <th> </th>
+    </tr>
+    <% for(var i=0; i < rows.length; i++) { %>
+    <form method="post" action="/modifyi">
+    
+       <tr>
+        <input type="hidden" name="id" value=<%= rows[i].inv_id %>>
+       <td><%= rows[i].inv_id %>  </td>
+       <td><%= rows[i].inv_name %>  <INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].inv_name%> ></td>
+       <td><%= rows[i].cp%>   <INPUT TYPE="number" NAME="cp" size='0' value= <%=rows[i].cp%> ></td>
+       <td><%= rows[i].sp%>   <INPUT TYPE="number" NAME="sp" size='1' value= <%=rows[i].sp%> </td>
+       <td><%= rows[i].stock%>   <INPUT TYPE="number" NAME="stock" size='1' value= <%=rows[i].stock%> ></td>
+       <td><input type="submit" value="Submit"></td>
+      </tr>
+      
+    </form>
+    <% } %>
+
+    <form method="post" action="/addi">
+    
+       
+       <td> Add New</td>
+       <td>Name : <INPUT TYPE="TEXT" NAME="name"  ></td>
+       <td> <INPUT TYPE="number" NAME="cp" size='0' ></td>
+       <td> <INPUT TYPE="number" NAME="sp" size='1' </td>
+       <td> <INPUT TYPE="number" NAME="stock" size='1' ></td>
+       <td><input type="submit" value="Add"></td>
+      </tr>  
+    </form>
+</table>
+
+    
+	
+  </body>
+</html>

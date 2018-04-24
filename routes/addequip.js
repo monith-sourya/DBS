@@ -4,32 +4,31 @@ var bodyParser = require('body-parser');
 
 
 router.get('/',function(req, res, next) {
-    res.redirect('/modifyi');
+    res.redirect('/modifyequip');
 });
 router.post('/', function(req, res, next) {
 
 	const id = req.body.id;
     const name = req.body.name;
-    const cp = req.body.cp;
-    const sp = req.body.sp;
-    const stock = req.body.stock;
+    const price = req.body.price;
 
         
 
     const db = require('../db.js');
 
 
-    db.query("INSERT INTO inv_food SET inv_name=?, cp =?, sp=?,stock=?;",[name, cp, sp, stock],
+    db.query("INSERT INTO inv_equip SET type_name=?, price =?;",[name, price],
     function(err, result, fields){
         if(err){
         console.log(err)
         console.log(err)
 
-        req.flash('SQL', 'There exists a duplicate, please verify again.')
-        res.redirect('modifyi');
+        req.flash('SQL', ' Error in Adding. Please Try again')
+        res.redirect('modifyequip');
     	}
     	else{
-    	res.redirect('modifyi');
+
+    	res.redirect('modifyequip');
         //res.render('modifyi', { title: 'Food Inventory',rows : rows, errors: 'None'});
     	}
     })

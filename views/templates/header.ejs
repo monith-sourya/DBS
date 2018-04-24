@@ -1,4 +1,5 @@
 <% if (isAuthenticated){%>
+<!-- <<<<<<< HEAD -->
   <a href="/profile"> Profile <a> |
 
 <%if(user.job == 'Manager'){%>
@@ -11,6 +12,32 @@
 <%}%>
 
 <a href="/logout">Logout<a> |
+<!-- ======= -->
+<a href="/profile"> Profile <a> |
+
+<%if(type == 'Manager'){%>
+<a href="/newuser"> New Users <a> |
+<a href="/newemp">New Emp<a> |
+<%}%>
+
+
+<%if(type == 'Receptionist'){%>
+<a href="/newuser"> New Users <a> |
+<a href="/attlog"> Attendance Log <a> |
+<%}%>
+
+<%if(type == 'Customer'){%>
+<a href="/addt"> Transaction <a> |
+<%}%>
+
+<%if(type == 'Maintenance'){%>
+
+<a href="/viewi"> View Inventory  <a> |
+<a href="/modifyi"> Modify Inventory  <a> |
+<a href="/viewequip"> View Equipment  <a> |
+<a href="/modifyequip"> Modify Equipment  <a> |
+<%}%>
+<!-- >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e -->
 
 <%}else{%>
 
@@ -19,4 +46,8 @@
 <%}%>
 
 <a href="/about"> About <a> |
-<a href="#"> Link <a> 
+<a href="#"> Link <a> |
+
+<% if (isAuthenticated){%>
+<a href="/logout">Logout<a> 
+<%}%>

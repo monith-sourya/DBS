@@ -12,13 +12,19 @@ const saltRounds = 10;
 router.use(passport.initialize());
 router.use(passport.session());
 
+var x;
 
 //var user;
 /* GET home page. */
 
 router.get('/', authenticationMiddleware(),function(req, res, next) {
+// <<<<<<< HEAD
     //res.render('index', { title: req.user.user_id });
     res.redirect('/profile');
+// =======
+    res.render('index', { title: req.user.user_id});
+    //res.redirect('/profile');
+// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 });
 
 
@@ -38,7 +44,7 @@ router.get('/logout', function(req, res, next) {
     // res.render('signin');
     req.session.destroy(() => {
         res.clearCookie('connect.sid')
-        res.redirect('/')
+        res.redirect('/signin')
     })
 });
 
@@ -54,14 +60,56 @@ router.get('/profile', function(req, res, next) {
 });
 router.get('/customerprofile', function(req, res, next) {
       if(req.user.type == 'Customer'){
-        console.log(user.cust_id);
-        res.render('customerprofile', {user: user},)
+        //console.log(user.cust_id);
+        //x =getcustdata(req.user.user_id);
+
+        const db = require('../db.js');
+
+        //console.log('1');
+
+        db.query('SELECT * FROM customer WHERE cust_id = ? ', [req.user.user_id],
+            function(err, results, fields){
+                if(err) {return done(err)};
+
+                if(!results.length){
+                    return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                } else{
+                //var r = results[0].toObject();
+                var r = JSON.parse(JSON.stringify(results[0]));
+                r.job = 'Customer';
+                user = r;
+                user.password = 0;
+                x = user;
+                //console.log(x);
+                }   
+        })
+        res.render('customerprofile', {user:x },)
       }
 });
 router.get('/empprofile', function(req, res, next) {
       if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
-        console.log(user.emp_id);
-        res.render('empprofile', {user: user},)
+        //console.log(user.emp_id);
+        const db = require('../db.js');
+
+        //console.log('1');
+        //var x;
+        db.query('SELECT * FROM employee WHERE emp_id = ? ', [req.user.user_id],
+            function(err, results, fields){
+                if(err) {return done(err)};
+
+                if(!results.length){
+                    return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                } else{
+                //console.log('Emp user taken');
+                user = results[0];
+                user.password = 0;
+                x = user;
+                //console.log(x);
+                }   
+        })
+
+        //console.log(x);
+        res.render('empprofile', {user: x},)
       }
 });
 // router.post('/signin',
@@ -103,12 +151,12 @@ passport.use(new LocalStrategy(function(username, password, done){
                         //console.log('Hash Success!');
                         results[0].password = 0;
                         //console.log(results[0].password);
-                        if(results[0].type == 'Customer'){
-                        getcustdata(username);
-                        }
-                        else if(results[0].type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
-                        getempdata(username);
-                        }
+                        // if(results[0].type == 'Customer'){
+                        // getcustdata(username);
+                        // }
+                        // else if(results[0].type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
+                        // getempdata(username);
+                        // }
                         return done(null,results[0]);
                     }
                 });
@@ -124,7 +172,18 @@ passport.use(new LocalStrategy(function(username, password, done){
 // passport.deserializeUser(function(user_id, done) {
 //     done(null, user_id);
 // });
+
+function getuserdata(id, req){
+    if(req.user.type == 'Customer'){
+    return getcustdata(id);
+    }
+    else if(req.user.type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
+    return getempdata(id);
+    }
+}
 function getcustdata(username){
+
+        var user;
 
         const db = require('../db.js');
 
@@ -141,11 +200,14 @@ function getcustdata(username){
                 var r = JSON.parse(JSON.stringify(results[0]));
                 r.job = 'Customer';
                 user = r;
+                return user;
                 }   
         })
 }
 
 function getempdata(username){
+
+        var user;
 
         const db = require('../db.js');
 
@@ -158,8 +220,10 @@ function getempdata(username){
                 if(!results.length){
                     return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
                 } else{
-                console.log('Emp user taken');
+                //console.log('Emp user taken');
                 user = results[0];
+
+                return user;
                 }   
         })
 }

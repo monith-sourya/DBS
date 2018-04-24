@@ -9,8 +9,9 @@ var expressValidator = require('express-validator');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 
+var flash = require('connect-flash');
 
-
+//var x;
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -21,8 +22,11 @@ const saltRounds = 10;
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 //var aboutRouter = require('./routes/about');
+// <<<<<<< HEAD
 
 //var aboutRouter = require('./routes/about');
+// =======
+// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 
 var modifycRouter = require('./routes/modifyc');
 
@@ -38,7 +42,9 @@ var attlogRouter = require(('./routes/attlog'));
 var addiRouter = require('./routes/addi');
 var modifyiRouter = require('./routes/modifyi');
 var viewiRouter = require('./routes/viewi');
-
+var addequipRouter = require('./routes/addequip');
+var modifyequipRouter = require('./routes/modifyequip');
+var viewequipRouter = require('./routes/viewequip');
 //Customer 
 
 var addtRouter = require('./routes/addt');
@@ -53,8 +59,6 @@ var statsRouter = require('./routes/stats');
 var app = express();
 
 //app.locals.points = "8,912";
-
-var user ;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -93,17 +97,24 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use( function(req, res, next){
+app.use(function(req, res, next){
 	res.locals.isAuthenticated = req.isAuthenticated();
 
+	if(req.isAuthenticated())
+	res.locals.type = req.user.type;
 	next();
 });
 
+app.use(flash());
+
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+// <<<<<<< HEAD
 
 //app.use('/about', aboutRouter);
 
+// =======
+// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 //app.use('/about', aboutRouter);
 
 
@@ -122,7 +133,9 @@ app.use('/newuser', newuserRouter);
 app.use('/addi', addiRouter);
 app.use('/modifyi', modifyiRouter);
 app.use('/viewi', viewiRouter);
-
+app.use('/addequip', addequipRouter);
+app.use('/modifyequip', modifyequipRouter);
+app.use('/viewequip', viewequipRouter);
 //Customer
 
 app.use('/addt', addtRouter);
@@ -148,6 +161,22 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+function authenticationMiddleware() {  
+    return (req, res, next) => {
+        //console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+        if (req.isAuthenticated()){
+
+			res.locals.type = req.user.type;
+        	return next();
+        } 
+        // if(req.route=='/signin') return next();
+        
+        // if(req.route!='/signin')
+        res.redirect('/signin');
+    }
+}
 
 
 

@@ -9,14 +9,14 @@ router.get('/',function(req, res, next) {
 
     //var inv ;
 
-    db.query('SELECT * FROM inv_food',
+    db.query('SELECT * FROM inv_equip',
         function(err, results, fields){
             if(err) {throw (err)};
             //var r = results[0].toObject();
             var rows = results;  
             //console.log(rows);
 
-    		res.render('viewi', { title: 'Food Inventory',rows : rows});
+    		res.render('viewequip', { title: 'Equipment Inventory',rows : rows});
     })    
 });
 
