@@ -83,7 +83,7 @@ router.get('/customerprofile', function(req, res, next) {
                 //console.log(x);
                 }   
         })
-        res.render('customerprofile', {user:x },)
+        res.render('customerprofile', { user : x },)
       }
 });
 router.get('/empprofile', function(req, res, next) {
