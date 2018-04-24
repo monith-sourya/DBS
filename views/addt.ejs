@@ -22,17 +22,23 @@
     <th>Name </th> 
     <th>Price </th>
     <th>Stock </th>
+    <th>Quantity </th>
     <th> </th>
     </tr>
     <% for(var i=0; i < rows.length; i++) { %>
-    <form method="post" action="/modifyi">
-    
+    <form method="post" action="/addt">
+        
+        <!-- <input type="hidden" name="userid" value=<%= user.cust_id %>> -->
        <tr>
         <input type="hidden" name="id" value=<%= rows[i].inv_id %>>
        <!-- <td><%= rows[i].inv_id %>  </td> -->
-       <td><%= rows[i].inv_name %>  <INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].inv_name%> ></td>
-       <td><%= rows[i].sp%>   <INPUT TYPE="number" NAME="sp" size='1' value= <%=rows[i].sp%> </td>
-       <td><%= rows[i].stock%>   <INPUT TYPE="number" NAME="stock" size='1' value= <%=rows[i].stock%> ></td>
+        <input type="hidden" name="name" value=<%= rows[i].inv_name %>>
+
+        <input type="hidden" name="price" value=<%= rows[i].sp %>>
+       <td><%= rows[i].inv_name %></td>
+       <td><%= rows[i].sp%></td>
+       <td><%= rows[i].stock%></td>
+       <td> <INPUT TYPE="number" NAME="quantity" size='1' max = '<%=rows[i].stock%>' min = '0' value= '<%=rows[i].stock%>' > </td>
        <td><input type="submit" value="Submit"></td>
       </tr>
       
