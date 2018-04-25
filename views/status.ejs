@@ -22,14 +22,13 @@
     <th> </th>
     </tr>
     <% for(var i=0; i < rows.length; i++) { %>
-    <form method="post" action="/modifyequip">
+    <form method="post" action="/status">
     
        <tr>
         <input type="hidden" name="id" value=<%= rows[i].type_id %>>
        <td><%= rows[i].type_id %>  </td>
-       <td><%= rows[i].type_name %>  <INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].type_name%> ></td>
-       <td><%= rows[i].price%>   <INPUT TYPE="number" NAME="price" size='0' value= <%=rows[i].price%> ></td>
-
+       <td><%= rows[i].type_name %>  <!-- <INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].type_name%>> --></td>
+       <td><%= rows[i].price%>  <!--  <INPUT TYPE="number" NAME="price" size='0' value= <%=rows[i].price%>> --></td>
        <td><%= rows[i].status%>   <INPUT TYPE="number" NAME="status" size='0' value= <%=rows[i].status%> ></td>
        <td><input type="submit" value="Submit"></td>
       </tr>
@@ -37,7 +36,7 @@
     </form>
     <% } %>
 
-    <form method="post" action="/addequip">
+   <!--  <form method="post" action="/addequip">
     
        
        <td> Add New</td>
@@ -45,7 +44,7 @@
        <td> <INPUT TYPE="number" NAME="price" size='0' ></td>
        <td><input type="submit" value="Add"></td>
       </tr>  
-    </form>
+    </form> -->
 </table>
 
     

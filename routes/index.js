@@ -81,9 +81,10 @@ router.get('/customerprofile', function(req, res, next) {
                 user.password = 0;
                 x = user;
                 //console.log(x);
+
+        res.render('customerprofile', { user : x },)
                 }   
         })
-        res.render('customerprofile', { user : x },)
       }
 });
 router.get('/empprofile', function(req, res, next) {
@@ -105,11 +106,12 @@ router.get('/empprofile', function(req, res, next) {
                 user.password = 0;
                 x = user;
                 //console.log(x);
+                
+        res.render('empprofile', {user: x},)
                 }   
         })
 
         //console.log(x);
-        res.render('empprofile', {user: x},)
       }
 });
 // router.post('/signin',

@@ -45,6 +45,7 @@ var viewiRouter = require('./routes/viewi');
 var addequipRouter = require('./routes/addequip');
 var modifyequipRouter = require('./routes/modifyequip');
 var viewequipRouter = require('./routes/viewequip');
+var statusRouter = require('./routes/status');
 //Customer 
 
 var addtRouter = require('./routes/addt');
@@ -136,6 +137,7 @@ app.use('/viewi', viewiRouter);
 app.use('/addequip', addequipRouter);
 app.use('/modifyequip', modifyequipRouter);
 app.use('/viewequip', viewequipRouter);
+app.use('/status', statusRouter)
 //Customer
 
 app.use('/addt', addtRouter);

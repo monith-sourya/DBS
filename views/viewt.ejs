@@ -12,17 +12,20 @@
 	
   <table border="1">
     <tr>
-    <th>ID</th>
-    <th>Name</th> 
-    <th>Price </th>
-    <th>Status</th>
+    <th> TRANSACTION ID</th>
+    <th> Product </th> 
+    <th> Price </th>
+
+    <th> Quantity </th>
+    <th> Time of Purchase </th>
     </tr>
     <% for(var i=0; i < rows.length; i++) { %>
      <tr>
-     <td><%= rows[i].type_id %></td>
-     <td><%= rows[i].type_name %></td>
-     <td><%= rows[i].price %></td>
-     <td><%= rows[i].status %></td>
+     <td><%= rows[i].t_id %></td>
+     <td><%= rows[i].inv_name %></td>
+     <td><%= rows[i].price%></td>
+     <td><%= rows[i].quant%></td>
+     <td><%= rows[i].time%></td>
     </tr>
     <% } %>
 </table>
