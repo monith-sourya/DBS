@@ -96,7 +96,7 @@ app.use(passport.session());
 app.use(function(req, res, next){
   
   res.locals.isAuthenticated = req.isAuthenticated();
-  if(req.isAuthenticated()!=true){
+  if(req.isAuthenticated()!=true && req.url!='/signin'){
     res.render('signin', {flash: 'Login First'});
   }else{
   next();
