@@ -11,6 +11,7 @@ var MySQLStore = require('express-mysql-session')(session);
 
 var flash = require('connect-flash');
 
+//var x;
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -35,7 +36,10 @@ var attlogRouter = require(('./routes/attlog'));
 var addiRouter = require('./routes/addi');
 var modifyiRouter = require('./routes/modifyi');
 var viewiRouter = require('./routes/viewi');
-
+var addequipRouter = require('./routes/addequip');
+var modifyequipRouter = require('./routes/modifyequip');
+var viewequipRouter = require('./routes/viewequip');
+var statusRouter = require('./routes/status');
 //Customer 
 
 var addtRouter = require('./routes/addt');
@@ -116,7 +120,10 @@ app.use('/newuser', newuserRouter);
 app.use('/addi', addiRouter);
 app.use('/modifyi', modifyiRouter);
 app.use('/viewi', viewiRouter);
-
+app.use('/addequip', addequipRouter);
+app.use('/modifyequip', modifyequipRouter);
+app.use('/viewequip', viewequipRouter);
+app.use('/status', statusRouter)
 //Customer
 
 app.use('/addt', addtRouter);

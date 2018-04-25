@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    <h1><%= title %></h1>
+
+    <%if (flash.length > 0 ){%>
+      <p> <%=flash%> </p>
+    <%}%>
+
+    <h2> Name : <%= user.cust_name %> </h2>
+    <h2> Card Balance : <%= user.card_bal %> </h2>
+	
+  <table border="1">
+    <tr>
+    <!-- <th> </th> -->
+    <!-- <th>ID</th> -->
+    <th>Name </th> 
+    <th>Price </th>
+    <th>Stock </th>
+    <th>Quantity </th>
+    <th> </th>
+    </tr>
+    <% for(var i=0; i < rows.length; i++) { %>
+    <form method="post" action="/addt">
+        
+        <!-- <input type="hidden" name="userid" value=<%= user.cust_id %>> -->
+       <tr>
+        <input type="hidden" name="id" value=<%= rows[i].inv_id %>>
+       <!-- <td><%= rows[i].inv_id %>  </td> -->
+        <input type="hidden" name="name" value=<%= rows[i].inv_name %>>
+
+        <input type="hidden" name="price" value=<%= rows[i].sp %>>
+       <td><%= rows[i].inv_name %></td>
+       <td><%= rows[i].sp%></td>
+       <td><%= rows[i].stock%></td>
+       <td> <INPUT TYPE="number" NAME="quantity" size='1' max = '<%=rows[i].stock%>' min = '0' value= '<%=rows[i].stock%>' > </td>
+       <td><input type="submit" value="Submit"></td>
+      </tr>
+      
+    </form>
+    <% } %>
+</table>
+
+    
+	
+  </body>
+</html>

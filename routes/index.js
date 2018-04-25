@@ -12,6 +12,7 @@ const saltRounds = 10;
 router.use(passport.initialize());
 router.use(passport.session());
 
+var x;
 
 //var user;
 /* GET home page. */
@@ -54,14 +55,58 @@ router.get('/profile', function(req, res, next) {
 });
 router.get('/customerprofile', function(req, res, next) {
       if(req.user.type == 'Customer'){
-        console.log(user.cust_id);
-        res.render('customerprofile', {user: user},)
+        //console.log(user.cust_id);
+        //x =getcustdata(req.user.user_id);
+
+        const db = require('../db.js');
+
+        //console.log('1');
+
+        db.query('SELECT * FROM customer WHERE cust_id = ? ', [req.user.user_id],
+            function(err, results, fields){
+                if(err) {return done(err)};
+
+                if(!results.length){
+                    return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                } else{
+                //var r = results[0].toObject();
+                var r = JSON.parse(JSON.stringify(results[0]));
+                r.job = 'Customer';
+                user = r;
+                user.password = 0;
+                x = user;
+                //console.log(x);
+
+        res.render('customerprofile', { user : x },)
+                }   
+        })
       }
 });
 router.get('/empprofile', function(req, res, next) {
       if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
-        console.log(user.emp_id);
-        res.render('empprofile', {user: user},)
+        //console.log(user.emp_id);
+        const db = require('../db.js');
+
+        //console.log('1');
+        //var x;
+        db.query('SELECT * FROM employee WHERE emp_id = ? ', [req.user.user_id],
+            function(err, results, fields){
+                if(err) {return done(err)};
+
+                if(!results.length){
+                    return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                } else{
+                //console.log('Emp user taken');
+                user = results[0];
+                user.password = 0;
+                x = user;
+                //console.log(x);
+                
+        res.render('empprofile', {user: x},)
+                }   
+        })
+
+        //console.log(x);
       }
 });
 // router.post('/signin',
