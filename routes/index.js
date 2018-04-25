@@ -25,7 +25,7 @@ router.get('/', authenticationMiddleware(),function(req, res, next) {
 
 router.get('/signin', function(req, res, next) {
     if(req.isAuthenticated()){
-        res.redirect('/');
+        res.redirect('/profile');
     }
     res.render('signin');
 });
