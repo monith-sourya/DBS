@@ -1,229 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Customer Profile</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+  <head>
+    <title>User Reg</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% include templates/header.ejs </template>%>
+    <h1>User Reg</h1>
+
+    <p>Welcome to User Reg</p>
+
+    <%if (flash.length > 0 ){%>
+      <p> <%=flash%> </p>
+    <%}%>
   
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
+  <form method="post" action="/newuser">
+  <br>  Username: 
+    <input type="text" name="username"><br>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-</head>
-<body>
-<!-- check this shiz -->
-  <!-- <% include templates/header.ejs </template>%> -->
+    
+  Sex: 
+    <div>
+    <input type="radio" id="sexChoice1"
+     name="sex" value="M">
+    <label for="sexChoice1">Male</label>
 
-<!-- navbar shiz -->
+    <input type="radio" id="sexChoice2"
+     name="sex" value="F">
+    <label for="sexChoice2">Female</label>
 
-<% if (isAuthenticated){%>
-
-
-<nav class="navbar-fluid navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand">BogusFitnessClub</a>
     </div>
-    <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
-      <ul class="nav navbar-nav navbar-right">      
-        <li><a href="n3.html"> About Us</a></li>
-        <li><a href="#"> Contact Us</a></li>
-        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      </ul>
-    <!-- </div> -->
-  </div>
-</nav>
+    <br>
 
-<!-- profile side bar for receptionist-->
-
+    <br>  Age   :
+    <input type="number" name="age"><br>
   
-<div class="container-fluid">
-<% if(user.id == 9902){ %>
-  <div class="row profile">
-    <div class="col-md-3">
-      <div class="profile-sidebar">
-        <div class="profile-user-pic">
-          <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
-        <div class="profile-user-title">
-          <!-- <br> -->
-          <div class="profile-user-name">
-            <h2>
-              <%=user.emp_name%>
-            </h2>
-          </div>
-          <div class="profile-user-job">
-            Customer ID: <%=user.job%>
-          </div>
-        </div>
-        <br>
-        <!-- <div class="profile-user-buttons"> -->
-          <!-- <button class="btn btn-success btn-sm">randome</button> -->
-        <!-- </div> -->
-        <div class="profile-user-menu">  
-          <!-- check above -->
-           <ul class="nav">
-             <li class="active"><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
-             <!-- <li class="active"><a href="">Profile</a> -->
-             <li><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
-             <!-- <li><a href=""> NewTransaction</a> -->
-             <li><a href="/attlog"><i class="glyphicon glyphicon-th-list"></i>   Attendance Log</a>
-             <!-- <li><a href=""> TranscationHistory</a> -->
-             <li><a href="/balance"><i class="glyphicon glyphicon-th-list"></i>   Add Balance</a>
-             <br>
-             <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a>
-           </ul>
-        </div>
-      </div>
+  <br>
+  <br>  Sub Dur :
+    <input type="number" name="subd"><br>
+
+  <br>
+  Sub Type : 
+    <div>
+    <input type="radio" id="subChoice1"
+     name="sub" value="1001">
+    <label for="subChoice1">Platinum</label>
+  
+  <input type="radio" id="subChoice2"
+     name="sub" value="2001">
+    <label for="subChoice2">Gold</label>
+
+  <input type="radio" id="subChoice3"
+     name="sub" value="3001">
+    <label for="subChoice3">Silver</label>
     </div>
-  </div>
 
-  <% } %>  
+    <br>
+  
+  <br>
+  <br>  Trainer :
+    <input type="number" name="trainer"><br>
+  
+  <br>
 
-  <!-- profile sidebar for manager -->
+  <br>  Enter Password :
+    <input type="password" name="pass1"><br>
+  
+  <br>
+  <br>  Re-enter Password :
+    <input type="password" name="pass2"><br>
+  
+  <br>
 
-  <% if(user.id == 9903){ %>
-  <div class="row profile">
-    <div class="col-md-3">
-      <div class="profile-sidebar">
-        <div class="profile-user-pic">
-          <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
-        <div class="profile-user-title">
-          <!-- <br> -->
-          <div class="profile-user-name">
-            <h2>
-              <%=user.emp_name%>
-            </h2>
-          </div>
-          <div class="profile-user-job">
-            Customer ID: <%=user.job%>
-          </div>
-        </div>
-        <br>
-        <!-- <div class="profile-user-buttons"> -->
-          <!-- <button class="btn btn-success btn-sm">randome</button> -->
-        <!-- </div> -->
-        <div class="profile-user-menu">  
-          <!-- check above -->
-           <ul class="nav">
-             <li class="active"><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
-             <!-- <li class="active"><a href="">Profile</a> -->
-             <li><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
-             <!-- <li><a href=""> NewTransaction</a> -->
-             <li><a href="/newemp"><i class="glyphicon glyphicon-th-list"></i>   New Employees</a>
-             <!-- <li><a href=""> TranscationHistory</a> -->
-             <!-- <li><a href="/balance"><i class="glyphicon glyphicon-th-list"></i>   Add Balance</a> -->
-             <br>
-             <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a>
-           </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+    <br><input type="submit" value="Submit"><br>
+  </form>
 
-  <% } %>  
-
-  <!-- profile sidebar for maintanance -->
-
-  <% if(user.id == 9905){ %>
-  <div class="row profile">
-    <div class="col-md-3">
-      <div class="profile-sidebar">
-        <div class="profile-user-pic">
-          <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
-        <div class="profile-user-title">
-          <!-- <br> -->
-          <div class="profile-user-name">
-            <h2>
-              <%=user.emp_name%>
-            </h2>
-          </div>
-          <div class="profile-user-job">
-            Customer ID: <%=user.job%>
-          </div>
-        </div>
-        <br>
-        <!-- <div class="profile-user-buttons"> -->
-          <!-- <button class="btn btn-success btn-sm">randome</button> -->
-        <!-- </div> -->
-        <div class="profile-user-menu">  
-          <!-- check above -->
-           <ul class="nav">
-             <li class="active"><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
-             <!-- <li class="active"><a href="">Profile</a> -->
-             <li><a href="/viewi"><i class="glyphicon glyphicon-plus"></i>   View Inventory</a>
-             <!-- <li><a href=""> NewTransaction</a> -->
-             <li><a href="/modifyi"><i class="glyphicon glyphicon-th-list"></i>   Modify Inventory</a>
-             <!-- <li><a href=""> TranscationHistory</a> -->
-             <li><a href="/viewequip"><i class="glyphicon glyphicon-th-list"></i>   View Equipment</a>
-             <li><a href="/modifyequip"><i class="glyphicon glyphicon-th-list"></i>   Modify Equipment</a>
-              <li><a href="/status"><i class="glyphicon glyphicon-th-list"></i>   Update Status</a>
-             <br>
-             <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a>
-           </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <% } %>  
-
-<!-- jumbotron -->
-<div class="col-md-8">
-  <div class="container">
-    <div class="jumbotron">
-      <h1>Employee Profile</h1>
-      <!-- <h3></h3> -->
-      <div class="container">
-        <h2></h2>
-        <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
-        <br>
-        <div class="col-md-8">            
-        <table class="table table-hover">
-          <thead>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Employee ID:</td>
-              <td><%=user.emp_id %></td>
-            </tr>
-            <tr>
-              <td>User Name:</td>
-              <td><%=user.emp_name%></td>
-            </tr>
-            <tr>
-              <td>Sex:</td>
-              <td><%=user.sex%></td>
-              <!-- <td>Age:</td> -->
-              <!-- <td>something else</td> -->
-            </tr>
-            <tr>
-              <td>Age:</td>
-              <td><%=user.age%></td>
-            </tr>
-            <tr>
-              <td>Salary:</td>
-              <td><%=user.sal%></td>
-            </tr>
-            <tr>
-            <tr>
-              <td>Attendance:</td>
-              <td><%=user.attendance%></td>
-            </tr>
-            <tr>
-              <td>Balance:</td>
-              <td><%=user.card_bal%></td>
-            </tr>
-          </tbody>
-      </table>
-    </div>
-    </div>      
-  </div>
-</div>
-</div>
-
-<%}%>
-
-</body>
+  </body>
 </html>
-
