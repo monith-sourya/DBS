@@ -22,10 +22,16 @@ const saltRounds = 10;
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 //var aboutRouter = require('./routes/about');
+// <<<<<<< HEAD
+
+//var aboutRouter = require('./routes/about');
+// =======
+// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 
 var modifycRouter = require('./routes/modifyc');
 
 //Receptionist Routes.
+
 var newuserRouter = require('./routes/newuser');
 var viewcRouter = require('./routes/viewc');
 //var addcRouter = require('./routes/addc');
@@ -72,8 +78,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-    host: 'localhost',
-    user: 'root',
+    host: '192.168.0.13',
+   // port: '80',
+    user: 'nikki',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -103,6 +110,12 @@ app.use(flash());
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+// <<<<<<< HEAD
+
+//app.use('/about', aboutRouter);
+
+// =======
+// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 //app.use('/about', aboutRouter);
 
 
@@ -112,6 +125,7 @@ app.use('/modifyc', modifycRouter);
 //app.use('/addc', addcRouter);
 app.use('/viewc', viewcRouter);
 app.use('/attlog', attlogRouter);
+
 app.use('/newuser', newuserRouter);
 //app.use('/signin', signinRouter);
 
