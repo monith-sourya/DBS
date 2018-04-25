@@ -1,23 +1,137 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Profile Page</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-  	<% include templates/header.ejs 
-  <!-- </template> -->
-  %>
-    <br><h1>Profile Page</h1><br>
-    
-    <br><h1><%= user.job %></h1><br>
-    <p>ID :<%=user.emp_id  %></p>
-    <p>Username is :<%= user.emp_name %></p>
-	   
-    <p>Sex :<%=user.sex  %></p>
-    <p>Age :<%= user.age %></p>
-    <p>Salary :<%= user.sal %></p>
-    <p>Attendance : <%=  user.attendance%></p>
-    
-  </body>
+<html lang="en">
+<head>
+  <title>Customer Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- navbar shiz -->
+
+<nav class="navbar-fluid navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">BogusFitnessClub</a>
+    </div>
+    <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+      <ul class="nav navbar-nav navbar-right">      
+        <li><a href="n3.html"> About Us</a></li>
+        <li><a href="#"> Contact Us</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    <!-- </div> -->
+  </div>
+</nav>
+
+<!-- profile side bar for receptionist-->
+
+  
+<div class="container-fluid">
+  <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <div class="profile-user-pic">
+          <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
+        <div class="profile-user-title">
+          <!-- <br> -->
+          <div class="profile-user-name">
+            <h2>
+              <%=user.emp_name%>
+            </h2>
+          </div>
+          <div class="profile-user-job">
+            <%=user.job%>
+          </div>
+        </div>
+        <br>
+        <!-- <div class="profile-user-buttons"> -->
+          <!-- <button class="btn btn-success btn-sm">randome</button> -->
+        <!-- </div> -->
+        <div class="profile-user-menu">  
+          <!-- check above -->
+           <ul class="nav">
+             <li class="active"><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
+             <!-- <li class="active"><a href="">Profile</a> -->
+             <%if(type == 'Receptionist'){%>
+                <li><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
+                <li><a href="/attlog"><i class="glyphicon glyphicon-th-list"></i>   Attendance Log</a>
+                <li><a href="/balance"><i class="glyphicon glyphicon-th-list"></i>   Add Balance</a>
+             <%}%>
+             <%if(type == 'Manager'){%>
+                <li><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
+                <li><a href="/newemp"><i class="glyphicon glyphicon-plus"></i>   New Employees</a>
+             <%}%>
+             <%if(type == 'Maintenance'){%> 
+                <li><a href="/viewi"><i class="glyphicon glyphicon-plus"></i>   View Inventory</a>
+                <li><a href="/modifyi"><i class="glyphicon glyphicon-plus"></i>   Modify Inventory</a>
+                <li><a href="/viewequip"><i class="glyphicon glyphicon-plus"></i>   View Equipment</a>
+                <li><a href="/modifyequip"><i class="glyphicon glyphicon-plus"></i>   Modify Equipment</a>
+                <li><a href="/status"><i class="glyphicon glyphicon-plus"></i>   Update staus</a>
+              <%}%>
+             <br>
+             <!-- <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a> -->
+           </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- jumbotron -->
+<div class="col-md-8">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Employee Profile</h1>
+      <h3> </h3>
+      <div class="container">
+        <h2></h2>
+        <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
+        <br>
+        <div class="col-md-8">            
+        <table class="table table-hover">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Employee ID:</td>
+              <td><%=user.emp_id %></td>
+            </tr>
+            <tr>
+              <td>User Name:</td>
+              <td><%=user.emp_name%></td>
+            </tr>
+            <tr>
+              <td>Sex:</td>
+              <td><%=user.sex%></td>
+              <!-- <td>Age:</td> -->
+              <!-- <td>something else</td> -->
+            </tr>
+            <tr>
+              <td>Age:</td>
+              <td><%=user.age%></td>
+            </tr>
+            <tr>
+              <td>Salary:</td>
+              <td><%=user.sal%></td>
+            </tr>
+            <tr>
+            <tr>
+              <td>Attendance:</td>
+              <td><%=user.attendance%></td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+    </div>      
+  </div>
+</div>
+</div>
+
+</body>
 </html>
+
