@@ -22,7 +22,7 @@ router.get('/', authenticationMiddleware(),function(req, res, next) {
     //res.render('index', { title: req.user.user_id });
     res.redirect('/profile');
 // =======
-    res.render('index', { title: req.user.user_id});
+    //res.render('index', { title: req.user.user_id});
     //res.redirect('/profile');
 // >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 });

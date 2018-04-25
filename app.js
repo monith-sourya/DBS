@@ -78,9 +78,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-    host: '192.168.0.13',
+    host: 'localhost',
    // port: '80',
-    user: 'nikki',
+    user: 'root',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -101,9 +101,34 @@ app.use(passport.session());
 app.use(function(req, res, next){
 	res.locals.isAuthenticated = req.isAuthenticated();
 
-	if(req.isAuthenticated())
+	if(req.isAuthenticated()){
 	res.locals.type = req.user.type;
-  
+    const db = require('./db.js');
+    var userdata;
+
+    if(req.user.type== 'Customer'){
+    db.query('SELECT cust_id, cust_name, card_bal FROM customer WHERE cust_id=?;', [req.user.user_id], 
+      function(err, results, fields){
+          if(err) {throw (err)};
+
+      userdata = JSON.parse(JSON.stringify(results[0]));
+      //console.log(user);
+     res.locals.user= userdata;
+    });
+    }
+
+    else if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
+    db.query('SELECT emp_id, emp_name, job FROM customer WHERE cust_id=?;', [req.user.user_id], 
+      function(err, results, fields){
+          if(err) {throw (err)};
+
+      userdata = JSON.parse(JSON.stringify(results[0]));
+      //console.log(user);
+     res.locals.user= userdata;
+    });
+    }
+
+    }
 	next();
 });
 
