@@ -21,7 +21,7 @@ router.get('/',function(req, res, next) {
             var rows = results;  
             //console.log(rows);
 
-    		res.render('modifyequip', { title: 'Equipment Inventory ',rows : rows, flash : req.flash('SQL')});
+    		res.render('status', { title: 'Status Updation',rows : rows, flash : req.flash('SQL')});
     })    
 });
 
@@ -31,22 +31,23 @@ router.post('/', function(req, res, next) {
     const name = req.body.name;
     const price = req.body.price;
     const status = req.body.status;
+
         
 
     const db = require('../db.js');
 
 
-    db.query("UPDATE inv_equip SET type_name=?, price =?, status=? WHERE type_id = ?;",[name, price, id ],
+    db.query("UPDATE inv_equip SET status=? WHERE type_id = ?;",[status, id ],
     function(err, result, fields){
         if(err){
         console.log(err)
 
         req.flash('SQL', 'Error in Modifying');
-        res.redirect('modifyequip');
+        res.redirect('status');
     	}
 
     	else{
-    	res.redirect('modifyequip');
+    	res.redirect('status');
         //res.render('modifyi', { title: 'Food Inventory',rows : rows, errors: 'None'});
     	}
     })
