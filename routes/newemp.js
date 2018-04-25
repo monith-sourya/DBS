@@ -29,6 +29,9 @@ router.post('/', function(req, res, next) {
     const username = req.body.username;
     const sex = req.body.sex;
     const age = req.body.age;
+    const phno = req.body.phno;
+    const address = req.body.address;
+    const email = req.body.email;
     const sal = req.body.sal;
     const job = req.body.job
     const pass1 = req.body.pass1;
@@ -53,7 +56,8 @@ router.post('/', function(req, res, next) {
 
         bcrypt.hash(pass1, saltRounds, function(err, hash) {
 
-            db.query("INSERT INTO employee (emp_id, emp_name, sex, age, sal,job, attendance) VALUES (NULL,?,?,?,?,?,'0');",[username, sex, age, sal, job],
+            db.query("INSERT INTO employee (emp_id, emp_name, sex, age, sal,job, attendance, phno, address, email)"+
+             "VALUES (NULL,?,?,?,?,?,'0',?,?,?);",[username, sex, age, sal, job, phno, address, email],
             function(err, result, fields){
                 if(err) throw err;
 
