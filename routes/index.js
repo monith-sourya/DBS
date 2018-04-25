@@ -36,13 +36,19 @@ router.get('/auth', function(req, res, next) {
 
 
 router.get('/logout', function(req, res, next) {
+    if(req.isAuthenticated()){
     req.logout();
     // req.session.destroy();
     // res.render('signin');
     req.session.destroy(() => {
-        res.clearCookie('connect.sid')
-        res.redirect('/signin')
+        res.clearCookie('connect.sid');
+        req.flash('SQL','Successfully Logged Out.');
+        res.redirect('/signin');
     })
+    }else{
+        req.flash('SQL', 'Cannot logout without logging in.');
+        res.redirect('/signin');
+    }
 });
 
 router.get('/profile', function(req, res, next) {

@@ -72,7 +72,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-
     host: 'localhost',
    // port: '80',
     user: 'root',
@@ -93,6 +92,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use(function(req, res, next){
+  
+  res.locals.isAuthenticated = req.isAuthenticated();
+  if(req.isAuthenticated()!=true){
+    res.render('signin', {flash: 'Login First'});
+  }else{
+  next();
+  }
+});
 app.use(function(req, res, next){
 	res.locals.isAuthenticated = req.isAuthenticated();
 
