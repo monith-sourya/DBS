@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+  	    <% include templates/header.ejs </template>%>
+    <h1> <%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <%if(flash.length>0){%>
+        <h1><%=flash%></h1>
+    <%}%>
+    <table border="1">
+    <tr>
+    <th> Date</th>
+    <th> Place </th> 
+    </tr>
+    <% for(var i=0; i < row.length; i++) { %>
+    <tr>
+    <td><%= row[i].date %></td>
+    <td><%= row[i].place %></td>
+    </tr>
+    <% } %>
+</table>
+  </body>
+</html>
