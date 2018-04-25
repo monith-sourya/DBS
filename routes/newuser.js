@@ -19,7 +19,7 @@ const saltRounds = 10;
 router.get('/', function(req, res, next) {
 
     if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
-        res.render('newuser',{errors:'No Errors'});
+        res.render('newuser',{flash : req.flash('SQL')});
     }else{
         res.redirect('auth');
     }
@@ -44,10 +44,9 @@ router.post('/', function(req, res, next) {
     let errors = req.validationErrors();
 
     if(errors){
-        res.render('newuser',{
-            errors: JSON.stringify(errors)
-        });
-        //res.end(JSON.stringify(errors));
+        req.flash('SQL',JSON.stringify(errors) );
+        res.redirect('/newuser');
+        //res.end();
     }else{
         
 
@@ -55,29 +54,42 @@ router.post('/', function(req, res, next) {
 
         bcrypt.hash(pass1, saltRounds, function(err, hash) {
 
-            db.query("INSERT INTO customer (cust_id, cust_name, sex, age, sub_id, sub_dur, trainer_id, attendance, card_bal, Password) VALUES (NULL,?,?,?,?,?,?, '0', '0', ?);",[username, sex, age, sub, subd, trainer, hash],
+            var userid;
+
+            db.query("INSERT INTO customer (cust_id, cust_name, sex, age, sub_id, sub_dur, trainer_id, attendance, card_bal) VALUES (NULL,?,?,?,?,?,?, '0', '0');",[username, sex, age, sub, subd, trainer],
             function(err, result, fields){
-                if(err) throw err;
+                if(err) {
+                    console.log(err);
+                    req.flash('SQL', "Error Registering User Details.");
+                    res.redirect('/newuser');
+                }else{
 
-                // db.query('SELECT LAST_INSERT_ID() as user_id',function(error, results, fields){
-                //     if(error) throw error;
+                //console.log(result);
 
-                //     const user_id = results[0];
+                db.query('UPDATE users SET password= ? WHERE user_id=?;',[hash, result.insertId] ,function(error, results, fields){
+                    if(error) {
+                        throw error;
 
-                //     //console.log('Hello there');
-                //     //console.log(results[0]);
-                //     req.login(user_id, function(err){
+                        req.flash('SQL', 'Error Storing Password.');
+                        res.redirect('/newuser');
 
-                //       //  console.log('redirect');
-                //         res.redirect('/');
-                //         //res.end("Your Customer ID is :"+result.insertId + user_id);
-                //     });
+                    }else{
 
-                    
-            
-                // });
+                     //  console.log('redirect');
 
-                res.redirect('/signin');
+                        // userid = JSON.parse(JSON.stringify(result));
+
+                        console.log('results are :'+ JSON.stringify(result));
+                        // console.log(userid);
+                        // console.log('blah' + JSON.stringify(userid.insertID));
+                        console.log(result.insertId);
+                        req.flash('SQL', 'Succesfully Registered User. USER ID is: ' + result.insertId);
+                        res.redirect('/newuser');
+                    }
+                });
+
+                // res.redirect('/signin');
+                }
               } )
             //res.end(JSON.stringify(req.body));
         });
