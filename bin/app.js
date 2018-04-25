@@ -10,7 +10,6 @@ var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 
 var flash = require('connect-flash');
-
 //var x;
 
 var passport = require('passport');
@@ -44,7 +43,6 @@ var statusRouter = require('./routes/status');
 
 var addtRouter = require('./routes/addt');
 var viewtRouter = require('./routes/viewt');
-var viewattRouter = require('./routes/viewatt');
 
 //Manager
 
@@ -74,7 +72,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var options = {
     host: '192.168.0.13',
-   // port: '80',
     user: 'vishnu',
     password : 'Keyshore',
     database: 'fitness'
@@ -93,6 +90,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use(function(req, res, next){
+  
+  res.locals.isAuthenticated = req.isAuthenticated();
+  if(req.isAuthenticated()!=true && req.url!='/signin'){
+    res.render('signin', {flash: 'Login First'});
+  }else{
+  next();
+  }
+});
 app.use(function(req, res, next){
 	res.locals.isAuthenticated = req.isAuthenticated();
 
@@ -163,7 +170,6 @@ app.use('/status', statusRouter)
 
 app.use('/addt', addtRouter);
 app.use('/viewt', viewtRouter);
-app.use('/viewatt', viewattRouter);
 
 //Manager
 app.use('/newemp', newempRouter);
