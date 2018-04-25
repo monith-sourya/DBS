@@ -97,11 +97,9 @@
     <div class="jumbotron">
       <h1>Purchase Items</h1>
       <h3>Card Balance: <%=user.card_bal%></h3>
-      <h3>
         <% if(flash.length){ %>
-          
+          <h3 id="alert"><%=flash%>!!</h3>
         <% } %>
-      </h3>
       <div class="container">
         <h2></h2>
         <!-- <p>Please contact BogusFitnessClub in case of any issues with the following details.</p> -->
@@ -116,27 +114,44 @@
             <th></th>
           </thead>
           <tbody>
-            <% for(var i=0; i < rows.length; i++) { %>
-              <form method="post" action="/addt">
-        
-              <!-- <input type="hidden" name="userid" value=<%= user.cust_id %>> -->
-                <tr>
-                  <input type="hidden" name="id" value=<%= rows[i].inv_id %>>
-                  <!-- <td><%= rows[i].inv_id %>  </td> -->
-                  <input type="hidden" name="name" value=<%= rows[i].inv_name %>>
-
-                  <input type="hidden" name="price" value=<%= rows[i].sp %>>
-                  <td><%= rows[i].inv_name %></td>
-                  <td><%= rows[i].sp%></td>
-                  <td><%= rows[i].stock%></td>
-                  <td> 
-                    <input type="number" name="quantity" size='1' max = '<%=rows[i].stock%>' min = '0' value= '<%=rows[i].stock%>'> 
-                  </td>
-                  <td><input type="submit" value="Submit"></td>
-                </tr>
-        
-              </form>
-            <% } %>
+            <tr>
+              <td>Registration ID:</td>
+              <td><%=user.cust_id %></td>
+            </tr>
+            <tr>
+              <td>User Name:</td>
+              <td><%=user.cust_name%></td>
+            </tr>
+            <tr>
+              <td>Sex:</td>
+              <td><%=user.sex%></td>
+              <!-- <td>Age:</td> -->
+              <!-- <td>something else</td> -->
+            </tr>
+            <tr>
+              <td>Age:</td>
+              <td><%=user.age%></td>
+            </tr>
+            <tr>
+              <td>Subscription ID:</td>
+              <td><%=user.sub_id%></td>
+            </tr>
+            <tr>
+              <td>Subscription Duration:</td>
+              <td><%=user.sub_dur%> months</td>
+            </tr>
+            <tr>
+              <td>Alotted Trainer:</td>
+              <td><%=user.trainer_id%></td>
+            </tr>
+            <tr>
+              <td>Attendance:</td>
+              <td><%=user.attendance%></td>
+            </tr>
+            <tr>
+              <td>Balance:</td>
+              <td><%=user.card_bal%></td>
+            </tr>
           </tbody>
       </table>
     </div>

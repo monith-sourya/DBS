@@ -6,6 +6,9 @@ body{
 	align-content: left;
 	align-self: left;
 }
+.navbar{
+	height: 10%;
+}
 .navbar-header a{
 	font-size: 25px;
 }
@@ -78,4 +81,7 @@ li{
 }
 .table-hover{
 	font-size: 17px;
+}
+.alert{
+    color: #ff0000;
 }
