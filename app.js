@@ -72,8 +72,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-    host: 'localhost',
-    user: 'root',
+    host: '192.168.0.13',
+    user: 'sanjay',
     password : 'Keyshore',
     database: 'fitness'
 };
