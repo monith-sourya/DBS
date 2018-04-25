@@ -20,13 +20,6 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-//var aboutRouter = require('./routes/about');
-// <<<<<<< HEAD
-
-//var aboutRouter = require('./routes/about');
-// =======
-// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 
 var modifycRouter = require('./routes/modifyc');
 
@@ -36,6 +29,7 @@ var newuserRouter = require('./routes/newuser');
 var viewcRouter = require('./routes/viewc');
 //var addcRouter = require('./routes/addc');
 var attlogRouter = require(('./routes/attlog'));
+var balanceRouter = require('./routes/balance');
 
 //Maintenance Routes
 
@@ -78,8 +72,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
+<<<<<<< HEAD
     host: '192.168.0.13',
     user: 'vishnu',
+=======
+
+    host: 'localhost',
+   // port: '80',
+    user: 'root',
+>>>>>>> 89604ece2ad445f4c6cf66781545bacde59f9d08
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -100,9 +101,34 @@ app.use(passport.session());
 app.use(function(req, res, next){
 	res.locals.isAuthenticated = req.isAuthenticated();
 
-	if(req.isAuthenticated())
+	if(req.isAuthenticated()){
 	res.locals.type = req.user.type;
-  
+    const db = require('./db.js');
+    var userdata;
+
+    if(req.user.type== 'Customer'){
+    db.query('SELECT cust_id, cust_name, card_bal FROM customer WHERE cust_id=?;', [req.user.user_id], 
+      function(err, results, fields){
+          if(err) {throw (err)};
+
+      userdata = JSON.parse(JSON.stringify(results[0]));
+      //console.log(user);
+     res.locals.user= userdata;
+    });
+    }
+
+    else if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
+    db.query('SELECT emp_id, emp_name, job FROM employee WHERE emp_id=?;', [req.user.user_id], 
+      function(err, results, fields){
+          if(err) {throw (err)};
+
+      userdata = JSON.parse(JSON.stringify(results[0]));
+      //console.log(user);
+     res.locals.user= userdata;
+    });
+    }
+
+    }
 	next();
 });
 
@@ -125,7 +151,7 @@ app.use('/modifyc', modifycRouter);
 //app.use('/addc', addcRouter);
 app.use('/viewc', viewcRouter);
 app.use('/attlog', attlogRouter);
-
+app.use('/balance', balanceRouter);
 app.use('/newuser', newuserRouter);
 //app.use('/signin', signinRouter);
 

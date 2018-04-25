@@ -76,11 +76,11 @@
         <div class="profile-user-menu">  
           <!-- check above -->
            <ul class="nav">
-             <li class="active"><a href=""><i class="glyphicon glyphicon-user"></i>  Customer Profile</a>
+             <li class="active"><a href="/customerprofile"><i class="glyphicon glyphicon-user"></i>  Customer Profile</a>
              <!-- <li class="active"><a href="">Profile</a> -->
-             <li><a href=""><i class="glyphicon glyphicon-plus"></i>   New Transaction</a>
+             <li><a href="/addt"><i class="glyphicon glyphicon-plus"></i>   New Transaction</a>
              <!-- <li><a href=""> NewTransaction</a> -->
-             <li><a href=""><i class="glyphicon glyphicon-th-list"></i>   Transaction History</a>
+             <li><a href="/viewt"><i class="glyphicon glyphicon-th-list"></i>   Transaction History</a>
              <!-- <li><a href=""> TranscationHistory</a> -->
              <br>
              <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a>
@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>  
 
 <!-- space buffer -->
   <!-- <div class="col-md-1"> -->
@@ -111,9 +111,10 @@
   <div class="container">
     <div class="jumbotron">
       <h1>Customer Profile</h1>
+      <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3>
       <div class="container">
         <h2></h2>
-        <!-- <p>Please contact BogusFitnessClub in case of any issues with the following details.</p> -->
+        <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
         <br>
         <div class="col-md-8">            
         <table class="table table-hover">
@@ -144,7 +145,7 @@
             </tr>
             <tr>
               <td>Subscription Duration:</td>
-              <td><%=user.sub_dur%></td>
+              <td><%=user.sub_dur%> months</td>
             </tr>
             <tr>
               <td>Alotted Trainer:</td>

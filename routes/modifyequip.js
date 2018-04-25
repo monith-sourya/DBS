@@ -29,14 +29,14 @@ router.post('/', function(req, res, next) {
 
 	const id = req.body.id;
     const name = req.body.name;
-    const price = req.body.price;
+    //const price = req.body.price;
     const status = req.body.status;
         
 
     const db = require('../db.js');
 
 
-    db.query("UPDATE inv_equip SET type_name=?, price =?, status=? WHERE type_id = ?;",[name, price, id ],
+    db.query("UPDATE inv_equip SET type_name=?, status=? WHERE type_id = ?;",[name, id ],
     function(err, result, fields){
         if(err){
         console.log(err)

@@ -16,19 +16,20 @@ router.get('/',function(req, res, next){
             if(err) {throw (err);}else{
             //var r = results[0].toObject();
             rows = results;
+            res.render('addt', { title: 'Equipment Inventory ', rows : rows, flash : req.flash('SQL')});
         	}
     });
 
-    db.query('SELECT cust_id, cust_name, card_bal FROM customer WHERE cust_id=?;', [req.user.user_id], 
-        function(err, results, fields){
-            if(err) {throw (err)};
+    // db.query('SELECT cust_id, cust_name, card_bal FROM customer WHERE cust_id=?;', [req.user.user_id], 
+    //     function(err, results, fields){
+    //         if(err) {throw (err)};
 
-       	user = JSON.parse(JSON.stringify(results[0]));
-       	//console.log(user);
-       	x= 1;
+    //    	user = JSON.parse(JSON.stringify(results[0]));
+    //    	//console.log(user);
+    //    	x= 1;
 
-    res.render('addt', { title: 'Equipment Inventory ', rows : rows, user : user, flash : req.flash('SQL')});
-    });
+    // res.render('addt', { title: 'Equipment Inventory ', rows : rows, user : user, flash : req.flash('SQL')});
+    // });
     //res.render('addt', { title: 'Equipment Inventory ', rows : rows, user : user, flash : req.flash('SQL')});
 });
 

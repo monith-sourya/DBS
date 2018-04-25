@@ -8,7 +8,7 @@
   	<% include templates/header.ejs </template>%>
     
     <br><h3>Log Attendace for Customer</h3><br>
-    <% if(!disp){%>
+    <% if(1>0){%>
         <form method='post' action='/attlog'>
         <br>    Userid: 
         <input type='text' name='userid'><br>
@@ -34,8 +34,9 @@
           </div>
         <input type = 'submit' value = 'Submit'><br>
         </form>
-    <%}else{%>
-        <h2>Succesfully Added</h2>
-    <% }%>	
+    <%}%>
+    <%if(flash.length>0){%>
+      <%= flash%>
+    <%}%>	
   </body>
 </html>

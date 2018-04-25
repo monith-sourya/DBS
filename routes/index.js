@@ -18,13 +18,7 @@ var x;
 /* GET home page. */
 
 router.get('/', authenticationMiddleware(),function(req, res, next) {
-// <<<<<<< HEAD
-    //res.render('index', { title: req.user.user_id });
     res.redirect('/profile');
-// =======
-    res.render('index', { title: req.user.user_id});
-    //res.redirect('/profile');
-// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 });
 
 
@@ -32,12 +26,15 @@ router.get('/signin', function(req, res, next) {
     if(req.isAuthenticated()){
         res.redirect('/profile');
     }
-    res.render('signin');
+    res.render('signin',{flash: req.flash('SQL')});
 });
+
 router.get('/auth', function(req, res, next) {
   res.render('auth', {title: 'Not Authorised'});
 
 });
+
+
 router.get('/logout', function(req, res, next) {
     req.logout();
     // req.session.destroy();
@@ -69,12 +66,14 @@ router.get('/customerprofile', function(req, res, next) {
 
         db.query('SELECT * FROM customer WHERE cust_id = ? ', [req.user.user_id],
             function(err, results, fields){
+
                 if(err) {throw(err);}
 
                 if(!results.length){
                     //return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
                     res.redirect('signin');
 
+// >>>>>>> 5351f22eef530f3019aaa36e2f385cb2ff99abd0
                 } else{
                 //var r = results[0].toObject();
                 var r = JSON.parse(JSON.stringify(results[0]));

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Balance</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <% include templates/header.ejs </template>%>
+    <h1>Update Card Balance Here</h1>
+
+    <p>Update Card Balance Here</p>
+    
+
+        <%if (flash.length > 0 ){%>
+          <p> <%=flash%> </p>
+    <%}%>
+
+
+  <form method="post" action="/balance">
+  <br>  UserID: 
+    <input type="number" name="userid"><br>
+
+  <br>  Enter Amount Paid
+    <input type="number" name="amt"><br>
+  
+  <br>
+
+
+    <br><input type="submit" value="Submit"><br>
+  </form>
+
+  </body>
+</html>
