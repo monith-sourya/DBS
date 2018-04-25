@@ -96,6 +96,7 @@ app.use(function(req, res, next){
 
 	if(req.isAuthenticated())
 	res.locals.type = req.user.type;
+  
 	next();
 });
 

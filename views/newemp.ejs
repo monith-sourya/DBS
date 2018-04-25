@@ -10,7 +10,9 @@
 
     <p>Welcome to Emp Reg</p>
 
-    <h1><%= errors %></h1>
+    <%if (flash.length > 0 ){%>
+          <p> <%=flash%> </p>
+    <%}%>
 	
 	<form method="post" action="/newemp">
 	<br>	Username: 
