@@ -42,11 +42,10 @@ router.get('/logout', function(req, res, next) {
     // res.render('signin');
     req.session.destroy(() => {
         res.clearCookie('connect.sid');
-        req.flash('SQL','Successfully Logged Out.');
         res.redirect('/signin');
     })
     }else{
-        req.flash('SQL', 'Cannot logout without logging in.');
+        req.flash('SQL', 'Cannot logout without logging in')
         res.redirect('/signin');
     }
 });

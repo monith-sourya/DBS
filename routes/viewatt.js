@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 
 router.get('/', function(req, res, next){
         const attp = 0;
+        
         const db = require('../db.js');
         const userid = req.user.user_id;
         db.query('SELECT * FROM attendancet where person_id = ? ORDER BY time ASC',[userid],function(err, rows, fields){
