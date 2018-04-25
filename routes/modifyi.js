@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
 
 	const id = req.body.id;
     const name = req.body.name;
-    const cp = req.body.cp;
+    //const cp = req.body.cp;
     const sp = req.body.sp;
     const stock = req.body.stock;
 
@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
     const db = require('../db.js');
 
 
-    db.query("UPDATE inv_food SET inv_name=?, cp =?, sp=?,stock=? WHERE inv_id = ?;",[name, cp, sp, stock,id ],
+    db.query("UPDATE inv_food SET inv_name=?, sp=?,stock=? WHERE inv_id = ?;",[name, sp, stock,id ],
     function(err, result, fields){
         if(err){
         console.log(err)

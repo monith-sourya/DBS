@@ -23,30 +23,15 @@
 <nav class="navbar-fluid navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> -->
-        <!-- <span class="icon-bar"></span> -->
-        <!-- <span class="icon-bar"></span> -->
-        <!-- <span class="icon-bar"></span>                         -->
-      <!-- </button> -->
       <a class="navbar-brand">BogusFitnessClub</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <!--
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">link1</a></li>
-        <li><a href="#">link2</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      -->
-      
-        <li><a href="n3.html">About Us</a></li>
-        <li><a href="#"><!--<span class="glyphicon glyphicon-envelope"></span>--> Contact Us</a></li>
+    <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+      <ul class="nav navbar-nav navbar-right">      
+        <li><a href="n3.html"> About Us</a></li>
+        <li><a href="#"> Contact Us</a></li>
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      
-        <li>
       </ul>
-    </div>
+    <!-- </div> -->
   </div>
 </nav>
 
@@ -114,44 +99,27 @@
             <th></th>
           </thead>
           <tbody>
-            <tr>
-              <td>Registration ID:</td>
-              <td><%=user.cust_id %></td>
-            </tr>
-            <tr>
-              <td>User Name:</td>
-              <td><%=user.cust_name%></td>
-            </tr>
-            <tr>
-              <td>Sex:</td>
-              <td><%=user.sex%></td>
-              <!-- <td>Age:</td> -->
-              <!-- <td>something else</td> -->
-            </tr>
-            <tr>
-              <td>Age:</td>
-              <td><%=user.age%></td>
-            </tr>
-            <tr>
-              <td>Subscription ID:</td>
-              <td><%=user.sub_id%></td>
-            </tr>
-            <tr>
-              <td>Subscription Duration:</td>
-              <td><%=user.sub_dur%> months</td>
-            </tr>
-            <tr>
-              <td>Alotted Trainer:</td>
-              <td><%=user.trainer_id%></td>
-            </tr>
-            <tr>
-              <td>Attendance:</td>
-              <td><%=user.attendance%></td>
-            </tr>
-            <tr>
-              <td>Balance:</td>
-              <td><%=user.card_bal%></td>
-            </tr>
+            <% for(var i=0; i < rows.length; i++) { %>
+              <form method="post" action="/addt">
+        
+              <!--     <input type="hidden" name="userid" value=<%= user.cust_id %>> -->
+                <tr>
+                  <input type="hidden" name="id" value=<%= rows[i].inv_id %>>
+                  <!-- <td><%= rows[i].inv_id %>  </td> -->
+                  <input type="hidden" name="name" value=<%= rows[i].inv_name %>>
+
+                  <input type="hidden" name="price" value=<%= rows[i].sp %>>
+                  <td><%= rows[i].inv_name %></td>
+                  <td><%= rows[i].sp%></td>
+                  <td><%= rows[i].stock%></td>
+                  <td> 
+                    <INPUT TYPE="number" NAME="quantity" size='1' max = '<%=rows[i].stock%>' min = '0' value= 1> 
+                  </td>
+                  <td><input type="submit" value="Submit"></td>
+                </tr>
+        
+              </form>
+            <% } %>
           </tbody>
       </table>
     </div>

@@ -20,13 +20,6 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-//var aboutRouter = require('./routes/about');
-// <<<<<<< HEAD
-
-//var aboutRouter = require('./routes/about');
-// =======
-// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 
 var modifycRouter = require('./routes/modifyc');
 
@@ -36,6 +29,7 @@ var newuserRouter = require('./routes/newuser');
 var viewcRouter = require('./routes/viewc');
 //var addcRouter = require('./routes/addc');
 var attlogRouter = require(('./routes/attlog'));
+var balanceRouter = require('./routes/balance');
 
 //Maintenance Routes
 
@@ -118,7 +112,7 @@ app.use(function(req, res, next){
     }
 
     else if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
-    db.query('SELECT emp_id, emp_name, job FROM customer WHERE cust_id=?;', [req.user.user_id], 
+    db.query('SELECT emp_id, emp_name, job FROM employee WHERE emp_id=?;', [req.user.user_id], 
       function(err, results, fields){
           if(err) {throw (err)};
 
@@ -151,7 +145,7 @@ app.use('/modifyc', modifycRouter);
 //app.use('/addc', addcRouter);
 app.use('/viewc', viewcRouter);
 app.use('/attlog', attlogRouter);
-
+app.use('/balance', balanceRouter);
 app.use('/newuser', newuserRouter);
 //app.use('/signin', signinRouter);
 
