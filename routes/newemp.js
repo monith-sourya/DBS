@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-// var expressValidator = require('express-validator');
-// router.use(expressValidator());
+// var expressValidator = requirUPDATE // router.use(expressValidator());
 // var bodyParser = require('body-parser');
 // //router.use(bodyParser());
 
@@ -19,7 +18,7 @@ const saltRounds = 10;
 router.get('/', function(req, res, next) {
 
     if(req.user.type == 'Manager'){
-        res.render('newemp',{errors:'No Errors'});
+        res.render('newemp',{flash : req.flash('SQL')});
     }else{
         res.redirect('auth');
     }
@@ -43,9 +42,9 @@ router.post('/', function(req, res, next) {
     let errors = req.validationErrors();
 
     if(errors){
-        res.render('newemp',{
-            errors: JSON.stringify(errors)
-        });
+            req.flash('SQL',JSON.stringify(errors) );
+        res.redirect('/newemp');
+        //res.end();
         //res.end(JSON.stringify(errors));
     }else{
         
@@ -54,29 +53,29 @@ router.post('/', function(req, res, next) {
 
         bcrypt.hash(pass1, saltRounds, function(err, hash) {
 
-            db.query("INSERT INTO employee (emp_id, emp_name, sex, age, sal,job, attendance, Password) VALUES (NULL,?,?,?,?,?,'0', ?);",[username, sex, age, sal, job, hash],
+            db.query("INSERT INTO employee (emp_id, emp_name, sex, age, sal,job, attendance) VALUES (NULL,?,?,?,?,?,'0');",[username, sex, age, sal, job],
             function(err, result, fields){
                 if(err) throw err;
 
-                // db.query('SELECT LAST_INSERT_ID() as user_id',function(error, results, fields){
-                //     if(error) throw error;
+                db.query('UPDATE users SET password= ? WHERE user_id=?;',[hash, result.insertId] ,function(error, results, fields){
+                    if(error) {
+                        throw error;
 
-                //     const user_id = results[0];
+                        req.flash('SQL', 'Error Storing Password.');
+                    }else{
 
-                //     //console.log('Hello there');
-                //     //console.log(results[0]);
-                //     req.login(user_id, function(err){
+                     //  console.log('redirect');
 
-                //       //  console.log('redirect');
-                //         res.redirect('/');
-                //         //res.end("Your Customer ID is :"+result.insertId + user_id);
-                //     });
+                        // userid = JSON.parse(JSON.stringify(result));
 
-                    
-            
-                // });
-
-                res.redirect('/signin');
+                        console.log('results are :'+ JSON.stringify(result));
+                        // console.log(userid);
+                        // console.log('blah' + JSON.stringify(userid.insertID));
+                        console.log(result.insertId);
+                        req.flash('SQL', 'Succesfully Registered User. USER ID is: ' + result.insertId);
+                        res.redirect('/newemp');
+                    }
+                });
               } )
             //res.end(JSON.stringify(req.body));
         });

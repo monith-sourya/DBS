@@ -18,14 +18,19 @@ var x;
 /* GET home page. */
 
 router.get('/', authenticationMiddleware(),function(req, res, next) {
+// <<<<<<< HEAD
+    //res.render('index', { title: req.user.user_id });
+    res.redirect('/profile');
+// =======
     res.render('index', { title: req.user.user_id});
     //res.redirect('/profile');
+// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 });
 
 
 router.get('/signin', function(req, res, next) {
     if(req.isAuthenticated()){
-        res.redirect('/');
+        res.redirect('/profile');
     }
     res.render('signin');
 });
@@ -64,10 +69,12 @@ router.get('/customerprofile', function(req, res, next) {
 
         db.query('SELECT * FROM customer WHERE cust_id = ? ', [req.user.user_id],
             function(err, results, fields){
-                if(err) {return done(err)};
+                if(err) {throw(err);}
 
                 if(!results.length){
-                    return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                    //return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                    res.redirect('signin');
+
                 } else{
                 //var r = results[0].toObject();
                 var r = JSON.parse(JSON.stringify(results[0]));
@@ -135,6 +142,7 @@ passport.use(new LocalStrategy(function(username, password, done){
                 if(err) {return done(err)};
 
                 if(!results.length){
+
                     return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
                 } else{
                 const hash  = results[0].password.toString();

@@ -16,11 +16,12 @@ router.post('/', function(req, res, next){
     console.log('Entered Post');
     const userid = req.body.userid;
     const date = req.body.date;
+    const place = req.body.sub;
     const db = require('../db.js');
     console.log('before function Error');
     if(doesExist(userid)){
         console.log('Befor SQL Error');
-        db.query("INSERT INTO attendance values(?,?);", [date,userid], function(err, results, fields){
+        db.query("INSERT INTO attendancet values(?,?,?);", [date,userid, place], function(err, results, fields){
             var dispj = false;
             var resp ;
             if(err){
@@ -44,7 +45,7 @@ router.post('/', function(req, res, next){
 function returnRows(userid){
     return (res) => {
         const db = require('../db.js');
-        db.query("SELECT * FROM attendance where person_id=?;",[userid],function(err, results, fields){  
+        db.query("SELECT * FROM attendancet where person_id=?;",[userid],function(err, results, fields){  
             res = results;
         });
     }
@@ -61,6 +62,26 @@ function doesExist(userid){
                 exist = true;
             }
         });
+    }
+}
+
+function checkSub(userid, place){
+    return (errj, grant) => {
+        const db = require('../db.js');
+        db.query("SELECT * FROM customer c, subscription s WHERE c.sub_id=s.sub_id AND c.cust_id = ? ", 
+        [userid], function(err, rows, fields){
+            if(err){
+                errj = err;
+            }
+            if(rows[0].sub_gym==1&&place=='Gym')
+                grant = 1;
+            else if(rows[0].sub_ab==1&&place=='Aerobics')
+                grant = 1;
+            else if(rows[0].sub_kb==1&&place==)
+                grant = 1;
+            else if(rows[0].sub_py==1)
+                grant = 1;
+        })
     }
 }
 
