@@ -1,5 +1,4 @@
 /*!
-
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under the MIT license
@@ -2376,4 +2375,3 @@ if (typeof jQuery === 'undefined') {
   })
 
 }(jQuery);
->>>>>>> 02dcd5e1e04fd435866e60dde39cb83823c01312

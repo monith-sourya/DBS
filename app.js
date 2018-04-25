@@ -22,10 +22,16 @@ const saltRounds = 10;
 var indexRouter = require('./routes/index');
 //var usersRouter = require('./routes/users');
 //var aboutRouter = require('./routes/about');
+// <<<<<<< HEAD
+
+//var aboutRouter = require('./routes/about');
+// =======
+// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 
 var modifycRouter = require('./routes/modifyc');
 
 //Receptionist Routes.
+
 var newuserRouter = require('./routes/newuser');
 var viewcRouter = require('./routes/viewc');
 //var addcRouter = require('./routes/addc');
@@ -72,8 +78,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-    host: '192.168.0.13',
-    user: 'sanjay',
+
+    host: 'localhost',
+   // port: '80',
+    user: 'root',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -94,8 +102,34 @@ app.use(passport.session());
 app.use(function(req, res, next){
 	res.locals.isAuthenticated = req.isAuthenticated();
 
-	if(req.isAuthenticated())
+	if(req.isAuthenticated()){
 	res.locals.type = req.user.type;
+    const db = require('./db.js');
+    var userdata;
+
+    if(req.user.type== 'Customer'){
+    db.query('SELECT cust_id, cust_name, card_bal FROM customer WHERE cust_id=?;', [req.user.user_id], 
+      function(err, results, fields){
+          if(err) {throw (err)};
+
+      userdata = JSON.parse(JSON.stringify(results[0]));
+      //console.log(user);
+     res.locals.user= userdata;
+    });
+    }
+
+    else if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
+    db.query('SELECT emp_id, emp_name, job FROM customer WHERE cust_id=?;', [req.user.user_id], 
+      function(err, results, fields){
+          if(err) {throw (err)};
+
+      userdata = JSON.parse(JSON.stringify(results[0]));
+      //console.log(user);
+     res.locals.user= userdata;
+    });
+    }
+
+    }
 	next();
 });
 
@@ -103,6 +137,12 @@ app.use(flash());
 
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
+// <<<<<<< HEAD
+
+//app.use('/about', aboutRouter);
+
+// =======
+// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 //app.use('/about', aboutRouter);
 
 
@@ -112,6 +152,7 @@ app.use('/modifyc', modifycRouter);
 //app.use('/addc', addcRouter);
 app.use('/viewc', viewcRouter);
 app.use('/attlog', attlogRouter);
+
 app.use('/newuser', newuserRouter);
 //app.use('/signin', signinRouter);
 
