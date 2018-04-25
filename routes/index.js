@@ -146,7 +146,7 @@ passport.use(new LocalStrategy(function(username, password, done){
                 if(err) {return done(err)};
 
                 if(!results.length){
-
+                    console.log('User Not Found. #FAIL');
                     return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
                 } else{
                 const hash  = results[0].password.toString();
