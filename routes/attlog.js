@@ -24,7 +24,6 @@ router.post('/', function(req, res, next){
                 error = err;
                 console.log(err.sqlMessage);
             }
-            console.log(JSON.stringify(rows[0].sub_gym)+place);
             if(rows[0].sub_gym==1&&place=='Gym')
                 grant = 1;
             else if(rows[0].sub_ab==1&&place=='Aerobics')
@@ -33,10 +32,11 @@ router.post('/', function(req, res, next){
                 grant = 1;
             else if(rows[0].sub_py==1&&place=='Power Yoga')
                 grant = 1;
+            console.log(JSON.stringify(rows[0].sub_ab)+place+grant);
             if(grant){
                 const db1 = require('../db.js');
                 db1.query("INSERT INTO attendancet values(?,?,?);", [date,userid, place], function(error, results, fields){
-                    if(errpr){
+                    if(error){
                         console.log(error.message+ error.sqlMessage);
                         console.log('SQL Error');
                         req.flash('Plis', JSON.stringify(error.sqlMessage));
