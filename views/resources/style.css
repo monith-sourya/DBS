@@ -65,6 +65,7 @@ ul li{
 li.active a{
 	color: #5babd1;
 	background-color: #f6fafb;
+	border-left: 2px solid #5babd1;	
 }
 .table-hover{
 	font-size: 17px;

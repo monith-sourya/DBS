@@ -28,7 +28,7 @@ body{
 	margin-top: 20px;
 }
 .profile-user-name{
-	text-align: left;
+	text-align: center;
 	color: #5a73a1;	
 	font-size: 18px; 
 	font-weight: 600;
@@ -65,6 +65,7 @@ ul li{
 li.active a{
 	color: #5babd1;
 	background-color: #f6fafb;
+	border-left: 2px solid #5babd1;	
 }
 .table-hover{
 	font-size: 17px;

@@ -5,18 +5,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-  <link rel="stylesheet" href="resources/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 
-  <script src="resources/js/jquery.min.js"></script>
-  <script src="resources/js/bootstrap.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 <!-- check this shiz -->
-  <% include templates/header.ejs </template>%>
-
+  <!-- <% include templates/header.ejs </template>%> -->
 
 <!-- navbar shiz -->
+
+<% if (isAuthenticated){%>
+
 
 <nav class="navbar-fluid navbar-inverse">
   <div class="container-fluid">
@@ -40,7 +42,7 @@
       
         <li><a href="n3.html">About Us</a></li>
         <li><a href="#"><!--<span class="glyphicon glyphicon-envelope"></span>--> Contact Us</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       
         <li>
       </ul>
@@ -55,14 +57,16 @@
     <div class="col-md-3">
       <div class="profile-sidebar">
         <div class="profile-user-pic">
-          <img src="resources/profile.png" alt="can't find image" class="img-responsive img-circle">
+          <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
         <div class="profile-user-title">
           <!-- <br> -->
           <div class="profile-user-name">
-            <h2>CustomerName</h2>
+            <h2>
+              <%=user.cust_name%>
+            </h2>
           </div>
           <div class="profile-user-job">
-            Customer ID: 10XX
+            Customer ID: <%=user.cust_id%>
           </div>
         </div>
         <br>
@@ -109,7 +113,7 @@
       <h1>Customer Profile</h1>
       <div class="container">
         <h2></h2>
-        <p>Please contact BogusFitnessClub in case of any issues with the following details.</p>
+        <!-- <p>Please contact BogusFitnessClub in case of any issues with the following details.</p> -->
         <br>
         <div class="col-md-8">            
         <table class="table table-hover">
@@ -144,7 +148,7 @@
             </tr>
             <tr>
               <td>Alotted Trainer:</td>
-              <td><%user.trainer_id%></td>
+              <td><%=user.trainer_id%></td>
             </tr>
             <tr>
               <td>Attendance:</td>
@@ -161,6 +165,8 @@
   </div>
 </div>
 </div>
+
+<%}%>
 
 </body>
 </html>
