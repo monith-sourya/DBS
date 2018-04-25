@@ -30,6 +30,9 @@ router.post('/', function(req, res, next) {
     const username = req.body.username;
     const sex = req.body.sex;
     const age = req.body.age;
+    const phno = req.body.phno;
+    const address = req.body.address;
+    const email = req.body.email;
     const sub = req.body.sub;
     const subd = req.body.subd;
     const trainer = req.body.trainer;
@@ -56,7 +59,9 @@ router.post('/', function(req, res, next) {
 
             var userid;
 
-            db.query("INSERT INTO customer (cust_id, cust_name, sex, age, sub_id, sub_dur, trainer_id, attendance, card_bal) VALUES (NULL,?,?,?,?,?,?, '0', '0');",[username, sex, age, sub, subd, trainer],
+            db.query("INSERT INTO customer (cust_id, cust_name, sex, age, sub_id, sub_dur, trainer_id," 
+                +"attendance, card_bal, phno, address, email) VALUES (NULL,?,?,?,?,?,?, '0', '0','?','?','?');",
+                [username, sex, age, sub, subd, trainer,phno, address, email],
             function(err, result, fields){
                 if(err) {
                     console.log(err);
