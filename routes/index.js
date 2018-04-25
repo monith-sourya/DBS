@@ -18,26 +18,23 @@ var x;
 /* GET home page. */
 
 router.get('/', authenticationMiddleware(),function(req, res, next) {
-// <<<<<<< HEAD
-    //res.render('index', { title: req.user.user_id });
     res.redirect('/profile');
-// =======
-    //res.render('index', { title: req.user.user_id});
-    //res.redirect('/profile');
-// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
 });
 
 
 router.get('/signin', function(req, res, next) {
     if(req.isAuthenticated()){
-        res.redirect('/');
+        res.redirect('/profile');
     }
-    res.render('signin');
+    res.render('signin',{flash: req.flash('SQL')});
 });
+
 router.get('/auth', function(req, res, next) {
   res.render('auth', {title: 'Not Authorised'});
 
 });
+
+
 router.get('/logout', function(req, res, next) {
     req.logout();
     // req.session.destroy();
