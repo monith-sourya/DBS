@@ -69,7 +69,7 @@ router.get('/customerprofile', function(req, res, next) {
 
         db.query('SELECT * FROM customer WHERE cust_id = ? ', [req.user.user_id],
             function(err, results, fields){
-                if(err) {throw(err);}
+                if(err) {throw(err);
 
                 if(!results.length){
                    // return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
@@ -244,4 +244,3 @@ function authenticationMiddleware() {
         res.redirect('/signin')
     }
 }
-    
