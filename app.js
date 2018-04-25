@@ -73,9 +73,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-    host: '192.168.0.13',
+    host: 'localhost',
    // port: '80',
-    user: 'nikki',
+    user: 'root',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -104,11 +104,14 @@ app.use(function(req, res, next){
     if(req.user.type== 'Customer'){
     db.query('SELECT cust_id, cust_name, card_bal FROM customer WHERE cust_id=?;', [req.user.user_id], 
       function(err, results, fields){
-          if(err) {throw (err)};
-
-      userdata = JSON.parse(JSON.stringify(results[0]));
-      //console.log(user);
-     res.locals.user= userdata;
+          if(err) {
+          console.log(err);
+          res.redirect('signin');
+          }else{
+            userdata = JSON.parse(JSON.stringify(results[0]));
+            //console.log(user);
+            res.locals.user= userdata;
+          }
     });
     }
 
