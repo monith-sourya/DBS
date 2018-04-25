@@ -10,49 +10,47 @@
     <link href="/stylesheets/login.css" rel="stylesheet" type="text/css" >
     <style>
             body {
-                background-image: url("/images/bg.jpg");
+                background-image: url("/img/pic2.jpg");
+                background-size: cover;
+            }
+            input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+            .login-form{
+                padding-right: -10px;
             }
     </style>
 </head>
 <body>
-       <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="#">FITNESS</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                  <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link " href="#">Features <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">About</a>
-                  </div>
-                  <div class="navbar-nav ml-auto">
-                        <a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                  </div>
-                </div>
-        </nav> -->
-       <!-- <% include templates/header.ejs </template>%> -->
-        <section class="container">
-            
+    <div id="jumbo" class="col-md-7 jumbotron" style="background: rgba(0, 0, 0, 0);">
+        <br><br><br>
+        <!-- <h3>The ultimate fitness regime you've been looking for has finally found you.</h3> -->
+        <br><br><br>
+        <h1>BogusFitnessClub</h1>
+        <h2>Gym | Power Yoga | Zumba | Kickboxing</h2>
 
-                <section class="login-form">
-                    
+    </div>
+    <div class="col-md-5">
+        <div class="container-fluid">
+                <div class="login-form">
                     <form method="post" action="/signin" role="login">
-                        <img src="/images/comp.png" class="img-responsive" alt="" />
+                        <img src="/img/pic1.jpg" class="img-responsive" alt="" />
                         <%if (flash.length > 0 ){%>
                     <p> <%=flash%> </p>
                     <%}%>
-                        <input type="number" name="username" placeholder="User-id" required class="form-control input-lg" />
+                        <input type="number" name="username" placeholder="UserId" required class="form-control input-lg" />
                         <input type="password" name="password" placeholder="Password" required class="form-control input-lg" />
-                        <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
-                    
+                        <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>  
                     </form>
-                </section>
-        </section>
-        
+                </div>
+        </div>
+    </div>
         <script src="/js/jquery.min.js"></script>
         <script src="/js/bootstrap.min.js"></script>
-        
-</body>
+    </body>
 </html>
 
