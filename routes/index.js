@@ -30,7 +30,7 @@ router.get('/', authenticationMiddleware(),function(req, res, next) {
 
 router.get('/signin', function(req, res, next) {
     if(req.isAuthenticated()){
-        res.redirect('/profile');
+        res.redirect('/');
     }
     res.render('signin');
 });
@@ -69,12 +69,14 @@ router.get('/customerprofile', function(req, res, next) {
 
         db.query('SELECT * FROM customer WHERE cust_id = ? ', [req.user.user_id],
             function(err, results, fields){
+
                 if(err) {throw(err);}
 
                 if(!results.length){
                     //return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
                     res.redirect('signin');
 
+// >>>>>>> 5351f22eef530f3019aaa36e2f385cb2ff99abd0
                 } else{
                 //var r = results[0].toObject();
                 var r = JSON.parse(JSON.stringify(results[0]));
