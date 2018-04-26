@@ -70,9 +70,10 @@ li.active a{
 .table-hover{
 	font-size: 17px;
 }
-.logo-pic{
-	display: block;
-    margin: 0 auto;
-	width: 50%;
-	height: 50%;
+.about{
+	padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
 }
+
