@@ -56,9 +56,16 @@ var app = express();
 
 //app.locals.points = "8,912";
 
-// view engine setup
+// // view engine setup
+// var favicon = require('serve-favicon');
+
+// app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use('/favicon.ico', express.static('./public/images/favicon.ico'));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -76,7 +83,7 @@ var options = {
     host: 'localhost',
    // port: '80',
     user: 'root',
-    password : '',
+    password : 'Keyshore',
     database: 'fitness'
 };
 
