@@ -7,15 +7,20 @@ router.get('/',function(req, res, next) {
 
     //var inv ;
     try{
-        db.query('SELECT * FROM inv_food',
-            function(err, results, fields){
-                if(err) {throw (err)};
-                //var r = results[0].toObject();
-                var rows = results;  
-                //console.log(rows);
-                const user = req.user;
-                res.render('modifyi', { title: 'Food Inventory',rows : rows, flash : req.flash('SQL'), user: user});
-        });
+        if(req.user.type == 'Maintenance'){
+            db.query('SELECT * FROM inv_food',
+                function(err, results, fields){
+                    if(err) {throw (err)};
+                    //var r = results[0].toObject();
+                    var rows = results;  
+                    //console.log(rows);
+                    const user = req.user;
+                    res.render('modifyi', { title: 'Food Inventory',rows : rows, flash : req.flash('SQL'), user: user});
+            });
+        }
+        else{
+            res.redirect('auth');
+        }
     }catch(err){
         req.flash('SQL', 'SQL Error in Inv_Food');
         res.render('modifyi', { title: 'Food Inventory',rows : rows, flash : req.flash('SQL')});
