@@ -13,16 +13,20 @@ router.get('/',function(req, res, next) {
     const db = require('../db.js');
 
     //var inv ;
-
-    db.query('SELECT * FROM inv_equip',
-        function(err, results, fields){
-            if(err) {throw (err)};
-            //var r = results[0].toObject();
-            var rows = results;  
-            //console.log(rows);
-
-    		res.render('status', { title: 'Status Updation',rows : rows, flash : req.flash('SQL')});
-    })    
+    try{
+        db.query('SELECT * FROM inv_equip',
+            function(err, results, fields){
+                if(err) {throw (err)};
+                //var r = results[0].toObject();
+                var rows = results;  
+                //console.log(rows);
+                const user = req.user;
+                res.render('status', { title: 'Status Updation',rows : rows, flash : req.flash('SQL'), user: user});
+        })
+    }catch(err){
+        req.flash('err1', 'PLease Signin');
+        res.redirect('/signin');
+    }    
 });
 
 router.post('/', function(req, res, next) {
@@ -31,12 +35,7 @@ router.post('/', function(req, res, next) {
     const name = req.body.name;
     const price = req.body.price;
     const status = req.body.status;
-
-        
-
     const db = require('../db.js');
-
-
     db.query("UPDATE inv_equip SET status=? WHERE type_id = ?;",[status, id ],
     function(err, result, fields){
         if(err){
@@ -56,6 +55,3 @@ router.post('/', function(req, res, next) {
 });
 
 module.exports = router;
-
-
-//module.exports = router;

@@ -4,19 +4,23 @@ var bodyParser = require('body-parser');
 
 
 router.get('/',function(req, res, next) {
-    res.redirect('/modifyequip');
+    try{
+        if(req.user.type == 'Maintenance'){
+            res.redirect('/modifyequip');
+        }
+        else{
+            res.redirect('auth');
+        }
+    }catch(err){
+        req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
+    }
 });
 router.post('/', function(req, res, next) {
-
-	const id = req.body.id;
+    const id = req.body.id;
     const name = req.body.name;
     const price = req.body.price;
-
-        
-
     const db = require('../db.js');
-
-
     db.query("INSERT INTO inv_equip SET type_name=?, price =?;",[name, price],
     function(err, result, fields){
         if(err){
@@ -25,15 +29,14 @@ router.post('/', function(req, res, next) {
 
         req.flash('SQL', ' Error in Adding. Please Try again')
         res.redirect('modifyequip');
-    	}
-    	else{
+        }
+        else{
 
-    	res.redirect('modifyequip');
+        res.redirect('modifyequip');
         //res.render('modifyi', { title: 'Food Inventory',rows : rows, errors: 'None'});
-    	}
+        }
     })
     //res.end(JSON.stringify(req.body));
-
 });
 
 

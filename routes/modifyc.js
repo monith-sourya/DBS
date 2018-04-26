@@ -13,11 +13,16 @@ var bodyParser = require('body-parser');
 // router.use(passport.session());
 
 router.get('/', function(req, res, next) {
-
-    if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
-        res.render('modifyc',{errors:'No Errors'});
-    }else{
-        res.redirect('auth');
+    try{
+        if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
+            const user = req.user;
+            res.render('modifyc',{errors:'No Errors', user: user});
+        }else{
+            res.redirect('auth');
+        }
+    }catch(err){
+        req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
     }
 });
 
