@@ -39,9 +39,12 @@
                 <div class="login-form">
                     <form method="post" action="/signin" role="login">
                         <img src="/img/pic1.jpg" class="img-responsive" alt="" />
-                        <%if (flash.length > 0 ){%>
-                    <p> <%=flash%> </p>
-                    <%}%>
+                        <% if(flash.length > 0 ){%>
+                        <p> <%=flash%> </p>
+                        <%}%>
+                        <%if(err1>0){%>
+                            <p> <%=err1%> </p>
+                        <%}%>
                         <input type="number" name="username" placeholder="UserId" required class="form-control input-lg" />
                         <input type="password" name="password" placeholder="Password" required class="form-control input-lg" />
                         <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>  
