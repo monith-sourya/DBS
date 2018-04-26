@@ -43,18 +43,18 @@ router.post('/', function(req, res, next) {
     const pass1 = req.body.pass1;
     const pass2 = req.body.pass2;
 
-    req.checkBody('username', 'Name is required').notEmpty();
-    req.checkBody('username', 'Name must be between 4-15 characters long.').len(4,15);
-    req.checkBody('sex', 'Choose Gender').notEmpty();
-    req.checkBody('age', 'Age is required 18+').isInt();
-    req.checkBody('phno', 'Phone Number Must be 10 digits long').isNumeric(10);
-    req.checkBody('address', 'Address is required at least 10 characters long').len(10,60);
-    req.checkBody('email', 'Please enter Valid Email').isEmail();
-    req.checkBody('sub', 'Choose One Subscription').notEmpty();
-    req.checkBody('trainer', 'Enter Trainer ID').notEmpty();
-    req.checkBody('subd', 'Enter Valid Duration').isNumeric
-    req.checkBody('pass1', 'Password is required').notEmpty();
-    req.checkBody('pass2', 'Passwords do not match').equals(req.body.pass1);
+    // req.checkBody('username', 'Name is required').notEmpty();
+    // req.checkBody('username', 'Name must be between 4-15 characters long.').len(4,15);
+    // req.checkBody('sex', 'Choose Gender').notEmpty();
+    // req.checkBody('age', 'Age is required 18+').isInt();
+    // req.checkBody('phno', 'Phone Number Must be 10 digits long').isNumeric();
+    // req.checkBody('address', 'Address is required at least 10 characters long').len(0,60);
+    // req.checkBody('email', 'Please enter Valid Email').isEmail();
+    // req.checkBody('sub', 'Choose One Subscription').notEmpty();
+    // req.checkBody('trainer', 'Enter Trainer ID').notEmpty();
+    // req.checkBody('subd', 'Enter Valid Duration').isNumeric();
+    // req.checkBody('pass1', 'Password is required').notEmpty();
+    // req.checkBody('pass2', 'Passwords do not match').equals(req.body.pass1);
 
     let errors = req.validationErrors();
 

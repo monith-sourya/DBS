@@ -82,9 +82,7 @@
       <h1>User Registration</h1>
       <h3> </h3>
       <div class="container">
-                                <% if(flash.length > 0 ){%>
-                        <p> <%=flash%> </p>
-                        <%}%>
+        <h2></h2>
         <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
         <br>
         <div class="col-md-8">  
@@ -154,7 +152,7 @@
     <br><input type="submit" value="Submit"><br>
   </form>   
   <%for(var i =0 ; i < flash.length ;i++){%>
-    <%=flash[1]%>
+    <%=flash%>
     <%}%>       
     </div>
     </div>      

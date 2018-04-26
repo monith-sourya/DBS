@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Fitness</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link href="/stylesheets/login_font.css" rel="stylesheet" type="text/css">    
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link href="/stylesheets/login.css" rel="stylesheet" type="text/css" >
-    <style>
-            body {
-                background-image: url("/img/pic2.jpg");
-                background-size: cover;
-            }
-            input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-                margin: 0;
-            }
-            input[type="number"] {
-                -moz-appearance: textfield;
-            }
-            .login-form{
-                padding-right: -10px;
-            }
-            .jumbotron h1{
-                color: white;
-            }
-            .jumbotron h2{
-                color: white;
-            }
-    </style>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/res_sign/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/select2/select2.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/css/util_sgn.css">
+	<link rel="stylesheet" type="text/css" href="/res_sign/css/signin.css">
+<!--===============================================================================================-->
 </head>
-<body>
-    <div id="jumbo" class="col-md-7 jumbotron" style="background: rgba(0, 0, 0, 0);">
-        <br><br><br>
-        <!-- <h3>The ultimate fitness regime you've been looking for has finally found you.</h3> -->
-        <br><br><br>
-        <h1>BogusFitnessClub</h1>
-        <h2>Gym | Power Yoga | Zumba | Kickboxing</h2>
+<body>	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" method="post" action="/signin" role="login">
+					<span class="login100-form-title p-b-36">
+						Welcome
+					</span>
+					<!--<span class="login100-form-title p-b-48">
+							<i class="zmdi zmdi-font"></i>
+					</span> -->
+					<div class="wrap-input100 validate-input" data-validate = "Enter UserID">
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="User ID"></span>
+					</div>
 
+<<<<<<< HEAD
     </div>
     <div class="col-md-5">
         <div class="container-fluid">
@@ -72,4 +77,54 @@
         <script src="/js/bootstrap.min.js"></script>
     </body>
 </html>
+=======
+					<div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+>>>>>>> 832bc2c754e7d6d9367b531faa468fa844cd2154
 
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button type="submit" name="go" class="login100-form-btn">
+								Login
+							</button>
+						</div>
+					</div>
+
+					<div class="login100-form-response p-t-40">
+						<% if(flash.length > 0 ){%>
+							<%=flash%>
+						<%}%>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/bootstrap/js/popper.js"></script>
+	<script src="/res_sign/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/res_sign/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/js/main.js"></script>
+
+</body>
+</html>
