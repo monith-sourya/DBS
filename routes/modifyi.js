@@ -15,7 +15,7 @@ router.get('/',function(req, res, next) {
                     var rows = results;  
                     //console.log(rows);
                     // const user = req.user;
-                    res.render('modifyi', { title: 'Food Inventory',rows : rows, flash : req.flash('SQL')});
+                    res.render('modifyi', { title: 'Food Inventory',rows : rows, flash : req.flash('SQL'),});
             });
         }
         else{
