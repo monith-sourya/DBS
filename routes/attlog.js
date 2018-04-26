@@ -14,6 +14,16 @@ router.post('/', function(req, res, next){
     const userid = req.body.userid;
     const date = req.body.date;
     const place = req.body.sub;
+
+    req.checkBody('userid', 'User ID is required').notEmpty();
+    req.checkBody('date', 'Date is Required').notEmpty();
+    req.checkBody('sub', 'Choose a Place').equals(req.body.pass1);
+
+    let errors = req.validationErrors();
+    if(errors){
+        req.flash('Plis', JSON.stringify(errors));
+        res.redirect('/attlog');
+    }
     const db = require('../db.js');
     db.query("SELECT * FROM customer c, subscription s WHERE c.sub_id=s.sub_id AND c.cust_id = ? ", 
         [userid], function(err, rows, fields){
