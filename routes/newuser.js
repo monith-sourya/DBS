@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
             res.redirect('auth');
         }
     }catch(err){
-        req.flash('err1', 'PLease Signin');
+        req.flash('err1', 'Please Sign-in first.');
         res.redirect('/signin');
     }
 });
@@ -59,9 +59,9 @@ router.post('/', function(req, res, next) {
     let errors = req.validationErrors();
 
     if(errors){
-        //req.flash('SQL',errors);
-        //res.redirect('/newuser');
-        //res.end();
+        req.flash('SQL',errors);
+        res.redirect('/newuser');
+        res.end();
     }else{
         
 
