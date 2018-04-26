@@ -4,7 +4,7 @@ var connect = mysql.createConnection({
     host: 'localhost',
     //port: '80', 
     user: 'root',
-    password : '',
+    password : 'Keyshore',
     database: 'fitness'
 });
 
