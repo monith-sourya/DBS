@@ -20,7 +20,7 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 var indexRouter = require('./routes/index');
-
+var aboutRouter = require('./routes/about');
 var modifycRouter = require('./routes/modifyc');
 
 //Receptionist Routes.
@@ -135,12 +135,7 @@ app.use(flash());
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 // <<<<<<< HEAD
-
-//app.use('/about', aboutRouter);
-
-// =======
-// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
-//app.use('/about', aboutRouter);
+app.use('/about', aboutRouter);
 
 
 app.use('/modifyc', modifycRouter);
