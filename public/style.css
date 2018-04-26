@@ -82,3 +82,7 @@ li{
 .alert{
     color: #ff0000;
 }
+.scrollbar{
+	overflow-x: hidden;
+	overflow-y: always;
+}
