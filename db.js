@@ -1,9 +1,10 @@
 var mysql = require('mysql');
 
 var connect = mysql.createConnection({
-    host: '192.168.0.5',
-    user: 'nikki',
-    password : 'Keyshore',
+    host: 'localhost',
+    //port: '80', 
+    user: 'root',
+    password : '',
     database: 'fitness'
 });
 
