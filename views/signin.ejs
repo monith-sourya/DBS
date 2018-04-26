@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
 	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +27,37 @@
 	<link rel="stylesheet" type="text/css" href="/res_sign/css/util_sgn.css">
 	<link rel="stylesheet" type="text/css" href="/res_sign/css/signin.css">
 <!--===============================================================================================-->
+=======
+    <title>Fitness</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="/stylesheets/login_font.css" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="/stylesheets/login.css" rel="stylesheet" type="text/css" >
+    <style>
+            body {
+                background-image: url("/img/pic2.jpg");
+                background-size: cover;
+            }
+            input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+            .login-form{
+                padding-right: -10px;
+            }
+            .jumbotron h1{
+                color: white;
+            }
+            .jumbotron h2{
+                color: white;
+            }
+    </style>
+>>>>>>> 07c2d348c7a734bec07a6ec6f55a0917a52b22ef
 </head>
 <body>	
 	<div class="limiter">
@@ -43,6 +75,7 @@
 						<span class="focus-input100" data-placeholder="User ID"></span>
 					</div>
 
+<<<<<<< HEAD
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
@@ -50,6 +83,41 @@
 						<input class="input100" type="password" name="password">
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
+=======
+    </div>
+    <div class="col-md-5">
+        <div class="container-fluid">
+                <div class="login-form">
+                    <form method="post" action="/signin" role="login">
+                        <img src="/img/pic1.jpg" class="img-responsive" alt="" />
+                        <% if(flash.length > 0 ){%>
+                        <p> <%=flash%> </p>
+                        <%}%>
+                        <% if(fla.length > 0 ){%>
+                        <p> <%=fla%> </p>
+                        <%}%>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="number" name="username" placeholder="UserId" class="form-control input-lg">
+                        </div>
+                            <!-- <input type="number" name="username" placeholder="UserId" required class="form-control input-lg" /> -->
+                            <!-- <br> -->
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" name="password" placeholder="Password" required class="form-control input-lg" />
+                        </div>
+                        <br>
+                            <!-- <input type="password" name="Password" placeholder="Password" required class="form-control input-lg" /> -->
+                        <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>  
+                    </form>
+                </div>
+        </div>
+    </div>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+>>>>>>> 07c2d348c7a734bec07a6ec6f55a0917a52b22ef
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">

@@ -16,8 +16,8 @@ router.get('/',function(req, res, next) {
                     //var r = results[0].toObject();
                     var rows = results;  
                     //console.log(rows);
-                    const user = req.user;
-                    res.render('viewi', { title: 'Food Inventory',rows : rows, user: user});
+                    // const user = req.user;
+                    res.render('viewi', { title: 'Food Inventory',rows : rows});
             })
         else{
             res.redirect('auth');

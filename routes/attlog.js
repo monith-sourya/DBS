@@ -5,8 +5,8 @@ var bodyParser = require('body-parser');
 router.get('/', function(req, res, next){
     try{
         if(req.user.type=='Receptionist'){
-            const user = req.user;
-            res.render('attlog',{flash : req.flash('Plis'), user: user});
+            //const user = req.user;
+            res.render('attlog',{flash : req.flash('Plis')});
         }else{
             res.redirect('auth');
         }

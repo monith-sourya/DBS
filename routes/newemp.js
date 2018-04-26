@@ -15,8 +15,8 @@ const saltRounds = 10;
 router.get('/', function(req, res, next) {
     try{
         if(req.user.type == 'Manager'){
-            const user = req.user;
-            res.render('newemp',{flash : req.flash('SQL'), user: user});
+            // const user = req.user;
+            res.render('newemp',{flash : req.flash('SQL')});
         }else{
             res.redirect('auth');
         }

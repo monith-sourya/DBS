@@ -109,7 +109,7 @@ app.use(function(req, res, next){
           res.redirect('signin');
           }else{
             userdata = JSON.parse(JSON.stringify(results[0]));
-            //console.log(user);
+            console.log(userdata);
             res.locals.user= userdata;
           }
     });

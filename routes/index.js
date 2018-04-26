@@ -26,7 +26,7 @@ router.get('/signin', function(req, res, next) {
     if(req.isAuthenticated()){
         res.redirect('/profile');
     }
-    res.render('signin',{flash: req.flash('error'), err1: req.flash('err1')});
+    res.render('signin',{flash: req.flash('error'), fla: req.flash('err1'),});
 });
 
 router.get('/auth', function(req, res, next) {
@@ -45,8 +45,7 @@ router.get('/logout', function(req, res, next) {
         res.redirect('/signin');
     })
     }else{
-        req.flash('SQL', 'Cannot logout without logging in')
-        req.flash('err1', '');
+        req.flash('err1', 'Cannot logout without logging in');
         res.redirect('/signin');
     }
 });
@@ -254,6 +253,7 @@ function authenticationMiddleware() {
         //console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
         if (req.isAuthenticated()) return next();
+        console.log('reraasdasdasdasd');
         res.redirect('/signin')
     }
 }
