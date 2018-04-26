@@ -11,18 +11,21 @@ var bodyParser = require('body-parser');
 
 router.get('/',function(req, res, next) {
     const db = require('../db.js');
-
     //var inv ;
-
-    db.query('SELECT * FROM inv_equip',
-        function(err, results, fields){
-            if(err) {throw (err)};
-            //var r = results[0].toObject();
-            var rows = results;  
-            //console.log(rows);
-
-    		res.render('modifyequip', { title: 'Equipment Inventory ',rows : rows, flash : req.flash('SQL')});
-    })    
+    try{
+        db.query('SELECT * FROM inv_equip',
+            function(err, results, fields){
+                if(err) {throw (err)};
+                //var r = results[0].toObject();
+                var rows = results;  
+                //console.log(rows);
+                const user = req.user;
+                res.render('modifyequip', { title: 'Equipment Inventory ',rows : rows, flash : req.flash('SQL'), user: user});
+        })
+    }catch(err){
+        req.flash('SQL', 'SQL ERROR IN INV_EQUIP');
+        res.render('modifyequip',{ title: 'Equipment Inventory ',rows : rows, flash : req.flash('SQL')});
+    }    
 });
 
 router.post('/', function(req, res, next) {

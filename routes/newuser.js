@@ -17,16 +17,20 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.get('/', function(req, res, next) {
-
-    if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
-        res.render('newuser',{flash : req.flash('SQL')});
-    }else{
-        res.redirect('auth');
+    try{
+        if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
+            const user = req.user;
+            res.render('newuser',{flash : req.flash('SQL'), user : user});
+        }else{
+            res.redirect('auth');
+        }
+    }catch(err){
+        req.flash('err1', 'PLease Signin');
+        res.redirect('/signin');
     }
 });
 
 router.post('/', function(req, res, next) {
-
     const username = req.body.username;
     const sex = req.body.sex;
     const age = req.body.age;
@@ -55,8 +59,8 @@ router.post('/', function(req, res, next) {
     let errors = req.validationErrors();
 
     if(errors){
-        req.flash('SQL',errors);
-        res.redirect('/newuser');
+        //req.flash('SQL',errors);
+        //res.redirect('/newuser');
         //res.end();
     }else{
         

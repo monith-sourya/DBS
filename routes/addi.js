@@ -4,7 +4,17 @@ var bodyParser = require('body-parser');
 
 
 router.get('/',function(req, res, next) {
-    res.redirect('/modifyi');
+    try{
+        if(req.user.type == 'Maintenance'){
+            res.redirect('/modifyi');
+        }
+        else{
+            res.redirect('auth');
+        }
+    }catch(err){
+        req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
+    }
 });
 router.post('/', function(req, res, next) {
 
@@ -14,11 +24,7 @@ router.post('/', function(req, res, next) {
     const sp = req.body.sp;
     const stock = req.body.stock;
 
-        
-
     const db = require('../db.js');
-
-
     db.query("INSERT INTO inv_food SET inv_name=?, cp =?, sp=?,stock=?;",[name, cp, sp, stock],
     function(err, result, fields){
         if(err){

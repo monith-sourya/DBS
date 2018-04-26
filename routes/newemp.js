@@ -3,24 +3,26 @@ var router = express.Router();
 // var expressValidator = requirUPDATE // router.use(expressValidator());
 // var bodyParser = require('body-parser');
 // //router.use(bodyParser());
-
-
 // router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({
 //   extended: true
 // }));
-
 var passport = require('passport');
 /* GET home page. */
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.get('/', function(req, res, next) {
-
-    if(req.user.type == 'Manager'){
-        res.render('newemp',{flash : req.flash('SQL')});
-    }else{
-        res.redirect('auth');
+    try{
+        if(req.user.type == 'Manager'){
+            const user = req.user;
+            res.render('newemp',{flash : req.flash('SQL'), user: user});
+        }else{
+            res.redirect('auth');
+        }
+    }catch(err){
+        req.flash('err1', 'PLease Signin');
+        res.redirect('/signin');
     }
 });
 

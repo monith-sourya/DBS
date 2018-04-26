@@ -10,11 +10,18 @@ var bodyParser = require('body-parser');
 
 
 router.get('/',function(req, res, next) {
-
-    if(req.user.type=='Receptionist'){
-
-        res.render('balance', {flash : req.flash('SQL')});
-    }   
+    try{
+        if(req.user.type=='Receptionist'){
+            const user = req.user;
+            res.render('balance', {flash : req.flash('SQL'), user : user});
+        }
+        else{
+            res.redirect('auth');
+        }
+    }catch(err){
+        req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
+    }  
 });
 
 router.post('/', function(req, res, next) {
