@@ -45,6 +45,7 @@ var statusRouter = require('./routes/status');
 var addtRouter = require('./routes/addt');
 var viewtRouter = require('./routes/viewt');
 var viewattRouter = require('./routes/viewatt');
+var viewcardRouter = require('./routes/viewcard');
 
 //Manager
 
@@ -174,6 +175,7 @@ app.use('/status', statusRouter)
 app.use('/addt', addtRouter);
 app.use('/viewt', viewtRouter);
 app.use('/viewatt', viewattRouter);
+app.use('/viewcard', viewcardRouter);
 
 //Manager
 app.use('/newemp', newempRouter);
