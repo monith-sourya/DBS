@@ -3,24 +3,26 @@ var router = express.Router();
 // var expressValidator = requirUPDATE // router.use(expressValidator());
 // var bodyParser = require('body-parser');
 // //router.use(bodyParser());
-
-
 // router.use(bodyParser.json());
 // router.use(bodyParser.urlencoded({
 //   extended: true
 // }));
-
 var passport = require('passport');
 /* GET home page. */
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 router.get('/', function(req, res, next) {
-
-    if(req.user.type == 'Manager'){
-        res.render('newemp',{flash : req.flash('SQL')});
-    }else{
-        res.redirect('auth');
+    try{
+        if(req.user.type == 'Manager'){
+            // const user = req.user;
+            res.render('newemp',{flash : req.flash('SQL')});
+        }else{
+            res.redirect('auth');
+        }
+    }catch(err){
+        req.flash('err1', 'PLease Signin');
+        res.redirect('/signin');
     }
 });
 
@@ -38,7 +40,11 @@ router.post('/', function(req, res, next) {
     const pass2 = req.body.pass2;
 
     req.checkBody('username', 'Name is required').notEmpty();
-    req.checkBody('username', 'Name must be between 4-15 characters long.').len(4,15);
+    req.checkBody('sex', 'Choose Gender').notEmpty();
+    req.checkBody('age', 'Age is required 18+').isInt();
+    req.checkBody('phno', 'Phone Number Must be 10 digits long').isNumeric(10);
+    req.checkBody('address', 'Address is required at least 10 characters long').len(10,60);
+    req.checkBody('email', 'Please enter Valid Email').isEmail();
     req.checkBody('pass1', 'Password is required').notEmpty();
     req.checkBody('pass2', 'Passwords do not match').equals(req.body.pass1);
 

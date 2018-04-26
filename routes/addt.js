@@ -8,18 +8,31 @@ var user;
 
 router.get('/',function(req, res, next){
     const db = require('../db.js');
-
     var x = 0;
 	var rows, user;
-    db.query('SELECT inv_id, inv_name, sp, stock FROM inv_food WHERE stock > 0',
-        function(err, results, fields){
-            if(err) {throw (err);}else{
-            //var r = results[0].toObject();
-            rows = results;
-            res.render('addt', { title: 'Equipment Inventory ', rows : rows, flash : req.flash('SQL')});
-        	}
-    });
-
+	try{
+		if(req.user.type=='Customer'){
+			db.query('SELECT inv_id, inv_name, sp, stock FROM inv_food WHERE stock > 0',
+				function(err, results, fields){
+					if(err) {throw (err);}else{
+					//var r = results[0].toObject();
+					rows = results;
+// <<<<<<< HEAD
+					// user = req.user;
+// =======
+					// user = user;
+// >>>>>>> 6127756598b27e1a8567bbf153f68553705b6838
+					res.render('addt', { title: 'Equipment Inventory ', rows : rows, flash : req.flash('SQL')});
+					}
+			});
+		}
+		else{
+			res.redirect('auth');
+		}
+	}catch(err){
+		req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
+	}
     // db.query('SELECT cust_id, cust_name, card_bal FROM customer WHERE cust_id=?;', [req.user.user_id], 
     //     function(err, results, fields){
     //         if(err) {throw (err)};

@@ -26,7 +26,7 @@ router.get('/signin', function(req, res, next) {
     if(req.isAuthenticated()){
         res.redirect('/profile');
     }
-    res.render('signin',{flash: req.flash('error')});
+    res.render('signin',{flash: req.flash('error'), fla: req.flash('err1'),});
 });
 
 router.get('/auth', function(req, res, next) {
@@ -45,80 +45,88 @@ router.get('/logout', function(req, res, next) {
         res.redirect('/signin');
     })
     }else{
-        req.flash('SQL', 'Cannot logout without logging in')
+        req.flash('err1', 'Cannot logout without logging in');
         res.redirect('/signin');
     }
 });
 
 router.get('/profile', function(req, res, next) {
-
+    try{
         if(req.user.type == 'Customer'){
             res.redirect('/customerprofile');
         }
         if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
             res.redirect('/empprofile');
         }
-    
+        else{
+            res.redirect('auth');
+        }
+    }catch(err){
+        req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
+    }
 });
 router.get('/customerprofile', function(req, res, next) {
-      if(req.user.type == 'Customer'){
-        //console.log(user.cust_id);
-        //x =getcustdata(req.user.user_id);
+    try{
+        if(req.user.type == 'Customer'){
+            //console.log(user.cust_id);
+            //x =getcustdata(req.user.user_id);
+            const db = require('../db.js');
+            //console.log('1');
+            db.query('SELECT * FROM customer WHERE cust_id = ? ', [req.user.user_id],
+                function(err, results, fields){
 
-        const db = require('../db.js');
+                    if(err) {throw(err);}
 
-        //console.log('1');
-
-        db.query('SELECT * FROM customer WHERE cust_id = ? ', [req.user.user_id],
-            function(err, results, fields){
-
-                if(err) {throw(err);}
-
-                if(!results.length){
-                    //return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
-                    res.redirect('signin');
-
-// >>>>>>> 5351f22eef530f3019aaa36e2f385cb2ff99abd0
-                } else{
-                //var r = results[0].toObject();
-                var r = JSON.parse(JSON.stringify(results[0]));
-                r.job = 'Customer';
-                user = r;
-                user.password = 0;
-                x = user;
-                //console.log(x);
-
-        res.render('customerprofile', { user : x },)
-                }   
-        })
-      }
+                    if(!results.length){
+                        //return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                        res.redirect('signin');
+                    } else{
+                    //var r = results[0].toObject();
+                    var r = JSON.parse(JSON.stringify(results[0]));
+                    r.job = 'Customer';
+                    user = r;
+                    user.password = 0;
+                    x = user;
+                    //console.log(x);
+            res.render('customerprofile', { user : x },)
+                    }   
+            })
+        }
+    }catch(err){
+        req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
+    }
 });
-router.get('/empprofile', function(req, res, next) {
-      if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||req.user.type == 'Manager'){
-        //console.log(user.emp_id);
-        const db = require('../db.js');
+router.get('/empprofile', function(req, res, next){
+    try{
+        if(req.user.type == 'Receptionist'||req.user.type == 'Trainer'||req.user.type == 'Maintenance'||
+        req.user.type == 'Manager'){
+            //console.log(user.emp_id);
+            const db = require('../db.js');
+            //console.log('1');
+            //var x;
+            db.query('SELECT * FROM employee WHERE emp_id = ? ', [req.user.user_id],
+                function(err, results, fields){
+                    if(err) {return done(err)};
 
-        //console.log('1');
-        //var x;
-        db.query('SELECT * FROM employee WHERE emp_id = ? ', [req.user.user_id],
-            function(err, results, fields){
-                if(err) {return done(err)};
-
-                if(!results.length){
-                    return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
-                } else{
-                //console.log('Emp user taken');
-                user = results[0];
-                user.password = 0;
-                x = user;
-                //console.log(x);
-                
-        res.render('empprofile', {user: x},)
-                }   
-        })
-
+                    if(!results.length){
+                        return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                    } else{
+                    //console.log('Emp user taken');
+                    user = results[0];
+                    user.password = 0;
+                    x = user;
+                    //console.log(x);
+                    res.render('empprofile', {user: x},)
+                    }      
+            });
         //console.log(x);
-      }
+        }
+    }catch(err){
+        req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
+    }
 });
 // router.post('/signin',
 //   passport.authenticate('local'),
@@ -183,21 +191,23 @@ passport.use(new LocalStrategy(function(username, password, done){
 // });
 
 function getuserdata(id, req){
-    if(req.user.type == 'Customer'){
-    return getcustdata(id);
-    }
-    else if(req.user.type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
-    return getempdata(id);
+    try{
+        if(req.user.type == 'Customer'){
+        return getcustdata(id);
+        }
+        else if(req.user.type == 'Receptionist'||results[0].type == 'Trainer'||results[0].type == 'Maintenance'||results[0].type == 'Manager'){
+        return getempdata(id);
+        }
+    }catch(err){
+        req.flash('err1', 'Please Sign in');
+        res.redirect('/signin');
     }
 }
 function getcustdata(username){
 
         var user;
-
         const db = require('../db.js');
-
         //console.log('1');
-
         db.query('SELECT * FROM customer WHERE cust_id = ? ', [username],
             function(err, results, fields){
                 if(err) {return done(err)};
@@ -217,22 +227,18 @@ function getcustdata(username){
 function getempdata(username){
 
         var user;
-
         const db = require('../db.js');
-
         //console.log('1');
-
         db.query('SELECT * FROM employee WHERE emp_id = ? ', [username],
             function(err, results, fields){
                 if(err) {return done(err)};
 
                 if(!results.length){
                     return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
-                } else{
-                //console.log('Emp user taken');
-                user = results[0];
-
-                return user;
+                }else{
+                    //console.log('Emp user taken');
+                    user = results[0];
+                    return user;
                 }   
         })
 }
@@ -247,6 +253,7 @@ function authenticationMiddleware() {
         //console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
 
         if (req.isAuthenticated()) return next();
+        console.log('reraasdasdasdasd');
         res.redirect('/signin')
     }
 }
