@@ -6,7 +6,7 @@
 
 form[role=login] {
 	color: #5d5d5d;
-	background: #f2f2f2;
+	background: rgba(1, 1, 1, 0.5);
 	padding: 26px;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
@@ -17,10 +17,12 @@ form[role=login] {
 		margin: 0 auto;
 		margin-bottom: 35px;
 	}
-	form[role=login] input,
+	form[role=login] input-group,
 	form[role=login] button {
 		font-size: 18px;
 		margin: 16px 0;
+		/*padding-bottom: 10px;*/
+		margin-bottom: 5px;
 	}
 	form[role=login] > div {
 		text-align: center;
