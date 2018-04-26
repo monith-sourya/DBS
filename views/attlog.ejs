@@ -1,23 +1,123 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Attendance</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-  	<% include templates/header.ejs </template>%>
-    
-    <br><h3>Log Attendace for Customer</h3><br>
-    <% if(!disp){%>
+<html lang="en">
+<head>
+  <title>Customer Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- navbar shiz -->
+
+<nav class="navbar-fluid navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">BogusFitnessClub</a>
+    </div>
+    <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+      <ul class="nav navbar-nav navbar-right">      
+        <li><a href="n3.html"> About Us</a></li>
+        <li><a href="#"> Contact Us</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    <!-- </div> -->
+  </div>
+</nav>
+
+<!-- profile side bar for receptionist-->
+
+  
+<div class="container-fluid">
+  <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <div class="profile-user-pic">
+          <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
+        <div class="profile-user-title">
+          <!-- <br> -->
+          <div class="profile-user-name">
+            <h2>
+              <%=user.emp_name%>
+            </h2>
+          </div>
+          <div class="profile-user-job">
+            <%=user.job%>
+          </div>
+        </div>
+        <br>
+        <!-- <div class="profile-user-buttons"> -->
+          <!-- <button class="btn btn-success btn-sm">randome</button> -->
+        <!-- </div> -->
+        <div class="profile-user-menu">  
+          <!-- check above -->
+           <ul class="nav">
+             <li><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
+             <!-- <li class="active"><a href="">Profile</a> -->
+             <%if(type == 'Receptionist'){%>
+                <li><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
+                <li class="active"><a href="/attlog"><i class="glyphicon glyphicon-th-list"></i>   Attendance Log</a>
+                <li><a href="/balance"><i class="glyphicon glyphicon-th-list"></i>   Add Balance</a>
+             <%}%>
+             <br>
+             <!-- <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a> -->
+           </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- jumbotron -->
+<div class="col-md-8">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Customer Attendance Log</h1>
+      <h3> </h3>
+      <div class="container">
+        <h2></h2>
+        <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
+        <br>
+        <div class="col-md-8">  
+        <% if(1>0){%>
         <form method='post' action='/attlog'>
         <br>    Userid: 
         <input type='text' name='userid'><br>
         Date:
         <input type = 'date' name='date'><br> 
+        <!-- Do not change name for the radio button i have set it to sub-->
+        Place: 
+        <div>
+          <input type="radio" id="subChoice1"
+           name="sub" value='Gym'>
+          <label for="subChoice1">Gym</label>
+        
+        <input type="radio" id="subChoice2"
+           name="sub" value='Kick Boxing'>
+          <label for="subChoice2">Kick Boxing Arena</label>
+      
+        <input type="radio" id="subChoice3"
+           name="sub" value='Aerobics'>
+          <label for="subChoice3">Aerobics</label>
+        <input type="radio" id="subChoice4"
+          name="sub" value='Power Yoga'>
+         <label for="subChoice3">Power Yoga</label>
+          </div>
         <input type = 'submit' value = 'Submit'><br>
         </form>
-    <%}else{%>
-        <h2>Succesfully Added</h2>
-    <% }%>	
-  </body>
+    <%}%>
+    <%if(flash.length>0){%>
+      <%= flash%>
+    <%}%>	
+    </div>
+    </div>      
+  </div>
+</div>
+</div>
+
+</body>
 </html>
+

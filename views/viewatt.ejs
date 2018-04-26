@@ -1,27 +1,134 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title><%= title %></title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-    </head>
-    <body>
-  	    <% include templates/header.ejs </template>%>
-    <h1> <%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <%if(flash.length>0){%>
-        <h1><%=flash%></h1>
-    <%}%>
-    <table border="1">
-    <tr>
-    <th> Date</th>
-    <th> Place </th> 
-    </tr>
-    <% for(var i=0; i < row.length; i++) { %>
-    <tr>
-    <td><%= row[i].date %></td>
-    <td><%= row[i].place %></td>
+<html lang="en">
+<head>
+  <title>Customer Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- check this shiz -->
+  <!-- <% include templates/header.ejs </template>%> -->
+
+<!-- navbar shiz -->
+
+<% if (isAuthenticated){%>
+
+
+<nav class="navbar-fluid navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">BogusFitnessClub</a>
+    </div>
+    <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+      <ul class="nav navbar-nav navbar-right">      
+        <li><a href="n3.html"> About Us</a></li>
+        <li><a href="#"> Contact Us</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    <!-- </div> -->
+  </div>
+</nav>
+
+<!-- profile side bar -->
+  
+<div class="container-fluid">
+  <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <div class="profile-user-pic">
+          <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
+        <div class="profile-user-title">
+          <!-- <br> -->
+          <div class="profile-user-name">
+            <h2>
+              <%=user.cust_name%>
+            </h2>
+          </div>
+          <div class="profile-user-job">
+            Customer ID: <%=user.cust_id%>
+          </div>
+        </div>
+        <br>
+        <!-- <div class="profile-user-buttons"> -->
+          <!-- <button class="btn btn-success btn-sm">randome</button> -->
+        <!-- </div> -->
+        <div class="profile-user-menu">  
+          <!-- check above -->
+           <ul class="nav">
+             <li><a href="/customerprofile"><i class="glyphicon glyphicon-user"></i>  Customer Profile</a>
+             <!-- <li class="active"><a href="">Profile</a> -->
+             <li><a href="/addt"><i class="glyphicon glyphicon-plus"></i>   New Transaction</a>
+             <!-- <li><a href=""> NewTransaction</a> -->
+             <li><a href="/viewt"><i class="glyphicon glyphicon-th-list"></i>   Transaction History</a>
+              <li class="active"><a href="/viewatt"><i class="glyphicon glyphicon-th-list"></i>   View Attendance</a>
+             <!-- <li><a href=""> TranscationHistory</a> -->
+             <br>
+             <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a>
+           </ul>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+<!-- space buffer -->
+  <!-- <div class="col-md-1"> -->
+    <!-- <p> </p> -->
+  <!-- </div> -->
+
+<!-- page header -->
+  <!-- <div class="col-md-8"> -->
+    <!-- <div class="container"> -->
+      <!-- <div class="page-header"> -->
+        <!-- <h1>User Profile</h1>       -->
+      <!-- </div> -->
+      <!-- <p>Really random shiz....</p>       -->
+      <!-- <p>Some more really random shiz....</p>       -->
+    <!-- </div> -->
+  <!-- </div> -->
+
+<!-- jumbotron -->
+<div class="col-md-8">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Transaction History</h1>
+      <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3>
+      <div class="container">
+        <h2></h2>
+        <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
+        <br>
+        <%if(flash.length>0){%>
+            <h1><%=flash%></h1>
+        <%}%><br>
+        <div class="col-md-8">            
+        <table class="table table-hover">
+          <thead>
+            <th>Date</th>
+            <th>Place</th>
+          </thead>
+          <tbody>
+            </tr>
+    <% for(var i=0; i < rows.length; i++) { %>
+     <tr>
+     <td><%= rows[i].time %></td>
+     <td><%= rows[i].place %></td>
     </tr>
     <% } %>
-</table>
-  </body>
+          </tbody>
+      </table>
+    </div>
+    </div>      
+  </div>
+</div>
+</div>
+
+<%}%>
+
+</body>
 </html>
+

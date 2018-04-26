@@ -26,7 +26,7 @@ router.get('/signin', function(req, res, next) {
     if(req.isAuthenticated()){
         res.redirect('/profile');
     }
-    res.render('signin',{flash: req.flash('SQL')});
+    res.render('signin',{flash: req.flash('error')});
 });
 
 router.get('/auth', function(req, res, next) {
@@ -42,11 +42,10 @@ router.get('/logout', function(req, res, next) {
     // res.render('signin');
     req.session.destroy(() => {
         res.clearCookie('connect.sid');
-        req.flash('SQL','Successfully Logged Out.');
         res.redirect('/signin');
     })
     }else{
-        req.flash('SQL', 'Cannot logout without logging in.');
+        req.flash('SQL', 'Cannot logout without logging in')
         res.redirect('/signin');
     }
 });
@@ -131,7 +130,7 @@ router.get('/empprofile', function(req, res, next) {
 //     res.redirect('/');
 //   });
 router.post('/signin', passport.authenticate('local', { successRedirect: '/',
-                                                    failureRedirect: '/signin' }));
+                                                    failureRedirect: '/signin', failureFlash: true}));
 
 
 passport.use(new LocalStrategy(function(username, password, done){
@@ -147,15 +146,15 @@ passport.use(new LocalStrategy(function(username, password, done){
                 if(err) {return done(err)};
 
                 if(!results.length){
-
-                    return done(null, false /*,req.flash('loginMessage', 'No user found')*/);
+                    console.log('User Not Found. #FAIL');
+                    return done(null, false ,{ message: 'User Not Found'});
                 } else{
                 const hash  = results[0].password.toString();
 
                 bcrypt.compare(password, hash, function(err, res){
                     if(res == false){
                         console.log('Hash Fail');
-                        return done(null, false/*, req.flash('loginMessage', 'Wrong Password')*/);
+                        return done(null, false, { message: 'Please Check Password and try again.'});
 
                     }else{
                         //console.log('Hash Success!');

@@ -23,30 +23,15 @@
 <nav class="navbar-fluid navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> -->
-        <!-- <span class="icon-bar"></span> -->
-        <!-- <span class="icon-bar"></span> -->
-        <!-- <span class="icon-bar"></span>                         -->
-      <!-- </button> -->
       <a class="navbar-brand">BogusFitnessClub</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <!--
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">link1</a></li>
-        <li><a href="#">link2</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-      -->
-      
-        <li><a href="n3.html">About Us</a></li>
-        <li><a href="#"><!--<span class="glyphicon glyphicon-envelope"></span>--> Contact Us</a></li>
+    <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+      <ul class="nav navbar-nav navbar-right">      
+        <li><a href="n3.html"> About Us</a></li>
+        <li><a href="#"> Contact Us</a></li>
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      
-        <li>
       </ul>
-    </div>
+    <!-- </div> -->
   </div>
 </nav>
 
@@ -82,6 +67,7 @@
              <!-- <li><a href=""> NewTransaction</a> -->
              <li><a href="/viewt"><i class="glyphicon glyphicon-th-list"></i>   Transaction History</a>
              <!-- <li><a href=""> TranscationHistory</a> -->
+              <li><a href="/viewatt"><i class="glyphicon glyphicon-th-list"></i>   View Attendance</a>
              <br>
              <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a>
            </ul>
@@ -138,6 +124,18 @@
             <tr>
               <td>Age:</td>
               <td><%=user.age%></td>
+            </tr>
+            <tr>
+              <td>Phone No:</td>
+              <td><%=user.phno%></td>
+            </tr>
+            <tr>
+              <td>Address:</td>
+              <td><%=user.address%></td>
+            </tr>
+            <tr>
+              <td>Email ID:</td>
+              <td><%=user.email%></td>
             </tr>
             <tr>
               <td>Subscription ID:</td>
