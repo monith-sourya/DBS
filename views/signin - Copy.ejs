@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Fitness</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="/stylesheets/login_font.css" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link href="/stylesheets/login.css" rel="stylesheet" type="text/css" >
+    <style>
+            body {
+                background-image: url("/img/pic2.jpg");
+                background-size: cover;
+            }
+            input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+            .login-form{
+                padding-right: -10px;
+            }
+    </style>
+</head>
+<body>
+    <div id="jumbo" class="col-md-7 jumbotron" style="background: rgba(0, 0, 0, 0);">
+        <br><br><br>
+        <!-- <h3>The ultimate fitness regime you've been looking for has finally found you.</h3> -->
+        <br><br><br>
+        <h1>BogusFitnessClub</h1>
+        <h2>Gym | Power Yoga | Zumba | Kickboxing</h2>
+
+    </div>
+    <div class="col-md-5">
+        <div class="container-fluid">
+                <div class="login-form">
+                    <form method="post" action="/signin" role="login">
+                        <img src="/img/pic1.jpg" class="img-responsive" alt="" />
+                        <% if(flash.length > 0 ){%>
+                        <p> <%=flash%> </p>
+                        <%}%>
+                        <%if(err1>0){%>
+                            <p> <%=err1%> </p>
+                        <%}%>
+                        <input type="number" name="username" placeholder="UserId" required class="form-control input-lg" />
+                        <input type="password" name="password" placeholder="Password" required class="form-control input-lg" />
+                        <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>  
+                    </form>
+                </div>
+        </div>
+    </div>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
+</html>
+
