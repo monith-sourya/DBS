@@ -15,8 +15,8 @@ var bodyParser = require('body-parser');
 router.get('/', function(req, res, next) {
     try{
         if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
-            const user = req.user;
-            res.render('modifyc',{errors:'No Errors', user: user});
+            // const user = req.user;
+            res.render('modifyc',{errors:'No Errors'});
         }else{
             res.redirect('auth');
         }

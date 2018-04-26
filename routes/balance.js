@@ -12,8 +12,8 @@ var bodyParser = require('body-parser');
 router.get('/',function(req, res, next) {
     try{
         if(req.user.type=='Receptionist'){
-            const user = req.user;
-            res.render('balance', {flash : req.flash('SQL'), user : user});
+            //const user = req.user;
+            res.render('balance', {flash : req.flash('SQL')});
         }
         else{
             res.redirect('auth');

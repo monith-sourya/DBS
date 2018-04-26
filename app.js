@@ -73,9 +73,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(bodyParser());
 
 var options = {
-    host: '192.168.0.5',
+    host: 'localhost',
    // port: '80',
-    user: 'vishnu',
+    user: 'root',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -109,7 +109,7 @@ app.use(function(req, res, next){
           res.redirect('signin');
           }else{
             userdata = JSON.parse(JSON.stringify(results[0]));
-            //console.log(user);
+            console.log(userdata);
             res.locals.user= userdata;
           }
     });

@@ -13,8 +13,8 @@ router.use(passport.initialize());
 router.use(passport.session());
 
 router.get('/', function(req, res, next) {
-	const user = req.user;
-  	res.render('signin', {err1 : req.flash('err1'), flash : req.flash('SQL'), user: user});
+	// const user = req.user;
+  	res.render('signin', {err1 : req.flash('err1'), flash : req.flash('SQL')});
 });
 
 router.post('/',

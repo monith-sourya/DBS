@@ -17,8 +17,8 @@ router.get('/',function(req, res, next){
 					if(err) {throw (err);}else{
 					//var r = results[0].toObject();
 					rows = results;
-					user = req.user;
-					res.render('addt', { title: 'Equipment Inventory ', rows : rows, flash : req.flash('SQL'), user : user});
+					// user = user;
+					res.render('addt', { title: 'Equipment Inventory ', rows : rows, flash : req.flash('SQL')});
 					}
 			});
 		}

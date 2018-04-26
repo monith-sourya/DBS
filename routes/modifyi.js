@@ -14,8 +14,8 @@ router.get('/',function(req, res, next) {
                     //var r = results[0].toObject();
                     var rows = results;  
                     //console.log(rows);
-                    const user = req.user;
-                    res.render('modifyi', { title: 'Food Inventory',rows : rows, flash : req.flash('SQL'), user: user});
+                    // const user = req.user;
+                    res.render('modifyi', { title: 'Food Inventory',rows : rows, flash : req.flash('SQL')});
             });
         }
         else{
