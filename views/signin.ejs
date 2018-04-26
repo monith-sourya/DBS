@@ -23,6 +23,12 @@
             .login-form{
                 padding-right: -10px;
             }
+            .jumbotron h1{
+                color: white;
+            }
+            .jumbotron h2{
+                color: white;
+            }
     </style>
 </head>
 <body>
@@ -45,7 +51,11 @@
                         <%if(err1>0){%>
                             <p> <%=err1%> </p>
                         <%}%>
-                        <input type="number" name="username" placeholder="UserId" required class="form-control input-lg" />
+                        <!-- <input type="number" name="username" placeholder="UserId" required class="form-control input-lg" /> -->
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="uid" type="number" class="form-control" name="username" placeholder="UserId">
+                        </div>
                         <input type="password" name="password" placeholder="Password" required class="form-control input-lg" />
                         <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>  
                     </form>

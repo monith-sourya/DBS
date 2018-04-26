@@ -17,8 +17,8 @@ router.get('/', function(req, res, next){
             else{
                 console.log('SQL Query Succesful');
             }
-            const user = req.user;
-            res.render('viewatt',{title: 'View Attendance', flash : req.flash('Resp'), rows: rows, user : user});
+            // const user = req.user;
+            res.render('viewatt',{title: 'View Attendance', flash : req.flash('Resp'), rows: rows});
         });
     }catch(err){
         req.flash('err1', 'Please Signin');
