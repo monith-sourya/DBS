@@ -1,16 +1,87 @@
-<!-- 
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>About this project.</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-  	<% include templates/header.ejs </template>%>
+<html lang="en">
+<head>
+  <title>Customer Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 
-    <p>Welcome to DBS</p>
-    <% for(var i=0; i< print.length; i++){%>
-    	<h1><%= print[i].cust_name %></h1>
-    <%  }  %>
-  </body>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <nav class="navbar-fluid navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">BogusFitnessClub</a>
+    </div>
+    <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+      <ul class="nav navbar-nav navbar-right">      
+        <li><a href="/about"> About Us</a></li>
+        <li><a href="#"> Contact Us</a></li>
+        <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    <!-- </div> -->
+    </div>
+    </nav>
+
+    
+              <div class="container fluid">
+                
+                    <h1> <center>About Us</center></h1> 
+                    <br><br>
+                    <h4>Bogus Fitness Club (BFC) is the culmination of long years of preparation, contemplation and a thoughtful approach. Established in 2000 with an aim to provide friendly, comfortable and well maintained fitness facility at an affordable expense. The operational value of BFC revolves around end user satisfaction. The company was created with an understanding to make quality fitness service available to common masses through an affordable & no frills attached facility that can improve their quality of life with varying fitness related activities such as gymming, power yoga, kick-boxing and zumba. With an understanding that fitness is an experience of the body & mind, BFC works towards creating an atmosphere that can offer a perfect balance between members and their fitness.  </h4>
+                    <br><br>
+                    <h3><b> &nbsp &nbsp  Contact Number: +91-7036828555 <b></h3> 
+                    <h3><b> &nbsp &nbsp  Email         : lolonly@lol.com <b></h3>
+                    
+              </div>
+        
+      <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+          <div class="jumbotron">
+            <div class="container fluid">
+                  <br><br>
+                  <h3><b> GYM </b> </h3>
+                  
+                  <h4>With multiple awards for excellence under its belt including 2 awards from the Lions Club for the “Best Fitness Chain”, An award from the Images Beauty and wellness for the Most admired fitness chain of the year”, 8 awards making it a very eventful 14 years in the growth of the business. Bogus Gym has bagged the most prestigious Economic Times ET award for ‘Excellence in Marketing 2013’ and ‘Excellence in Customer Service 2014 </h4>
+
+                  <br><br><br><br><br><br>
+                  <h3><b> ZUMBA </b> </h3>
+                  <h4>Whether you haven't taken a zumba class in 20 years, taken classes regularly, Bogus Zumba has the classes designed especially for you. Classes are offered seven days a week in over 25 different techniques. Extension instructors are experts in their fields and ensure a welcoming, non-competitive environment at all times. Contact for more! </h4>
+
+                  <br><br><br><br><br><br>
+                  <h3><b> KICK-BOXING </b> </h3>
+                  <h4>At Bogus Kick-Boxing, you will experience the ultimate workout in both cardiovascular and strength training. Our facility offers the resistance of a 60 kg punching bags in a large group setting. Our upbeat instructors will guide you through a series of punches and kicks choreographed to music and/or timed circuits.  These unique 1-hour group classes will immediately get you sweating and burning calories. Our non-competitive cardio kickboxing style provides an intense and gratifying training session.</h4>
+
+                  <br><br><br><br><br><br>
+                  <h3><b> POWER YOGA </b> </h3>
+                  <h4> Power yoga is one of the best ways of staying fit and healthy. The benefits offered by power yoga are immense. As you complete a series of postures of power yoga through the program, you will be able to stretch and strengthen your body and have a relaxed and calm mind. </h4>
+
+                  <br><br><br><br><br><br>
+            </div>      
+        </div>
+        </div>
+      
+      <div class="col-md-5 col-md-offset-1">
+          <div class="container fluid" style="">
+            
+                <br><br><br><br><br><br><br>
+                <img src="/img/gym_pic.gif" alt="can't find image" height= 200  width= auto>
+                <br><br><br><br><br><br><br>
+                <img src="/img/zumba.gif" alt="can't find image" height= 200  width= auto>
+                <br><br><br><br><br><br><br>
+                <img src="/img/boxing.gif" alt="can't find image" height= 200  width= auto>
+                <br><br><br><br><br><br><br>
+                <img src="/img/yoga.gif" alt="can't find image" height= 200  width= auto>
+                <br><br><br><br><br><br>
+          </div>
+      </div>
+
+
+    </div>
+</body>
 </html>
