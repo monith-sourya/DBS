@@ -83,30 +83,33 @@
         <br>
         <div class="col-md-8">  
         <% if(1>0){%>
-        <form method='post' action='/attlog'>
-        <br>    Userid: 
-        <input type='text' name='userid'><br>
-        Date:
-        <input type = 'date' name='date'><br> 
-        <!-- Do not change name for the radio button i have set it to sub-->
-        Place: 
-        <div>
-          <input type="radio" id="subChoice1"
-           name="sub" value='Gym'>
-          <label for="subChoice1">Gym</label>
-        
-        <input type="radio" id="subChoice2"
-           name="sub" value='Kick Boxing'>
-          <label for="subChoice2">Kick Boxing Arena</label>
-      
-        <input type="radio" id="subChoice3"
-           name="sub" value='Aerobics'>
-          <label for="subChoice3">Aerobics</label>
-        <input type="radio" id="subChoice4"
-          name="sub" value='Power Yoga'>
-         <label for="subChoice3">Power Yoga</label>
+        <form class="form-horizontal" method="post" action="/attlog">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="userid">UserID:</label>
+            <div class="col-sm-10">
+              <input type="text" name="userid" class="form-control" placeholder="Enter UserID">
+            </div>
           </div>
-        <input type = 'submit' value = 'Submit'><br>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="date">Date:</label>
+            <div class="col-sm-10">
+              <input type="date" name="date" class="form-control" placeholder="Enter Date of Attendance">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="place">Place:</label>
+            <div class="col-sm-10">
+              <label><input type="radio" id="subChoice1" name="sub" value="Gym">   Gym     </label>
+              <label><input type="radio" id="subChoice2" name="sub" value="Kick Boxing Arena">   Kick Boxing Arena     </label>
+              <label><input type="radio" id="subChoice3" name="sub" value="Aerobics">   Aerobics     </label>
+              <label><input type="radio" id="subChoice4" name="sub" value="Power Yoga">   Power Yoga     </label>
+            </div>
+          </div>
+          <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
         </form>
     <%}%>
     <%if(flash.length>0){%>

@@ -20,7 +20,15 @@ router.get('/', function(req, res, next) {
     try{
         if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
             // const user = req.user;
-            res.render('newuser',{flash : req.flash('SQL')});
+            const db = require('../db.js');
+            db.query('Select emp_id, emp_name from employee where job = 'Trainer'',function(err,rows,fields){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    res.render('newuser',{flash : req.flash('SQL'), trainer: rows});
+                }
+            })
         }else{
             res.redirect('auth');
         }
