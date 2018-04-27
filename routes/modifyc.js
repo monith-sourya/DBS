@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     try{
         if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
             // const user = req.user;
-            res.render('modifyc',{errors:'No Errors'});
+            res.render('attlog',{flash:'No Errors'});
         }else{
             res.redirect('auth');
         }
@@ -32,10 +32,12 @@ router.post('/', function(req, res, next) {
     const username = req.body.username;
     const sex = req.body.sex;
     const age = req.body.age;
+    const phno = req.body.phno;
+    const address = req.body.address;
+    const email = req.body.email;
     const sub = req.body.sub;
     const subd = req.body.subd;
     const trainer = req.body.trainer;
-    const bal = req.body.bal;
 
     req.checkBody('username', 'Name is required').notEmpty();
     req.checkBody('username', 'Name must be between 4-15 characters long.').len(4,15);
@@ -55,9 +57,13 @@ router.post('/', function(req, res, next) {
         const db = require('../db.js');
 
    
-        db.query("UPDATE customer SET cust_name=?, sex=?, age =?, sub_id=?, sub_dur=?, trainer_id =?, card_bal=? WHERE cust_id = ?;",[username, sex, age, sub, subd, trainer,bal,userid ],
+        db.query("UPDATE customer SET cust_name=?, sex=?, age =?, sub_id=?, sub_dur=?, trainer_id=?, phno =?, email=?, address=? WHERE cust_id = ?;",[username, sex, age, sub, subd, trainer,phno,email,address,userid ],
         function(err, result, fields){
-            if(err) throw err;
+            if(err){ 
+                req.flash('moderr','Enter Valid Details');
+                req.flash('disp', 'true');
+                res.redirect('attlog');
+            }
 
             // db.query('SELECT LAST_INSERT_ID() as user_id',function(error, results, fields){
             //     if(error) throw error;
@@ -76,8 +82,8 @@ router.post('/', function(req, res, next) {
                 
         
             // });
-
-            res.redirect('/modifyc');
+            req.flash('disp', 'true');
+            res.redirect('/attlog');
          })
         //res.end(JSON.stringify(req.body));
     }

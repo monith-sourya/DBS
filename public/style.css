@@ -81,6 +81,7 @@ li{
 .table-hover{
 	font-size: 17px;
 	/*align-self: left;*/
+	overflow-x: scroll;
 }
 .alert{
     color: #ff0000;
@@ -98,4 +99,11 @@ li{
 	border-radius: 10px;
 	background-color: #f1f3fa;
 	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);	
+}
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+	margin: 0;
+}
+input[type="number"] {
+	-moz-appearance: textfield;
 }
