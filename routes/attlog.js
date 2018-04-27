@@ -6,7 +6,7 @@ router.get('/', function(req, res, next){
     try{
         if(req.user.type=='Receptionist'){
             //const user = req.user;
-            res.render('attlog',{flash : req.flash('Plis')});
+            res.render('attlog',{flash : req.flash('Plis'), disp : req.flash('disp')});
         }else{
             res.redirect('auth');
         }

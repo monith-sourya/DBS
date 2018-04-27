@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
     try{
         if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
             // const user = req.user;
-            res.render('modifyc',{errors:'No Errors'});
+            res.render('attlog',{flash:'No Errors'});
         }else{
             res.redirect('auth');
         }
@@ -57,7 +57,7 @@ router.post('/', function(req, res, next) {
         const db = require('../db.js');
 
    
-        db.query("UPDATE customer SET cust_name=?, sex=?, age =?, sub_id=?, sub_dur=?, trainer_id =?, card_bal=? WHERE cust_id = ?;",[username, sex, age, sub, subd, trainer,bal,userid ],
+        db.query("UPDATE customer SET cust_name=?, sex=?, age =?, sub_id=?, sub_dur=?, trainer_id=?, phno =?, email=?, address=? WHERE cust_id = ?;",[username, sex, age, sub, subd, trainer,phno,email,address,userid ],
         function(err, result, fields){
             if(err) throw err;
 
@@ -78,8 +78,8 @@ router.post('/', function(req, res, next) {
                 
         
             // });
-
-            res.redirect('/modifyc');
+            req.flash('disp', 'True');
+            res.redirect('/attlog');
          })
         //res.end(JSON.stringify(req.body));
     }

@@ -12,8 +12,9 @@
   <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- navbar shiz -->
 
+<!-- navbar shiz -->
+<% if (isAuthenticated){%>
 <nav class="navbar-fluid navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -30,8 +31,6 @@
 </nav>
 
 <!-- profile side bar for receptionist-->
-
-  
 <div class="container-fluid">
   <div class="row profile">
     <div class="col-md-3">
@@ -70,6 +69,7 @@
       </div>
     </div>
   </div>
+</div>>
 
 <!-- jumbotron -->
 <div class="col-md-8">
@@ -78,115 +78,99 @@
       <h1>Customer Attendance Log</h1>
       <h3> </h3>
       <div class="container">
-        <h2></h2>
-        <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
-        <br>
         <div class="col-md-8">  
-        <% if(1>0){%>
-        <form method='post' action='/attlog'>
-        <br>    Userid: &nbsp;
-        <input type='text' name='userid'><br>
-        Date:
-        &nbsp; &nbsp;
-        <input type = 'date' name='date'><br> 
-        <!-- Do not change name for the radio button i have set it to sub-->
-        Place: 
-        <div>
-          <input type="radio" id="subChoice1"
-           name="sub" value='Gym'>
-          <label for="subChoice1">Gym</label>
+          <form method='post' action='/attlog'>
+          <br>    Userid: &nbsp;
+          <input type='text' name='userid'><br>
+          Date:
+          &nbsp; &nbsp;
+          <input type = 'date' name='date'><br> 
+          <!-- Do not change name for the radio button i have set it to sub-->
+          Place: 
+          <div>
+            <input type="radio" id="subChoice1"
+            name="sub" value='Gym'>
+            <label for="subChoice1">Gym</label>
+          
+          <input type="radio" id="subChoice2"
+            name="sub" value='Kick Boxing'>
+            <label for="subChoice2">Kick Boxing Arena</label>
         
-        <input type="radio" id="subChoice2"
-           name="sub" value='Kick Boxing'>
-          <label for="subChoice2">Kick Boxing Arena</label>
-      
-        <input type="radio" id="subChoice3"
-           name="sub" value='Aerobics'>
-          <label for="subChoice3">Aerobics</label>
-        <input type="radio" id="subChoice4"
-          name="sub" value='Power Yoga'>
-         <label for="subChoice3">Power Yoga</label>
+          <input type="radio" id="subChoice3"
+            name="sub" value='Aerobics'>
+            <label for="subChoice3">Aerobics</label>
+          <input type="radio" id="subChoice4"
+            name="sub" value='Power Yoga'>
+          <label for="subChoice3">Power Yoga</label>
           </div>
-        <input type = 'submit' value = 'Submit'><br>
-        </form>
-    <%}%>
-    <%if(flash.length>0){%>
-      <%= flash%>
-    <%}%>	
-    
-    <div class="col-md-8">  
-      <form method="post" action="/modifyc">
-      <br>  Username: 
-      <input type="text" name="username"><br>
-      Sex: 
-      <div>
-      <input type="radio" id="sexChoice1"
-      name="sex" value="M">
-      <label for="sexChoice1">Male</label>
-      <input type="radio" id="sexChoice2"
-      name="sex" value="F">
-      <label for="sexChoice2">Female</label>
-
+          <input type = 'submit' value = 'Submit'><br>
+          </form>
+        <%if(flash.length>0){%>
+          <%=flash%>
+        <%}%>
+        </div>
       </div>
-      <br>
-
-      <br>  Age   :
-      <input type="number" name="age"><br>
-      <br> PhNo : 
-      <input type="number" name="phno"><br>
-      <br> Address : 
-      <input type="text" name="address"><br>
-      <br> Email
-      <input type="email" name="email"><br>
-    <br>
-    <br>  Sub Dur :
-      <input type="number" name="subd"><br>
-
-    <br>
-    Sub Type : 
-      <div>
-      <input type="radio" id="subChoice1"
-      name="sub" value="1001">
-      <label for="subChoice1">Platinum</label>
-
-    <input type="radio" id="subChoice2"
-      name="sub" value="2001">
-      <label for="subChoice2">Gold</label>
-
-    <input type="radio" id="subChoice3"
-      name="sub" value="3001">
-      <label for="subChoice3">Silver</label>
       </div>
-
-      <br>
-
-    <br>
-    <br>  Trainer :
-      <input type="number" name="trainer"><br>
-
-    <br>
-
-    <br>  Enter Password :
-      <input type="password" name="pass1"><br>
-
-    <br>
-    <br>  Re-enter Password :
-      <input type="password" name="pass2"><br>
-
-    <br>
-
-      <br><input type="submit" value="Submit"><br>
-    </form>   
-    <%for(var i =0 ; i < flash.length ;i++){%>
-      <%=flash%>
-      <%}%>
+      <div class = "jumbotron">
+      <div class ="container">
+        <div class="col-md-8">
+          <%if(disp){%>
+          <form method="post" action="/modifyc">
+            <br>  Username: <%=user.cust_id%>
+            <input type="text" name="username"><br>
+            Sex: <%= user.sex%>
+            <div>
+            <input type="radio" id="sexChoice1"
+            name="sex" value="M">
+            <label for="sexChoice1">Male</label>
+            <input type="radio" id="sexChoice2"
+            name="sex" value="F">
+            <label for="sexChoice2">Female</label>
+            </div>
+            <br>
+            <br>  Age : <%=user.age%>
+            <input type="number" name="age"><br>
+            <br> PhNo : <%=user.phno%>
+            <input type="number" name="phno"><br>
+            <br> Address : <%=user.address%>
+            <input type="text" name="address"><br>
+            <br> Email: <%= user.email%>
+            <input type="email" name="email"><br>
+            <br>
+            <br>  Sub Dur : <%= user.subd %>
+            <input type="number" name="subd"><br>
+            <br>
+            Sub Type : Current <%= user.sub_id%>
+            <div>
+            <input type="radio" id="subChoice1"
+            name="sub" value="1001">
+            <label for="subChoice1">Platinum</label>
+            <input type="radio" id="subChoice2"
+            name="sub" value="2001">
+            <label for="subChoice2">Gold</label>
+            <input type="radio" id="subChoice3"
+            name="sub" value="3001">
+            <label for="subChoice3">Silver</label>
+            </div>
+            <br>
+            <br>
+            <br>  Trainer : <%= user.trainer%>
+            <input type="number" name="trainer"><br>
+            <br>
+            <br>
+            <br><input type="submit" value="Submit"><br>
+          </form>   
+          <%for(var i =0 ; i < flash.length ;i++){%>
+            <%=flash%>
+          <%}%>
+          <%}%>
+        </div>
+      </div> 
+      </div>     
     </div>
-    </div>
-    </div>      
   </div>
 </div>
-</div>
-
+<% }%>
 </body>
 </html>
 
