@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Customer Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- navbar shiz -->
+<% if (isAuthenticated){%>
+
+<nav class="navbar-fluid navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">BogusFitnessClub</a>
+      </div>
+      <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+        <ul class="nav navbar-nav navbar-right">      
+          <li><a href="n3.html"> About Us</a></li>
+          <li><a href="#"> Contact Us</a></li>
+          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+      <!-- </div> -->
+    </div>
+  </nav>
+  
+  <!-- profile side bar for receptionist-->
+  
+    
+  <div class="container-fluid">
+    <div class="row profile">
+      <div class="col-md-3">
+        <div class="profile-sidebar">
+          <div class="profile-user-pic">
+            <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
+          <div class="profile-user-title">
+            <!-- <br> -->
+            <div class="profile-user-name">
+              <h2>
+                <%=user.emp_name%>
+              </h2>
+            </div>
+            <div class="profile-user-job">
+              <%=user.job%>
+            </div>
+          </div>
+          <br>
+          <!-- <div class="profile-user-buttons"> -->
+            <!-- <button class="btn btn-success btn-sm">randome</button> -->
+          <!-- </div> -->
+          <div class="profile-user-menu">  
+            <!-- check above -->
+             <ul class="nav">
+               <li ><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
+               <!-- <li class="active"><a href="">Profile</a> -->
+               <%if(type == 'Receptionist'){%>
+                  <li><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
+                  <li><a href="/attlog"><i class="glyphicon glyphicon-th-list"></i>   Attendance Log</a>
+                  <li><a href="/balance"><i class="glyphicon glyphicon-th-list"></i>   Add Balance</a>
+               <%}%>
+               <%if(type == 'Manager'){%>
+                  <li><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
+                  <li><a href="/newemp"><i class="glyphicon glyphicon-plus"></i>   New Employees</a>
+                    <li class="active"><a href="/stats"><i class="glyphicon glyphicon-piggy-bank"></i>   View Stats</a>
+               <%}%>
+               <%if(type == 'Maintenance'){%> 
+                  <li><a href="/viewi"><i class="glyphicon glyphicon-plus"></i>   View Inventory</a>
+                  <li><a href="/modifyi"><i class="glyphicon glyphicon-plus"></i>   Modify Inventory</a>
+                  <li><a href="/viewequip"><i class="glyphicon glyphicon-plus"></i>   View Equipment</a>
+                  <li><a href="/modifyequip"><i class="glyphicon glyphicon-plus"></i>   Modify Equipment</a>
+                  <li><a href="/status"><i class="glyphicon glyphicon-plus"></i>   Update staus</a>
+                <%}%>
+               <br>
+               <!-- <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a> -->
+             </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+<!-- jumbotron -->
+<div class="col-md-8">
+  <div class="container">
+    <div class="jumbotron">
+      <h1>View Stats</h1>
+      <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3>
+      <div class="container">
+        <h2></h2>
+        <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
+        <br>
+        <%if(flash.length>0){%>
+            <h1><%=flash%></h1>
+        <%}%><br>
+        <div class="col-md-8">            
+        <table class="table table-hover">
+          <thead>
+            <th>Type</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+          </tr>
+            <tr>
+            <td>Total Equipment Value</td>
+            <td><%=stats.capital%></td>
+            </tr>
+            <tr>
+            <td>Depreciated Value of Inventory</td>
+            <td><%=stats.dep_cap%></td>
+            </tr>
+            <tr>
+            <td>Earnings From Snack Counter</td>
+            <td><%=stats.earn%></td>
+            </tr>
+            <tr>
+            <td>Cost of Food Inventory</td>
+            <td><%=stats.exp%></td>
+            </tr>
+            <tr>
+            <td>Total Subscriptions Value</td>
+            <td><%=stats.sub%></td>
+            </tr>
+            <tr>
+            <td>Current Money in all Card Bal</td>
+            <td><%=stats.cb%></td>
+            </tr>
+            <tr>
+                <td>Profit or Loss</td>
+                <td><%=stats.earn-stats.exp%></td>
+                </tr>
+          </tbody>
+      </table>
+    </div>
+    </div>      
+  </div>
+</div>
+</div>
+
+<%}%>
+
+</body>
+</html>
