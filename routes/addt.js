@@ -17,11 +17,7 @@ router.get('/',function(req, res, next){
 					if(err) {throw (err);}else{
 					//var r = results[0].toObject();
 					rows = results;
-// <<<<<<< HEAD
-					// user = req.user;
-// =======
 					// user = user;
-// >>>>>>> 6127756598b27e1a8567bbf153f68553705b6838
 					res.render('addt', { title: 'Equipment Inventory ', rows : rows, flash : req.flash('SQL')});
 					}
 			});

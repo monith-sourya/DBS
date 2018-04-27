@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Attendance</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  	<% include templates/header.ejs </template>%>
+    
+    <br><h3>Log Attendace for Customer</h3><br>
+    <% if(1>0){%>
+        <form method='post' action='/attlog'>
+        <br>    Userid: 
+        <input type='text' name='userid'><br>
+        Date:
+        <input type = 'date' name='date'><br> 
+        <!-- Do not change name for the radio button i have set it to sub-->
+        Place: 
+        <div>
+          <input type="radio" id="subChoice1"
+           name="sub" value='Gym'>
+          <label for="subChoice1">Gym</label>
+        
+        <input type="radio" id="subChoice2"
+           name="sub" value='Kick Boxing'>
+          <label for="subChoice2">Kick Boxing Arena</label>
+      
+        <input type="radio" id="subChoice3"
+           name="sub" value='Aerobics'>
+          <label for="subChoice3">Aerobics</label>
+        <input type="radio" id="subChoice4"
+          name="sub" value='Power Yoga'>
+         <label for="subChoice3">Power Yoga</label>
+          </div>
+        <input type = 'submit' value = 'Submit'><br>
+        </form>
+    <%}%>
+    <%if(flash.length>0){%>
+      <%= flash%>
+    <%}%>	
+  </body>
+</html>

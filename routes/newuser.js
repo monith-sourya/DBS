@@ -1,3 +1,4 @@
+
 var express = require('express');
 var router = express.Router();
 // var expressValidator = require('express-validator');
@@ -20,15 +21,7 @@ router.get('/', function(req, res, next) {
     try{
         if(req.user.type=='Receptionist'|| req.user.type=='Manager'){
             // const user = req.user;
-            const db = require('../db.js');
-            db.query('Select emp_id, emp_name from employee where job = 'Trainer'',function(err,rows,fields){
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    res.render('newuser',{flash : req.flash('SQL'), trainer: rows});
-                }
-            })
+            res.render('newuser',{flash : req.flash('SQL')});
         }else{
             res.redirect('auth');
         }
@@ -51,18 +44,18 @@ router.post('/', function(req, res, next) {
     const pass1 = req.body.pass1;
     const pass2 = req.body.pass2;
 
-    req.checkBody('username', 'Name is required').notEmpty();
-    req.checkBody('username', 'Name must be between 4-15 characters long.').len(4,15);
-    req.checkBody('sex', 'Choose Gender').notEmpty();
-    req.checkBody('age', 'Age is required 18+').isInt();
-    req.checkBody('phno', 'Phone Number Must be 10 digits long').isNumeric(10);
-    req.checkBody('address', 'Address is required at least 10 characters long').len(10,60);
-    req.checkBody('email', 'Please enter Valid Email').isEmail();
-    req.checkBody('sub', 'Choose One Subscription').notEmpty();
-    req.checkBody('trainer', 'Enter Trainer ID').notEmpty();
-    req.checkBody('subd', 'Enter Valid Duration').isNumeric
-    req.checkBody('pass1', 'Password is required').notEmpty();
-    req.checkBody('pass2', 'Passwords do not match').equals(req.body.pass1);
+    // req.checkBody('username', 'Name is required').notEmpty();
+    // req.checkBody('username', 'Name must be between 4-15 characters long.').len(4,15);
+    // req.checkBody('sex', 'Choose Gender').notEmpty();
+    // req.checkBody('age', 'Age is required 18+').isInt();
+    // req.checkBody('phno', 'Phone Number Must be 10 digits long').isNumeric();
+    // req.checkBody('address', 'Address is required at least 10 characters long').len(0,60);
+    // req.checkBody('email', 'Please enter Valid Email').isEmail();
+    // req.checkBody('sub', 'Choose One Subscription').notEmpty();
+    // req.checkBody('trainer', 'Enter Trainer ID').notEmpty();
+    // req.checkBody('subd', 'Enter Valid Duration').isNumeric();
+    // req.checkBody('pass1', 'Password is required').notEmpty();
+    // req.checkBody('pass2', 'Passwords do not match').equals(req.body.pass1);
 
     let errors = req.validationErrors();
 
@@ -80,7 +73,7 @@ router.post('/', function(req, res, next) {
             var userid;
 
             db.query("INSERT INTO customer (cust_id, cust_name, sex, age, sub_id, sub_dur, trainer_id," 
-                +"attendance, card_bal, phno, address, email) VALUES (NULL,?,?,?,?,?,?, '0', '0','?','?','?');",
+                +"attendance, card_bal, phno, address, email) VALUES (NULL,?,?,?,?,?,?, '0', '0',?,?,?);",
                 [username, sex, age, sub, subd, trainer,phno, address, email],
             function(err, result, fields){
                 if(err) {

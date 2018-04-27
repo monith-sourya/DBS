@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact V6</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="/res_sign/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/res_sign/css/form.css">
+	<link rel="stylesheet" type="text/css" href="/res_sign/css/util_form.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+  
+<nav class="navbar-fluid navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">BogusFitnessClub</a>
+      </div>
+      <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
+        <ul class="nav navbar-nav navbar-right">      
+          <li><a href="n3.html"> About Us</a></li>
+          <li><a href="#"> Contact Us</a></li>
+          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+      <!-- </div> -->
+    </div>
+  </nav>
+  
+  <!-- profile side bar for receptionist-->
+  
+    
+  <div class="container-fluid">
+    <div class="row profile">
+      <div class="col-md-3">
+        <div class="profile-sidebar">
+          <div class="profile-user-pic">
+            <img src="profile.png" alt="can't find image" class="img-responsive img-circle">
+          <div class="profile-user-title">
+            <!-- <br> -->
+            <div class="profile-user-name">
+              <h2>
+                <%=user.emp_name%>
+              </h2>
+            </div>
+            <div class="profile-user-job">
+              <%=user.job%>
+            </div>
+          </div>
+          <br>
+          <!-- <div class="profile-user-buttons"> -->
+            <!-- <button class="btn btn-success btn-sm">randome</button> -->
+          <!-- </div> -->
+          <div class="profile-user-menu">  
+            <!-- check above -->
+             <ul class="nav">
+               <li><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
+               <!-- <li class="active"><a href="">Profile</a> -->
+               <%if(type == 'Receptionist'){%>
+                  <li class="active"><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
+                  <li><a href="/attlog"><i class="glyphicon glyphicon-th-list"></i>   Attendance Log</a>
+                  <li><a href="/balance"><i class="glyphicon glyphicon-th-list"></i>   Add Balance</a>
+               <%}%>
+               <%if(type == 'Manager'){%>
+                  <li class="active"><a href="/newuser"><i class="glyphicon glyphicon-plus"></i>   New Users</a>
+                  <li><a href="/newemp"><i class="glyphicon glyphicon-plus"></i>   New Employees</a>
+               <%}%>
+               <br>
+               <!-- <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a> -->
+             </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="col-md-8">
+    <div class="container-fluid">
+      <div class="jumbotron">
+        <div class="limiter">
+          <div class="container-contact100">
+            <div class="wrap-contact100" style = "display: block">
+              <form class="contact100-form validate-form" method="post" action="/newuser">
+                <span class="contact100-form-subtitle p-b-25">
+                  New Customer
+                </span>
+
+                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Name is required">
+                  <span class="label-input100">Name: </span>
+                  <input class="input100" type="text" name="username" placeholder="Enter your name">
+                  <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                    <span class="label-input100">Email: </span>
+                    <input class="input100" type="text" name="email" placeholder="Enter your email addess">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class = "wrap-input100 rs1-wrap-input100 validate-input p-t-20" data-validate = "Choose One ">
+                    <input class = "m-l-40"type="radio" id="sexChoice1" name="sex" >
+                    <label for="M">Male </label>
+                    <input class = "m-l-40"type="radio" id="sexChoice2" name="sex" >
+                    <label for="F">Female </label>
+                </div>
+
+                <div class="wrap-input100 rs1-wrap-input100 validate-input " data-validate = "Enter a Number">
+                  <span class="label-input100">Age: </span>
+                  <input class="input100" type="text" name="age" placeholder="18+">
+                  <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Message is required">
+                    <span class="label-input100">Phone Number: </span>
+                    <input class="m-l-15" type="number" name="phno" placeholder="Ph No">
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate = "Message is required">
+                    <span class="label-input100">Trainer ID: </span>
+                    <input class="m-l-15" type="number" name="trainer" placeholder="Trainer ID">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Message is required">
+                  <span class="label-input100">Address </span>
+                  <textarea class="input100" name="addess" placeholder="Enter Address"></textarea>
+                  <span class="focus-input100"></span>
+                </div>
+
+                <span class = "contact100-form-subtitle p-b-25">
+                  Subscription Details 
+                </span>
+
+                <div class="wrap-input100nb rs1-wrap-input100 input100-select">
+                  <span class="label-input100 ">Choose Subscription: </span>
+                    <select class="selection-2 m-l-10 p-l-10 p-r-10" name="sex">
+                      <option value= '1001'>Platinum</option>
+                      <option value= '2001'>Gold</option>
+                      <option value='3001'>Silver</option>
+                    </select>
+                  <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100nb rs1-wrap-input100 validate-input" data-validate = "Message is required">
+                    <span class="label-input100 ">Subscription Duration: </span>
+                    <input class="Number m-l-10" type="number" name="subd" placeholder="in Months">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Enter password">
+                    <input class="input100" type="text" name="pass1" placeholder="Password">
+                    <span class="focus-input100" data-placeholder="Password"></span>
+                </div>
+
+                <div class="wrap-input100 rs1-wrap-input100 validate-input" data-validate="Retype Password">
+                    <input class="input100" type="text" name="pass2" placeholder="Retype Password">
+                    <span class="focus-input100" data-placeholder="Retype Password"></span>
+                </div>
+
+                <div class="container-contact100-form-btn p-t-40">
+                  <button class="contact100-form-btn" type = "submit" name="go">
+                    <span>
+                      Submit
+                    </span>
+                  </button>
+                </div>
+
+              </form>
+              <span class = "contact100-form-subtitle p-b-25">
+                <%for(var i =0 ; i < flash.length ;i++){%>
+                  <% if(i==0){%>
+                    Errors: 
+                  <%}%>
+                <%=flash%>
+                <%}%> 
+              </span>
+   
+            </div>
+          </div>
+          </div>
+  </div>
+  </div>
+  </div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/bootstrap/js/popper.js"></script>
+	<script src="/res_sign/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/daterangepicker/moment.min.js"></script>
+	<script src="/res_sign/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="/res_sign/js/form.js"></script>
+</body>
+</html>
