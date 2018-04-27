@@ -59,7 +59,11 @@ router.post('/', function(req, res, next) {
    
         db.query("UPDATE customer SET cust_name=?, sex=?, age =?, sub_id=?, sub_dur=?, trainer_id=?, phno =?, email=?, address=? WHERE cust_id = ?;",[username, sex, age, sub, subd, trainer,phno,email,address,userid ],
         function(err, result, fields){
-            if(err) throw err;
+            if(err){ 
+                req.flash('moderr','Enter Valid Details');
+                req.flash('disp', 'true');
+                res.redirect('attlog');
+            }
 
             // db.query('SELECT LAST_INSERT_ID() as user_id',function(error, results, fields){
             //     if(error) throw error;
@@ -78,7 +82,7 @@ router.post('/', function(req, res, next) {
                 
         
             // });
-            req.flash('disp', 'True');
+            req.flash('disp', 'true');
             res.redirect('/attlog');
          })
         //res.end(JSON.stringify(req.body));
