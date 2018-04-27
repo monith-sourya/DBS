@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Customer Profile</title>
+  <title>View Inventory</title>
+  <link rel="icon" href="/images/favicon.ico">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -22,7 +23,7 @@
     <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
       <ul class="nav navbar-nav navbar-right">      
         <li><a href="/about"> About Us</a></li>
-        <li><a href="#"> Contact Us</a></li>
+        <!-- <li><a href="#"> Contact Us</a></li> -->
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     <!-- </div> -->
@@ -59,11 +60,11 @@
              <li><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
              <!-- <li class="active"><a href="">Profile</a> -->
              <%if(type == 'Maintenance'){%> 
-                <li class="active"><a href="/viewi"><i class="glyphicon glyphicon-plus"></i>   View Inventory</a>
-                <li><a href="/modifyi"><i class="glyphicon glyphicon-plus"></i>   Modify Inventory</a>
-                <li><a href="/viewequip"><i class="glyphicon glyphicon-plus"></i>   View Equipment</a>
-                <li><a href="/modifyequip"><i class="glyphicon glyphicon-plus"></i>   Modify Equipment</a>
-                <li><a href="/status"><i class="glyphicon glyphicon-plus"></i>   Update staus</a>
+                <li class="active"><a href="/viewi"><i class="glyphicon glyphicon-align-left"></i>   View Inventory</a>
+                <li><a href="/modifyi"><i class="glyphicon glyphicon-indent-left"></i>   Modify Inventory</a>
+                <li><a href="/viewequip"><i class="glyphicon glyphicon-check"></i>   View Equipment</a>
+                <li><a href="/modifyequip"><i class="glyphicon glyphicon-edit"></i>   Modify Equipment</a>
+                <li><a href="/status"><i class="glyphicon glyphicon-equalizer"></i>   Update status</a>
               <%}%>
              <br>
              <!-- <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a> -->
@@ -83,7 +84,7 @@
         <h2></h2>
         <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
         <br>
-        <div class="col-md-8">            
+        <div class="table-responsive">            
         <table class="table table-hover">
           <thead>
             <th>Inventory ID</th>

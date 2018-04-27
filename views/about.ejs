@@ -19,9 +19,13 @@
       <a class="navbar-brand">BogusFitnessClub</a>
     </div>
     <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
-      <ul class="nav navbar-nav navbar-right">      
-        <li><a href="/about"> About Us</a></li>
-        <li><a href="#"> Contact Us</a></li>
+      <ul class="nav navbar-nav navbar-right">  
+        <% if(type=="Customer") { %>
+        <li><a href="/customerprofile"> Profile</a></li>
+        <% } %>
+        <% if(type=="Manager" || type=="Receptionist" || type=="Maintenance") {%>
+        <li><a href="/empprofile"> Profile</a></li>
+        <% } %>
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     <!-- </div> -->

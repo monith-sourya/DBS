@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Customer Profile</title>
+  <title>New Transanction</title>
+  <link rel="icon" href="/images/favicon.ico">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -28,7 +29,7 @@
     <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
       <ul class="nav navbar-nav navbar-right">      
         <li><a href="/about"> About Us</a></li>
-        <li><a href="#"> Contact Us</a></li>
+        <!-- <li><a href="#"> Contact Us</a></li> -->
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     <!-- </div> -->
@@ -66,10 +67,11 @@
              <li class="active"><a href="/addt"><i class="glyphicon glyphicon-plus"></i>   New Transaction</a>
              <!-- <li><a href=""> NewTransaction</a> -->
              <li><a href="/viewt"><i class="glyphicon glyphicon-th-list"></i>   Transaction History</a>
-              <li><a href="/viewatt"><i class="glyphicon glyphicon-th-list"></i>   View Attendance</a>
              <!-- <li><a href=""> TranscationHistory</a> -->
+              <li><a href="/viewatt"><i class="glyphicon glyphicon-list-alt"></i>   View Attendance</a>
+              <li><a href="/viewcard"><i class="glyphicon glyphicon-download-alt"></i>   View Card Topups</a>
              <br>
-             <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a>
+             <!-- <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a> -->
            </ul>
         </div>
       </div>
@@ -96,7 +98,7 @@
             <th>Item Name</th>
             <th>Item Price</th>
             <th>Stock Available</th>
-            <th>Purchase</th>
+            <th>Purchase Quantity</th>
             <th></th>
           </thead>
           <tbody>
@@ -114,9 +116,10 @@
                   <td><%= rows[i].sp%></td>
                   <td><%= rows[i].stock%></td>
                   <td> 
-                    <INPUT TYPE="number" NAME="quantity" size='1' max = '<%=rows[i].stock%>' min = '0' value= 1> 
+                    <INPUT TYPE="number" NAME="quantity" size='1' max = '<%=rows[i].stock%>' min = '1' value= '1' required > 
                   </td>
-                  <td><input type="submit" value="Submit"></td>
+                  <!-- <td><input type="submit" value="Submit"></td> -->
+                  <td><button type="submit" class="btn btn-default" value="Submit">Submit</button></td>
                 </tr>
         
               </form>

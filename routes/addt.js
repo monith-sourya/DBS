@@ -51,9 +51,6 @@ router.post('/', function(req, res, next) {
     const price = req.body.price;
     const quantity = req.body.quantity;
 
-    
-
-
     //console.log('READ THIS FIRST'+price);
 
     const cost = price * quantity;

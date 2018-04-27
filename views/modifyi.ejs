@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Customer Profile</title>
+  <title>Modify Inventory</title>
+  <link rel="icon" href="/images/favicon.ico">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -22,7 +23,7 @@
     <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
       <ul class="nav navbar-nav navbar-right">      
         <li><a href="/about"> About Us</a></li>
-        <li><a href="#"> Contact Us</a></li>
+        <!-- <li><a href="#"> Contact Us</a></li> -->
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     <!-- </div> -->
@@ -59,11 +60,11 @@
              <li><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
              <!-- <li class="active"><a href="">Profile</a> -->
              <%if(type == 'Maintenance'){%> 
-                <li><a href="/viewi"><i class="glyphicon glyphicon-plus"></i>   View Inventory</a>
-                <li class="active"><a href="/modifyi"><i class="glyphicon glyphicon-plus"></i>   Modify Inventory</a>
-                <li><a href="/viewequip"><i class="glyphicon glyphicon-plus"></i>   View Equipment</a>
-                <li><a href="/modifyequip"><i class="glyphicon glyphicon-plus"></i>   Modify Equipment</a>
-                <li><a href="/status"><i class="glyphicon glyphicon-plus"></i>   Update staus</a>
+                <li><a href="/viewi"><i class="glyphicon glyphicon-align-left"></i>   View Inventory</a>
+                <li class="active"><a href="/modifyi"><i class="glyphicon glyphicon-indent-left"></i>   Modify Inventory</a>
+                <li><a href="/viewequip"><i class="glyphicon glyphicon-check"></i>   View Equipment</a>
+                <li><a href="/modifyequip"><i class="glyphicon glyphicon-edit"></i>   Modify Equipment</a>
+                <li><a href="/status"><i class="glyphicon glyphicon-equalizer"></i>   Update status</a>
               <%}%>
              <br>
              <!-- <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a> -->
@@ -82,49 +83,51 @@
       <div class="container">
         <h2></h2>
         <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
-        <br>
-        <div class="col-md-8">            
-        <table class="table table-hover">
+        <div class="table-responsive">            
+        <table class="table table-hover" style="max-width: auto;">
           <thead>
             <th>Inventory ID</th>
             <th>Name</th>
+            <!-- <th>Rename</th> -->
             <th>Cost Price</th>
             <th>Selling Price</th>
+            <!-- <th>New SP</th> -->
             <th>Stock</th>
+            <!-- <th>Restock</th> -->
             <th></th>
           </thead>
           <tbody>
-            </tr>
     <% for(var i=0; i < rows.length; i++) { %>
     <form method="post" action="/modifyi">
     
        <tr>
         <input type="hidden" name="id" value=<%= rows[i].inv_id %>>
-       <td><%= rows[i].inv_id %>  </td>
-       <td><%= rows[i].inv_name %>  <INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].inv_name%> ></td>
-       <td><%= rows[i].cp%>   <!-- <INPUT TYPE="number" NAME="cp" size='0' value= <%=rows[i].cp%> > --></td>
-       <td><%= rows[i].sp%>   <INPUT TYPE="number" NAME="sp" size='1' value= <%=rows[i].sp%> </td>
-       <td><%= rows[i].stock%>   <INPUT TYPE="number" NAME="stock" size='1' value= <%=rows[i].stock%> ></td>
-       <td><input type="submit" value="Submit"></td>
+       <td><%= rows[i].inv_id %></td>
+       <td><%= rows[i].inv_name %><INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].inv_name%>></td>
+       <td><%= rows[i].cp%><!-- <INPUT TYPE="number" NAME="cp" size='0' value= <%=rows[i].cp%> > --></td>
+       <td><%= rows[i].sp%><INPUT TYPE="number" NAME="sp" size='1' value= <%=rows[i].sp%>> </td>
+       <td><%= rows[i].stock%><INPUT TYPE="number" NAME="stock" size='1' value= <%=rows[i].stock%> ></td>
+       <td><button type="submit" class="btn btn-default" value="Submit">Confirm</button></td>
       </tr>
       
     </form>
     <% } %>
+  </tbody>
+</table>
 
     <form method="post" action="/addi">
     
        
-       <td> Add New</td>
-       <td><INPUT TYPE="TEXT" NAME="name"  ></td>
-       <td> <INPUT TYPE="number" NAME="cp" size='0' ></td>
-       <td> <INPUT TYPE="number" NAME="sp" size='1' </td>
-       <td> <INPUT TYPE="number" NAME="stock" size='1' ></td>
-       <td><input type="submit" value="Add"></td>
+       <h2>Add New</h2>
+       <td><INPUT TYPE="TEXT" NAME="name" placeholder="Inventory Name"></td>
+       <td> <INPUT TYPE="number" NAME="cp" size='0' placeholder="Cost Price"></td>
+       <td> <INPUT TYPE="number" NAME="sp" size='1' placeholder="Selling Price"></td>
+       <td> <INPUT TYPE="number" NAME="stock" size='1' placeholder="Enter Stock"></td>
+       <td><button type="submit" class="btn btn-default" value="Add">Submit</button></td>
       </tr>  
     </form>
-          </tbody>
-      </table>
-    </div>
+          <!-- </tbody> -->
+      <!-- </table> -->
     </div>      
   </div>
 </div>

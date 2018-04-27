@@ -16,6 +16,7 @@ body{
 }
 .profile-sidebar{
 	padding: 20px 0 10px 0;
+	margin-left: -50px;
 	/*background: #fff;*/
 }
 .profile-user-pic{

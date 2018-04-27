@@ -52,6 +52,7 @@ var viewcardRouter = require('./routes/viewcard');
 var newempRouter = require('./routes/newemp');
 var modifyeRouter = require('./routes/modifye');
 var statsRouter = require('./routes/stats');
+//var deductRouter = require('./routes/deduct');
 
 var app = express();
 
@@ -83,7 +84,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var options = {
     host: '192.168.0.5',
    // port: '80',
-    user: 'sanjay',
+    user: 'nikki',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -176,6 +177,7 @@ app.use('/viewcard', viewcardRouter);
 app.use('/newemp', newempRouter);
 app.use('/modifye', modifyeRouter);
 app.use('/stats', statsRouter);
+//app.use('deduct', deductRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
