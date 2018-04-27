@@ -84,7 +84,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var options = {
     host: 'localhost',
    // port: '80',
-    user: 'root',
+    user: 'nikki',
     password : 'Keyshore',
     database: 'fitness'
 };

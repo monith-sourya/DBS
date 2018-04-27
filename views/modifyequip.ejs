@@ -23,7 +23,7 @@
     <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
       <ul class="nav navbar-nav navbar-right">      
         <li><a href="/about"> About Us</a></li>
-        <li><a href="#"> Contact Us</a></li>
+        <!-- <li><a href="#"> Contact Us</a></li> -->
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     <!-- </div> -->
@@ -60,11 +60,11 @@
              <li><a href="/empprofile"><i class="glyphicon glyphicon-user"></i>  Employee Profile</a>
              <!-- <li class="active"><a href="">Profile</a> -->
              <%if(type == 'Maintenance'){%> 
-                <li><a href="/viewi"><i class="glyphicon glyphicon-plus"></i>   View Inventory</a>
-                <li><a href="/modifyi"><i class="glyphicon glyphicon-plus"></i>   Modify Inventory</a>
-                <li><a href="/viewequip"><i class="glyphicon glyphicon-plus"></i>   View Equipment</a>
-                <li class="active"><a href="/modifyequip"><i class="glyphicon glyphicon-plus"></i>   Modify Equipment</a>
-                <li><a href="/status"><i class="glyphicon glyphicon-plus"></i>   Update staus</a>
+                <li><a href="/viewi"><i class="glyphicon glyphicon-align-left"></i>   View Inventory</a>
+                <li><a href="/modifyi"><i class="glyphicon glyphicon-indent-left"></i>   Modify Inventory</a>
+                <li><a href="/viewequip"><i class="glyphicon glyphicon-check"></i>   View Equipment</a>
+                <li class="active"><a href="/modifyequip"><i class="glyphicon glyphicon-edit"></i>   Modify Equipment</a>
+                <li><a href="/status"><i class="glyphicon glyphicon-equalizer"></i>   Update status</a>
               <%}%>
              <br>
              <!-- <li><a href=""><i class="glyphicon glyphicon-envelope"></i>   Feedback</li></a> -->
@@ -84,13 +84,15 @@
         <h2></h2>
         <!-- <h3>Please contact BogusFitnessClub in case of any issues with the following details.</h3> -->
         <br>
-        <div class="col-md-8">            
+        <div class="table-responsive">            
         <table class="table table-hover">
           <thead>
-            <th>Equipment ID</th>
+            <th>EquipmentID</th>
             <th>Name</th>
+            <th>Rename</th>
             <th>Price</th>
             <th>Status</th>
+            <th>Ammend Status</th>
             <th></th>
           </thead>
           <tbody>
@@ -101,27 +103,31 @@
        <tr>
         <input type="hidden" name="id" value=<%= rows[i].type_id %>>
        <td><%= rows[i].type_id %>  </td>
-       <td><%= rows[i].type_name %>  <INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].type_name%> ></td>
+       <td><%= rows[i].type_name %></td>  
+       <td><INPUT TYPE="TEXT" NAME="name" value = <%=rows[i].type_name%> ></td>
        <td><%= rows[i].price%>  <!--  <INPUT TYPE="number" NAME="price" size='0' value= <%=rows[i].price%> > --></td>
 
-       <td><%= rows[i].status%>   <INPUT TYPE="number" NAME="status" size='0' value= <%=rows[i].status%> ></td>
+       <td><%= rows[i].status%></td>   
+       <td><INPUT TYPE="number" NAME="status" size='0' value= <%=rows[i].status%> ></td>
        <td><button type="submit" class="btn btn-default" value="Submit">Submit</button></td>
       </tr>
       
     </form>
     <% } %>
+  </tbody>
+</table>
 
     <form method="post" action="/addequip">
     
        
-       <td> Add New</td>
-       <td><INPUT TYPE="TEXT" NAME="name"  ></td>
-       <td> <INPUT TYPE="number" NAME="price" size='0' ></td>
-       <td><input type="submit" value="Add"></td>
+       <h2>Add New</h2>
+       <td><INPUT TYPE="TEXT" NAME="name" placeholder="Enter Name" ></td>
+       <td> <INPUT TYPE="number" NAME="price" size='0' placeholder="Enter Price"></td>
+       <td><button type="submit" class="btn btn-default" value="Add">Add New</button></td>
       </tr>  
     </form>
-          </tbody>
-      </table>
+          <!-- </tbody> -->
+      <!-- </table> -->
     </div>
     </div>      
   </div>
