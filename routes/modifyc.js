@@ -61,9 +61,10 @@ router.post('/', function(req, res, next) {
         function(err, result, fields){
             if(err){ 
                 req.flash('moderr','Enter Valid Details');
-                req.flash('disp', 'true');
+
                 res.redirect('attlog');
             }
+            console.log(result);
 
             // db.query('SELECT LAST_INSERT_ID() as user_id',function(error, results, fields){
             //     if(error) throw error;
@@ -82,7 +83,7 @@ router.post('/', function(req, res, next) {
                 
         
             // });
-            req.flash('disp', 'true');
+            req.flash('Plis', 'Successfully Modified.');
             res.redirect('/attlog');
          })
         //res.end(JSON.stringify(req.body));
