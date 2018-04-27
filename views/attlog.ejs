@@ -84,6 +84,30 @@
         <br>
         <div class="col-md-8">  
         <% if(1>0){%>
+
+        <form method='post' action='/attlog'>
+        <br>    Userid: &nbsp;
+        <input type='text' name='userid' required><br>
+        Date:
+        &nbsp; &nbsp;
+        <input type = 'date' name='date' required><br> 
+        <!-- Do not change name for the radio button i have set it to sub-->
+        Place: 
+        <div>
+          <input type="radio" id="subChoice1"
+           name="sub" value='Gym' required>
+          <label for="subChoice1">Gym</label>
+        
+        <input type="radio" id="subChoice2"
+           name="sub" value='Kick Boxing'>
+          <label for="subChoice2">Kick Boxing Arena</label>
+      
+        <input type="radio" id="subChoice3"
+           name="sub" value='Aerobics'>
+          <label for="subChoice3">Aerobics</label>
+        <input type="radio" id="subChoice4"
+          name="sub" value='Power Yoga'>
+         <label for="subChoice3">Power Yoga</label>
         <form class="form-horizontal" method="post" action="/attlog">
           <div class="form-group">
             <label class="control-label col-sm-2" for="userid">UserID:</label>
@@ -110,6 +134,7 @@
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
+
           </div>
         </form>
     <%}%>
