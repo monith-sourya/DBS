@@ -70,3 +70,10 @@ li.active a{
 .table-hover{
 	font-size: 17px;
 }
+.about{
+	padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
+

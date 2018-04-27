@@ -20,7 +20,7 @@ var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 var indexRouter = require('./routes/index');
-
+var aboutRouter = require('./routes/about');
 var modifycRouter = require('./routes/modifyc');
 
 //Receptionist Routes.
@@ -45,6 +45,7 @@ var statusRouter = require('./routes/status');
 var addtRouter = require('./routes/addt');
 var viewtRouter = require('./routes/viewt');
 var viewattRouter = require('./routes/viewatt');
+var viewcardRouter = require('./routes/viewcard');
 
 //Manager
 
@@ -82,7 +83,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var options = {
     host: 'localhost',
    // port: '80',
-    user: 'root',
+    user: 'sanjay',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -142,12 +143,7 @@ app.use(flash());
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 // <<<<<<< HEAD
-
-//app.use('/about', aboutRouter);
-
-// =======
-// >>>>>>> 1b90b636e7c16737d93a10029eae0265c84aee9e
-//app.use('/about', aboutRouter);
+app.use('/about', aboutRouter);
 
 
 app.use('/modifyc', modifycRouter);
@@ -174,6 +170,7 @@ app.use('/status', statusRouter)
 app.use('/addt', addtRouter);
 app.use('/viewt', viewtRouter);
 app.use('/viewatt', viewattRouter);
+app.use('/viewcard', viewcardRouter);
 
 //Manager
 app.use('/newemp', newempRouter);

@@ -27,7 +27,7 @@
     </div>
     <!-- <div class="collapse navbar-collapse" id="myNavbar"> -->
       <ul class="nav navbar-nav navbar-right">      
-        <li><a href="n3.html"> About Us</a></li>
+        <li><a href="/about"> About Us</a></li>
         <li><a href="#"> Contact Us</a></li>
         <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
@@ -109,7 +109,7 @@
             <th>Product</th>
             <th>Price</th>
             <th>Quantity</th>
-            <th>Time of Purchase</th>
+            <th>Time</th>
           </thead>
           <tbody>
             </tr>
@@ -119,6 +119,7 @@
      <td><%= rows[i].inv_name %></td>
      <td><%= rows[i].price%></td>
      <td><%= rows[i].quant%></td>
+     <td><%= (rows[i].price * rows[i].quant)%></td>
      <td><%= rows[i].time%></td>
     </tr>
     <% } %>
