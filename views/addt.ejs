@@ -96,7 +96,7 @@
             <th>Item Name</th>
             <th>Item Price</th>
             <th>Stock Available</th>
-            <th>Purchase</th>
+            <th>Purchase Quantity</th>
             <th></th>
           </thead>
           <tbody>
@@ -114,7 +114,7 @@
                   <td><%= rows[i].sp%></td>
                   <td><%= rows[i].stock%></td>
                   <td> 
-                    <INPUT TYPE="number" NAME="quantity" size='1' max = '<%=rows[i].stock%>' min = '0' value= 1> 
+                    <INPUT TYPE="number" NAME="quantity" size='1' max = '<%=rows[i].stock%>' min = '1' value= '1' required > 
                   </td>
                   <td><input type="submit" value="Submit"></td>
                 </tr>

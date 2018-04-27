@@ -85,15 +85,15 @@
         <% if(1>0){%>
         <form method='post' action='/attlog'>
         <br>    Userid: &nbsp;
-        <input type='text' name='userid'><br>
+        <input type='text' name='userid' required><br>
         Date:
         &nbsp; &nbsp;
-        <input type = 'date' name='date'><br> 
+        <input type = 'date' name='date' required><br> 
         <!-- Do not change name for the radio button i have set it to sub-->
         Place: 
         <div>
           <input type="radio" id="subChoice1"
-           name="sub" value='Gym'>
+           name="sub" value='Gym' required>
           <label for="subChoice1">Gym</label>
         
         <input type="radio" id="subChoice2"
