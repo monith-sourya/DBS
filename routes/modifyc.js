@@ -32,10 +32,12 @@ router.post('/', function(req, res, next) {
     const username = req.body.username;
     const sex = req.body.sex;
     const age = req.body.age;
+    const phno = req.body.phno;
+    const address = req.body.address;
+    const email = req.body.email;
     const sub = req.body.sub;
     const subd = req.body.subd;
     const trainer = req.body.trainer;
-    const bal = req.body.bal;
 
     req.checkBody('username', 'Name is required').notEmpty();
     req.checkBody('username', 'Name must be between 4-15 characters long.').len(4,15);
