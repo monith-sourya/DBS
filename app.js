@@ -84,7 +84,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var options = {
     host: 'localhost',
    // port: '80',
-    user: 'nikki',
+    user: 'root',
     password : 'Keyshore',
     database: 'fitness'
 };
@@ -165,7 +165,7 @@ app.use('/viewi', viewiRouter);
 app.use('/addequip', addequipRouter);
 app.use('/modifyequip', modifyequipRouter);
 app.use('/viewequip', viewequipRouter);
-app.use('/status', statusRouter)
+app.use('/status', statusRouter);
 //Customer
 
 app.use('/addt', addtRouter);
