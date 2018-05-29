@@ -4,18 +4,13 @@ var bodyParser = require('body-parser');
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-// /* GET home page. */
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
-
 
 router.use(passport.initialize());
 router.use(passport.session());
 
 var x;
-
-//var user;
-/* GET home page. */
 
 router.get('/', authenticationMiddleware(),function(req, res, next) {
     res.redirect('/profile');

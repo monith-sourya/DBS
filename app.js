@@ -54,6 +54,9 @@ var modifyeRouter = require('./routes/modifye');
 var statsRouter = require('./routes/stats');
 //var deductRouter = require('./routes/deduct');
 
+
+var testRouter = require('./routes/test');
+
 var app = express();
 
 //app.locals.points = "8,912";
@@ -178,6 +181,8 @@ app.use('/newemp', newempRouter);
 app.use('/modifye', modifyeRouter);
 app.use('/stats', statsRouter);
 //app.use('deduct', deductRouter);
+
+app.use('/test', testRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
